@@ -49,4 +49,4 @@ node : v8.10.0
 
 ## License
 
-GPL 3.0
+This project is licensed under the GPL3 License - see the [LICENSE.md](LICENSE.md) file for details
