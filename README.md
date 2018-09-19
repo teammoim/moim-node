@@ -1,4 +1,7 @@
 # moim-node
+
+[![Build Status](https://travis-ci.org/teammoim/moim-node.svg?branch=master)](https://travis-ci.org/teammoim/moim-node)
+
 node JS server-side & client-side framework repository
 
 ## Develop
