@@ -20,7 +20,7 @@ git clone https://github.com/teammoim/moim-node.git
 ```
 
 ```sh
-cd moin-node
+cd moim-node
 ```
 
 ```sh
