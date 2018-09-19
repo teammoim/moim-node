@@ -16,7 +16,7 @@ nodejs -v
 ```
 
 ```sh
-git clone https://github.com/teammoim/moim-node-server.git
+git clone https://github.com/teammoim/moim-node.git
 ```
 
 ```sh
