@@ -7,7 +7,6 @@
     "test": "node_modules/.bin/mocha .spec.js --recursive"
   },
   "dependencies": {
-    "chai": "^4.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
