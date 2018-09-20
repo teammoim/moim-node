@@ -7,15 +7,17 @@
     "test": "node_modules/.bin/mocha .spec.js --recursive"
   },
   "dependencies": {
+    "chai": "^4.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
-  },
-  "devDependencies": {
+    "morgan": "~1.9.0",
     "babel-core": "^6.26.3",
     "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    
   }
 }
