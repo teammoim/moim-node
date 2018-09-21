@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+div.tile {
+  margin-top: 20px
+}
+
+p {
+  font-size: 130%
+}

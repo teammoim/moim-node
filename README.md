@@ -30,7 +30,7 @@ cd moim-node
 npm install
 ```
 
-## Test
+## Start
 
 ```sh
 npm start
@@ -38,17 +38,35 @@ npm start
 
 http://127.0.0.1:3000/
 
+## Test
+
+```sh
+npm test
+```
+
 ## Version
 
 node : v8.10.0
 
 ## Installed library
 
-* node
+* "cookie-parser": "~1.4.3",
 
-* express
+* "debug": "~2.6.9",
 
-* ejs
+* "ejs": "~2.5.7",
+
+* "express": "~4.16.0",
+
+* "http-errors": "~1.6.2",
+
+* "morgan": "~1.9.0",
+
+* "babel-core": "^6.26.3",
+
+* "mocha": "^5.2.0",
+
+* "bulma": "^0.7.1"
 
 ## License
 
