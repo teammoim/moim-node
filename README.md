@@ -17,6 +17,16 @@ sudo apt install npm
 ```sh
 nodejs -v
 ```
+## if nodejs version is not 8.x
+
+```
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+```
+
+```
+sudo apt-get install -y nodejs
+```
+## else
 
 ```sh
 git clone https://github.com/teammoim/moim-node.git
