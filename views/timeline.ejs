@@ -3,12 +3,72 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      #grey{
+        background-color:gainsboro;
+        height:100%;
+        padding-top:40px;
+       
+      }
+      .timeline-container{
+        margin-left:100px;
+        width:50%;
+      }
+      .media {
+        padding: 6px 10px 6px 10px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0.1px 0.1px 0.2px 0.2px grey;
+      }
+      img.logo-image{
+        border-radius:50%;
+        width:40px;
+        height:40px;
+        margin-top:5px;
+      }
+    </style>
+    
   </head>
   <body>
-  <% include header %>
+    <% include header %>
+    <div id="grey">
+      <div class="timeline-container">
+        <article class="media">
+          <figure class="media-left">
+            <img class="logo-image" src="https://matthewcarmstrong.files.wordpress.com/2015/10/150616192218-donald-trump-presidential-announcement-supercut-tsr-vo-00000002-large-169.jpg?w=600&h=338" />
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Donald Trump</strong> <small>@donald trump</small> <small>31m</small>
+                <br>
+                I'm happy
+              </p>
+            </div>
+          </div>
+        </article>
+        <article class="media">
+          <figure class="media-left">
+            <img class="logo-image" src="https://matthewcarmstrong.files.wordpress.com/2015/10/150616192218-donald-trump-presidential-announcement-supercut-tsr-vo-00000002-large-169.jpg?w=600&h=338" />
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Donald Trump</strong> <small>@donald trump</small> <small>31m</small>
+                <br>
+                 MAKE AMERICA GREAT AGAIN!
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <script>
+      //set the initial height of background-color
+      var grey = document.getElementById("grey");
+      var height = (window.innerHeight-53).toString()+"px";
+      grey.style.minHeight = height;
+    </script>
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>여러분의 주변에서 어떤 멋진 일이 일어나고 있는지 살펴보십시오!</p>
   </body>
 </html>
