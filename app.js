@@ -1,9 +1,11 @@
+// Require core modules
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Require routers
 var indexRouter = require('./routes/index');
 var profileRouter = require('./routes/profile');
 var loginRouter = require('./routes/login');
@@ -14,6 +16,8 @@ var timeLineRouter = require('./routes/timeline');
 var app = express();
 
 // view engine setup
+// Team MOIM will use ejs templates
+// http://ejs.co/
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
