@@ -15,6 +15,12 @@ var timeLineRouter = require('./routes/timeline');
 
 var app = express();
 
+// Initialize firebase
+var firebase = require('firebase');
+var dbconfig = require('./fbconfig.js');
+
+firebase.initializeApp(dbconfig);
+
 // view engine setup
 // Team MOIM will use ejs templates
 // http://ejs.co/
