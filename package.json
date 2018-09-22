@@ -17,6 +17,5 @@
     "mocha": "^5.2.0",
     "bulma": "^0.7.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
