@@ -15,6 +15,7 @@ var timeLineRouter = require('./routes/timeline');
 
 var app = express();
 
+<<<<<<< HEAD
 // Initialize Firebase
 var firebsae = require('firebase');
 var config =
@@ -28,6 +29,8 @@ var config =
 };
 firebase.initializeApp(config);
 
+=======
+>>>>>>> parent of 4a6fab5... Add Firebase link
 // view engine setup
 // Team MOIM will use ejs templates
 // http://ejs.co/
