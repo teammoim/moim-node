@@ -15,6 +15,18 @@ var timeLineRouter = require('./routes/timeline');
 
 var app = express();
 
+// Initialize Firebase
+var config =
+{
+    apiKey: "AIzaSyDJsyrJ3aQdp8reQ-E2k_ANhrgbi39B28w",
+    authDomain: "moin-sample.firebaseapp.com",
+    databaseURL: "https://moin-sample.firebaseio.com",
+    projectId: "moin-sample",
+    storageBucket: "moin-sample.appspot.com",
+    messagingSenderId: "177305426985"
+};
+firebase.initializeApp(config);
+
 // view engine setup
 // Team MOIM will use ejs templates
 // http://ejs.co/
