@@ -16,6 +16,7 @@ var timeLineRouter = require('./routes/timeline');
 var app = express();
 
 // Initialize Firebase
+var firebsae = require('firebase');
 var config =
 {
     apiKey: "AIzaSyDJsyrJ3aQdp8reQ-E2k_ANhrgbi39B28w",
