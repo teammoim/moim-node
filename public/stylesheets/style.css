@@ -17,3 +17,6 @@ p {
 small {
   color:gray;
 }
+hr#hr-comment{
+  margin:3px 0px 15px 0px
+}
