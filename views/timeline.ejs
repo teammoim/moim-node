@@ -51,8 +51,14 @@
       text-overflow: ellipsis;
       word-break:break-all; /* 단어 중간에도 줄바꿈이 가능*/
     }
-    .profile-name{
-      font-size:2em;
+    .profile-name {
+      font-size: 2em;
+      float: left;
+    }
+    .profile-right-top-buttons {
+      float: left;
+      margin-left: 15%;
+      margin-top: 10px;
     }
     .timeline-post {
       margin-top:20px;
@@ -81,17 +87,24 @@
       font-size: medium;
       padding: 0px 4px 0px 4px;
     }
-    .profile-name{
-      float:left;
-    }
-    .profile-right-top-buttons {
-      float: left;
-      margin-left: 15%;
-      margin-top: 10px;
-    }
+    
     .timeline image{
       width:100%;
     }
+    a.level-item{
+      width:110px;
+      color:grey;
+      border-radius:10px;
+    }
+    a.level-item:hover {
+      background-color: gainsboro;
+    }
+    i.level {
+      font-size:1.5em;
+      
+    }
+
+
    
   </style>
 </head>
@@ -140,15 +153,15 @@
             <nav class="level is-mobile">
               <div class="level-left">
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">favorite</i></span>
-                  &nbsp;&nbsp;Favor
+                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
+                  &nbsp;&nbsp;Like
                 </a>
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">mode_comment</i></span>
+                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
                   &nbsp;&nbsp;Comment
                 </a>
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">share</i> </span>
+                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
                   &nbsp;&nbsp;Share
                 </a>
               </div>
@@ -171,15 +184,15 @@
             <nav class="level is-mobile">
               <div class="level-left">
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">favorite</i></span>
+                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
                   &nbsp;&nbsp;Like
                 </a>
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">mode_comment</i></span>
+                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
                   &nbsp;&nbsp;Comment
                 </a>
                 <a class="level-item">
-                  <span class="icon is-small"><i class="material-icons">share</i> </span>
+                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
                   &nbsp;&nbsp;Share
                 </a>
               </div>
@@ -205,7 +218,7 @@
               <div class="level-left">
                 <a class="level-item">
                   <span class="icon is-small"><i class="material-icons">favorite</i></span>
-                  &nbsp;&nbsp;Favor
+                  &nbsp;&nbsp;Like
                 </a>
                 <a class="level-item">
                   <span class="icon is-small"><i class="material-icons">mode_comment</i></span>
