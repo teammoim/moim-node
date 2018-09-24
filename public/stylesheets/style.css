@@ -20,3 +20,10 @@ small {
 hr#hr-comment{
   margin:3px 0px 15px 0px
 }
+.col3 {
+  width: 33%;
+  margin-right:10px;
+}
+.gap-10{
+  margin-left:10px;
+}
