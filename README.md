@@ -78,6 +78,15 @@ node : v8.10.0
 
 * "bulma": "^0.7.1"
 
+## Open source css framework
+
+we are using Bulma and Material Design icons. 
+if you want to use them, check out the site below
+
+Bulma : https://bulma.io/
+
+Material Design : https://www.w3schools.com/icons/google_icons_intro.asp
+
 ## License
 
 This project is licensed under the GPL3 License - see the [LICENSE](LICENSE.md) file for details
