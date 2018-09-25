@@ -21,6 +21,8 @@ var dbconfig = require('./fbconfig.js');
 
 firebase.initializeApp(dbconfig);
 
+var timelines = firebase.database();
+
 // view engine setup
 // Team MOIM will use ejs templates
 // http://ejs.co/
