@@ -12,7 +12,6 @@ var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signup');
 var timeLineRouter = require('./routes/timeline');
 
-
 var app = express();
 
 // Initialize firebase
@@ -40,6 +39,22 @@ app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/timeline', timeLineRouter);
 app.use('/profile', profileRouter);
+
+app.post('/trylogin', (request, response) =>
+{
+    console.log("Trying login -> ", request.body);
+    userdata = request.body;
+    userid = userdata.uid;
+    userpwd = userdata.pwd;
+    firebase.auth().signInWithEmailAndPassword(userid, userpwd).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    response.send(errorMessage);
+    console.log("INVALID USER : ", userdata.uid);
+    //response.render('login.ejs');
+    });
+});
 
 
 // catch 404 and forward to error handler

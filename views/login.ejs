@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+    function trylogin()
+    {
+        console.log('LOGIN REQUEST DETECTED');
+
+        if($('#pwd').val().length < 6)
+        {
+            alert("비밀번호는 6자 이상이어야 합니다!");
+            return;
+        }
+
+        if($('#uid').val().indexOf('@') < 0)
+        {
+            alert("이메일 형식이 올바르지 않습니다!");
+            return;
+        }
+
+        $.ajax({
+                type : 'POST',
+                data : {uid: $('#uid').val(), pwd: $('#pwd').val()},
+                url : '/trylogin',
+                success : (result) => {console.log('SENT LOGIN DATA');}
+
+            });
+    }
+    </script>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -11,7 +39,7 @@
     <h1 class="title">로그인</h1>
 <div class="field">
   <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email">
+    <input class="input" type="email" placeholder="Email" id='uid'>
     <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -22,13 +50,13 @@
 </div>
 <div class="field">
   <p class="control has-icons-left">
-    <input class="input" type="password" placeholder="Password">
+    <input class="input" type="password" placeholder="Password" id='pwd'>
     <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>
   </p>
 </div>
-<input class="button" type="submit" value="로그인하기""">
+<input id="loginbtn" class="button" type="submit" value="로그인하기" onclick="trylogin();">
     </div>
   </section>
   </body>
