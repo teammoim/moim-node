@@ -8,9 +8,22 @@ a {
 }
 
 div.tile {
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 p {
   font-size: 130%
+}
+small {
+  color:gray;
+}
+hr#hr-comment{
+  margin:3px 0px 15px 0px
+}
+.col3 {
+  width: 33%;
+  margin-right:10px;
+}
+.gap-10{
+  margin-left:10px;
 }

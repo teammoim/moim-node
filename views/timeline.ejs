@@ -1,14 +1,245 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  <% include header %>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    .timeline {
+      background-color: #ebeef4;
+    }
+    .timeline-profile {
+      width: 100%;
+      display: block;
+      height: 270px;
+      padding-left: 10%;
+      padding-right: 10%;
+      background-color:#dcdee2
+    }
+    .profile-left {
+      float:left;
+      width:30%;
+      height:270px;
+    }
+    .profile-image {
+      border-radius: 75px;
+      width: 150px;
+      height: 150px;
+      margin: 75px 75px 75px 75px;
+    }
+    .profile-right {
+      float:left;
+      padding:60px 10% 10px 10px;
+      width:60%;
+      height:270px;
+    }
+    .profile-right-top{
+      float:left;
+      width:100%;
+      height:40px;
+    }
+    .profile-right-mid{
+      float:left;
+      height:40px;
+      margin-top:20px;
+      width:100%;
+    }
+ 
+    .profile-right-intro{
+      float:left;
+      width:70%;
+      height:100px;
+      text-overflow: ellipsis;
+      word-break:break-all; /* ¥‹æÓ ¡ﬂ∞£ø°µµ ¡ŸπŸ≤ﬁ¿Ã ∞°¥…*/
+    }
+    .profile-name {
+      font-size: 2em;
+      float: left;
+    }
+    .profile-right-top-buttons {
+      float: left;
+      margin-left: 15%;
+      margin-top: 10px;
+    }
+    .timeline-post {
+      margin-top:20px;
+      margin-left: 25%;
+      width: 500px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>Ïó¨Îü¨Î∂ÑÏùò Ï£ºÎ≥ÄÏóêÏÑú Ïñ¥Îñ§ Î©ãÏßÑ ÏùºÏù¥ ÏùºÏñ¥ÎÇòÍ≥† ÏûàÎäîÏßÄ ÏÇ¥Ìé¥Î≥¥Ïã≠ÏãúÏò§!</p>
+    .media {
+      padding: 6px 10px 6px 10px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0.1px 0.1px 0.2px 0.2px grey;
+    }
+
+    img.logo-image {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-top: 5px;
+    }
+
+    span.middle-dot {
+      color: gray;
+      font-size: medium;
+      padding: 0px 4px 0px 4px;
+    }
+    
+    .timeline image{
+      width:100%;
+    }
+    a.level-item{
+      width:110px;
+      color:grey;
+      border-radius:10px;
+    }
+    a.level-item:hover {
+      background-color: gainsboro;
+    }
+    i.level {
+      font-size:1.5em;
+      
+    }
+
+
+   
+  </style>
+</head>
+  <body>
+    <% include header %>
+    <div class="timeline">
+      <div class="timeline-profile">
+        <div class="profile-left">
+          <img src="images/logo.png" class="profile-image" />
+        </div>
+        <div class="profile-right">
+          <div class="profile-right-top">
+            <span class="profile-name">MOIM</span>
+            <div class="profile-right-top-buttons">
+              <button class="friend button">Friend</button>
+              <button class="follow button">Following</button>
+            </div>
+          </div>
+          <div class="profile-right-mid">
+            <div style="padding:0px 20px 0px 0px;font-size:1.3em;width:100%">
+              <span class="col3">Posts<span class="post-number gap-10">3</span></span>
+              <span class="col3">Friends<span class="friend-number gap-10">5</span></span>
+              <span class="col3">Followers<span class="follower-number gap-10">10</span></span>
+            </div>
+          </div>
+          <div class="profile-right-intro">
+            Kookmin.univcomputerscience,opensource software
+          </div>
+        </div>
+        <
+      </div>
+      <div class="timeline-post">
+        <article class="media">
+          <figure class="media-left">
+            <img class="logo-image" src="https://matthewcarmstrong.files.wordpress.com/2015/10/150616192218-donald-trump-presidential-announcement-supercut-tsr-vo-00000002-large-169.jpg?w=600&h=338" />
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Donald Trump</strong> <small>@donald trump</small><span class="middle-dot">&middot;</span><small>31m</small>
+                <br>
+                «—±€¡ˆø¯¿Ã æ»µ»¥Ÿ æ∆æ∆
+              </p>
+            </div>
+            <hr id="hr-comment" />
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
+                  &nbsp;&nbsp;Like
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
+                  &nbsp;&nbsp;Comment
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
+                  &nbsp;&nbsp;Share
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+        <article class="media">
+          <figure class="media-left">
+            <img class="logo-image" src="images/logo.png" />
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Moim</strong> <small>@moim</small><span class="middle-dot">&middot;</span><small>41m</small>
+                <br>
+                <img src="/images/logo.png" />
+              </p>
+            </div>
+            <hr id="hr-comment" />
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
+                  &nbsp;&nbsp;Like
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
+                  &nbsp;&nbsp;Comment
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
+                  &nbsp;&nbsp;Share
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+        <article class="media">
+          <figure class="media-left">
+            <img class="logo-image" src="images/logo.png" />
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>testimage1</strong> <small>@testimage</small><span class="middle-dot">&middot;</span><small>3h</small>
+                <br />
+                What is That!
+                <!-- ¿Ã ¿ÃπÃ¡ˆ¥¬ ¿˙¿€±«¿Ã ∞…∑¡ ¿÷¿∏¥œ ¡∂Ω…«ÿæﬂ«‘-->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg" />
+              </p>
+            </div>
+            <hr id="hr-comment" />
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="material-icons">favorite</i></span>
+                  &nbsp;&nbsp;Like
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="material-icons">mode_comment</i></span>
+                  &nbsp;&nbsp;Comment
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="material-icons">share</i> </span>
+                  &nbsp;&nbsp;Share
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+    </div>
+    <script>
+      //set the initial height of background-color
+      var grey = document.getElementById("timeline");
+      var height = (window.innerHeight-53).toString()+"px";
+      grey.style.minHeight = height;
+    </script>
+
   </body>
 </html>
