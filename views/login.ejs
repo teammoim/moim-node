@@ -24,7 +24,12 @@
                 type : 'POST',
                 data : {uid: $('#uid').val(), pwd: $('#pwd').val()},
                 url : '/trylogin',
-                success : (result) => {console.log('SENT LOGIN DATA');}
+                success : (result) =>
+                {
+                    alert('LOGIN!');
+                    console.log('SENT LOGIN DATA');
+                },
+                error : (error) => {}
 
             });
     }
