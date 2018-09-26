@@ -9,59 +9,7 @@
       background-color: #ebeef4;
       height:100%;
     }
-    .timeline-profile {
-      width: 100%;
-      display: block;
-      height: 270px;
-      padding-left: 10%;
-      padding-right: 10%;
-      background-color:#dcdee2
-    }
-    .profile-left {
-      float:left;
-      width:30%;
-      height:270px;
-    }
-    .profile-image {
-      border-radius: 75px;
-      width: 150px;
-      height: 150px;
-      margin: 75px 75px 75px 75px;
-    }
-    .profile-right {
-      float:left;
-      padding:60px 10% 10px 10px;
-      width:60%;
-      height:270px;
-    }
-    .profile-right-top{
-      float:left;
-      width:100%;
-      height:40px;
-    }
-    .profile-right-mid{
-      float:left;
-      height:40px;
-      margin-top:20px;
-      width:100%;
-    }
-
-    .profile-right-intro{
-      float:left;
-      width:70%;
-      height:100px;
-      text-overflow: ellipsis;
-      word-break:break-all; /* 단어 중간에도 줄바꿈이 가능 */
-    }
-    .profile-name {
-      font-size: 2em;
-      float: left;
-    }
-    .profile-right-top-buttons {
-      float: left;
-      margin-left: 15%;
-      margin-top: 10px;
-    }
+    
     .timeline-post {
       margin-top:20px;
       margin-left: 25%;
@@ -126,30 +74,6 @@
   <body>
     <% include header %>
     <div class="timeline">
-      <div class="timeline-profile">
-        <div class="profile-left">
-          <img src="images/logo.png" class="profile-image" />
-        </div>
-        <div class="profile-right">
-          <div class="profile-right-top">
-            <span class="profile-name">MOIM</span>
-            <div class="profile-right-top-buttons">
-              <button class="friend button">Friend</button>
-              <button class="follow button">Following</button>
-            </div>
-          </div>
-          <div class="profile-right-mid">
-            <div style="padding:0px 20px 0px 0px;font-size:1.3em;width:100%">
-              <span class="col3">Posts<span class="post-number gap-10">3</span></span>
-              <span class="col3">Friends<span class="friend-number gap-10">5</span></span>
-              <span class="col3">Followers<span class="follower-number gap-10">10</span></span>
-            </div>
-          </div>
-          <div class="profile-right-intro">
-            Kookmin.univcomputerscience,opensource software
-          </div>
-        </div>
-      </div>
       <div class="timeline-post">
         <article class="media">
           <div class="media-content">
