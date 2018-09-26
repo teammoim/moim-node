@@ -2,18 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' media="(min-width:581px)" href="/stylesheets/timeline-large.css" />
+  <link rel='stylesheet' media="(max-width:580px)" href="/stylesheets/timeline-small.css" />
   <style>
     .timeline {
       background-color: #ebeef4;
-      height:100%;
+      height: 100%;
     }
-    
+
     .timeline-post {
-      margin-top:20px;
-      margin-left: 25%;
-      width: 500px;
+      margin-top: 20px;
       margin-bottom: 10px;
       display: inline-block;
     }
@@ -24,21 +25,27 @@
       background-color: white;
       box-shadow: 0.1px 0.1px 0.2px 0.2px grey;
     }
-    .media-writer{
-      width:100%;
-      height:25px; /*to-do 45px*/
+
+    .media-writer {
+      width: 100%;
+      height: 25px; /*to-do 45px*/
     }
-    .writer-left{
-      float:left;
-      width:11%;
+
+    .writer-left {
+      float: left;
+      width: 11%;
     }
-    .writer-right{
-      float:left;
-      width:88%;
+
+    .writer-right {
+      float: left;
+      padding-left:10px;
+      width: 88%;
     }
-    span.timestamp{
-      color:gray;
+
+    span.timestamp {
+      color: gray;
     }
+
     img.writer-image {
       border-radius: 50%;
       width: 40px;
@@ -52,23 +59,23 @@
       padding: 0px 4px 0px 4px;
     }
 
-    .timeline image{
-      width:100%;
+    .timeline image {
+      width: 100%;
     }
-    a.level-item{
-      width:110px;
-      color:grey;
-      border-radius:10px;
+
+    a.level-item {
+      width: 110px;
+      color: grey;
+      border-radius: 10px;
     }
-    a.level-item:hover {
-      background-color: gainsboro;
-    }
+
+      a.level-item:hover {
+        background-color: gainsboro;
+      }
+
     i.level {
-      font-size:1.5em;
+      font-size: 1.5em;
     }
-
-
-
   </style>
 </head>
   <body>
@@ -125,7 +132,7 @@
             <div class="content">
               <p>
                 <br>
-                아아 정말 좋아
+                여러분의 한학기를 대하는 심정
                 <img src="https://imageshack.com/a/img924/3158/50kuQT.jpg" />
               </p>
             </div>
@@ -148,8 +155,43 @@
             </nav>
           </div>
         </article>
-
-
+        <article class="media">
+          <div class="media-content">
+            <div class="media-writer">
+              <div class="writer-left">
+                <img class="writer-image" src="images/logo.png">
+              </div>
+              <div class="writer-right">
+                <span class="writer">MOIM</span> <br />
+                <span class="timestamp">@MOIM<span class="middle-dot">&middot;</span><small>31m</small></span>
+              </div>
+            </div>
+            <div class="content">
+              <p>
+                <br>
+                아아 정말 좋아
+              </p>
+            </div>
+            <img src="images/logo.png" />
+            <hr id="hr-comment" />
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
+                  &nbsp;&nbsp;Like
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
+                  &nbsp;&nbsp;Comment
+                </a>
+                <a class="level-item">
+                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
+                  &nbsp;&nbsp;Share
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
       </div>
     </div>
     <script>
