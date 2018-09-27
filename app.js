@@ -8,6 +8,7 @@ var logger = require('morgan');
 // Require routers
 var indexRouter = require('./routes/index');
 var profileRouter = require('./routes/profile');
+var settingRouter = require('./routes/setting');
 var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signup');
 var timeLineRouter = require('./routes/timeline');
@@ -39,6 +40,7 @@ app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/timeline', timeLineRouter);
 app.use('/profile', profileRouter);
+app.use('/setting', settingRouter);
 
 app.post('/trylogin', (request, response) =>
 {
