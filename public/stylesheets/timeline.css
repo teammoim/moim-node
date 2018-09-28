@@ -19,7 +19,7 @@
 
 .post-writer {
   width: 100%;
-  height: 25px; /*to-do 45px*/
+  height: 40px; /*to-do 45px*/
 }
 
 .writer-left {
@@ -66,10 +66,7 @@ a.level-item {
 a.level-item:hover {
   background-color: gainsboro;
 }
-.contents {
-  padding:unset;
-  margin:unset;
-}
+
 img.content-image {
   padding:unset;
 }

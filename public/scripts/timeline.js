@@ -68,27 +68,27 @@ function createPost(Post) {
     timestamp.className = "timestamp";
     writer_right.appendChild(timestamp);
 
-    var _content = document.createElement("div");
-    _content.className = "content";
-    media_content.appendChild(_content);
+    var content = document.createElement("div");
+    content.className = "content";
+    media_content.appendChild(content);
 
     //in content tag
     var text = document.createElement("div");
     text.className = "content-text";
-    _content.appendChild(text);
+    content.appendChild(text);
 
     //in content tag
     var image_box = document.createElement("div");
     image_box.className = "content-image";
-    _content.appendChild(image_box);
+    content.appendChild(image_box);
 
     var hr_half = document.createElement("hr");
     hr_half.id = "hr-half";
     media_content.appendChild(hr_half);
 
-    var _level = document.createElement("nav");
-    _level.className = "level is-mobile";
-    _level.innerHTML = '' +
+    var level = document.createElement("nav");
+    level.className = "level is-mobile";
+    level.innerHTML = '' +
       '<div class="level-left">' +
       '<a class="level-item" >' +
       '  <span class="icon is-small"><i class="level material-icons">favorite</i></span>' +
