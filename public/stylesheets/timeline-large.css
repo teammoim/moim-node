@@ -1,11 +1,11 @@
 @media (min-width: 580px) and (max-width: 1000px) {
-  .timeline-post {
+  .timeline-posts {
     width: 570px;
     padding: 0px 5px 0px 8px;
   }
 }
 @media (min-width: 1001px)  {
-  .timeline-post {
+  .timeline-posts {
     width: 870px;
     padding: 0px 5px 0px 300px;
   }

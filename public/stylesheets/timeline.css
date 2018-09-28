@@ -3,24 +3,21 @@
   height: 100%;
 }
 
-.timeline-post {
+.timeline-posts {
   margin-top: 20px;
   margin-bottom: 10px;
   display: inline-block;
 }
 
-.media {
+.post {
   padding: 6px 10px 6px 10px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0.1px 0.1px 0.2px 0.2px grey;
 }
 
-  .media + .media {
-    padding-top: 0px;
-  }
 
-.media-writer {
+.post-writer {
   width: 100%;
   height: 25px; /*to-do 45px*/
 }
@@ -60,7 +57,7 @@ span.middle-dot {
 a.level-item {
   width: auto;
   padding: 0em 0.5em 0em 0.5em;
-  margin-left:3.8em;
+  margin-left:4.2em;
   margin-right:4em;
   color: grey;
   border-radius: 10px;
@@ -69,7 +66,14 @@ a.level-item {
 a.level-item:hover {
   background-color: gainsboro;
 }
-
+.contents {
+  padding:unset;
+  margin:unset;
+}
+img.content-image {
+  padding:unset;
+}
 i.level {
   font-size: 1.5em;
+  margin-right:0.8em;
 }

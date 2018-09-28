@@ -8,14 +8,15 @@
   <link rel='stylesheet' href="/stylesheets/timeline.css" />
   <link rel='stylesheet' media="(min-width:581px)" href="/stylesheets/timeline-large.css" />
   <link rel='stylesheet' media="(max-width:580px)" href="/stylesheets/timeline-small.css" />
+  <script src="/scripts/timeline.js"></script>
 </head>
   <body>
     <% include header %>
     <div class="timeline">
-      <div class="timeline-post">
-        <article class="media">
+      <div class="timeline-posts">
+        <article class="post media">
           <div class="media-content">
-            <div class="media-writer">
+            <div class="post-writer">
               <div class="writer-left">
                 <img class="writer-image" src="https://matthewcarmstrong.files.wordpress.com/2015/10/150616192218-donald-trump-presidential-announcement-supercut-tsr-vo-00000002-large-169.jpg?w=600&h=338" />
               </div>
@@ -25,98 +26,28 @@
               </div>
             </div>
             <div class="content">
-              <p>
-                <br>
-                무슨 문제라도?
-              </p>
-            </div>
-            <hr id="hr-comment" />
+              <div class="content-text">
+                <p>
+                  <br>
+                  무슨 문제라도?
+                </p>
+              </div>
+              <div class="content-image">
+
+            <hr id="hr-half" />
             <nav class="level is-mobile">
               <div class="level-left">
                 <a class="level-item">
                   <span class="icon is-small"><i class="level material-icons">favorite</i></span>
-                  &nbsp;&nbsp;Like
+                  Like
                 </a>
                 <a class="level-item">
                   <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
-                  &nbsp;&nbsp;Comment
+                  Comment
                 </a>
                 <a class="level-item">
                   <span class="icon is-small"><i class="level material-icons">share</i> </span>
-                  &nbsp;&nbsp;Share
-                </a>
-              </div>
-            </nav>
-          </div>
-        </article>
-        <article class="media"  >
-          <div class="media-content" >
-            <div class="media-writer">
-              <div class="writer-left">
-                <img class="writer-image" src="images/logo.png">
-              </div>
-              <div class="writer-right">
-                <span class="writer">MOIM</span> <br />
-                <span class="timestamp">@MOIM<span class="middle-dot">&middot;</span><small>31m</small></span>
-              </div>
-            </div>
-            <div class="content">
-              <p>
-                <br>
-                moim
-              </p>
-            </div>
-            <hr id="hr-comment" />
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
-                  &nbsp;&nbsp;Like
-                </a>
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
-                  &nbsp;&nbsp;Comment
-                </a>
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
-                  &nbsp;&nbsp;Share
-                </a>
-              </div>
-            </nav>
-          </div>
-        </article>
-        <article class="media">
-          <div class="media-content">
-            <div class="media-writer">
-              <div class="writer-left">
-                <img class="writer-image" src="images/logo.png">
-              </div>
-              <div class="writer-right">
-                <span class="writer">MOIM</span> <br />
-                <span class="timestamp">@MOIM<span class="middle-dot">&middot;</span><small>31m</small></span>
-              </div>
-            </div>
-            <div class="content">
-              <p>
-                <br>
-                시바
-              </p>
-            </div>
-            <img src="images/logo.png" />
-            <hr id="hr-comment" />
-            <nav class="level is-mobile">
-              <div class="level-left">
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">favorite</i></span>
-                  &nbsp;&nbsp;Like
-                </a>
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>
-                  &nbsp;&nbsp;Comment
-                </a>
-                <a class="level-item">
-                  <span class="icon is-small"><i class="level material-icons">share</i> </span>
-                  &nbsp;&nbsp;Share
+                  Share
                 </a>
               </div>
             </nav>
@@ -124,12 +55,5 @@
         </article>
       </div>
     </div>
-    <script>
-      //set the initial height of background-color
-      var grey = document.getElementById("timeline");
-      var height = (window.innerHeight-53).toString()+"px";
-      grey.style.minHeight = height;
-    </script>
-
   </body>
 </html>
