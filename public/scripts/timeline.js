@@ -28,9 +28,10 @@ Post.prototype.setImage = function (image) {
 
 
 function createPost(Post) {
-
-  /*   connect all box and inline tags  */
+  
   window.onload = function () {
+
+    /*   connect all box and inline tags  */
     var posts = document.getElementsByClassName("timeline-posts")[0];
     var post = document.createElement("article");
     post.className = "post media";
@@ -116,5 +117,7 @@ function createPost(Post) {
   };
 
 }
+
+//testcase
 var post = Post();
 createPost(post);
