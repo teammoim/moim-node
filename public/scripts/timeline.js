@@ -117,7 +117,7 @@ function createPost(Post) {
     text.innerText = Post.text; //set content text
     //if writer image is not ready, set writer image default
     if (typeof Post.writerImage !== 'object') {
-      writerImage.src = "images/default-writerImage";
+      writerImage.src = "images/default-writerImage.png";
     }
     else writerImage = Post.writerImage;
 
