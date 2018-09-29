@@ -1,11 +1,11 @@
 
 function Post() {
   this.writer = "";
-  this.writerImage = new Image();
+  this.writerImage;
   this.timestamp;
   this.time = new Date();
   this.text = "";
-  this.image = new Image();
+  this.image;
   this.likes = 0;
   this.comments = new Object();
 }
@@ -22,9 +22,8 @@ Post.prototype.setTime = function (y, m, d, hour, min, sec) {
 Post.prototype.setText = function (text) {
   this.text = text;
 };
-Post.prototype.setImage = function (image) {
-  this.image = image;
-};
+/* function associated image will be composed*/
+
 
 
 function createPost(Post) {
@@ -73,9 +72,14 @@ function createPost(Post) {
     media_content.appendChild(content);
 
     //in content tag
-    var text = document.createElement("div");
-    text.className = "content-text";
-    content.appendChild(text);
+    var content_text = document.createElement("div");
+    content_text.className = "content-text";
+    content.appendChild(content_text);
+
+    var text = document.createElement("p");
+    text.style.paddingTop = "1em";
+    content_text.appendChild(text);
+
 
     //in content tag
     var image_box = document.createElement("div");
@@ -109,9 +113,14 @@ function createPost(Post) {
     media_content.appendChild(level);
     /*  Input all the information of post  */
 
-    writer.innerText = Post.writer;
-    text.innerText = Post.text;
-    writerImage.src = Post.writerImage.src;
+    writer.innerText = Post.writer;//set writer's name
+    text.innerText = Post.text; //set content text
+    //if writer image is not ready, set writer image default
+    if (typeof Post.writerImage !== 'object') {
+      writerImage.src = "images/default-writerImage";
+    }
+    else writerImage = Post.writerImage;
+
 
     /* calculate timestamp */
   };
@@ -119,5 +128,8 @@ function createPost(Post) {
 }
 
 //testcase
-var post = Post();
-createPost(post);
+var james = new Post();
+
+james.setWriter("james");
+james.text = "My name is james";
+createPost(james);
