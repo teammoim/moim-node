@@ -2,7 +2,6 @@
 function Post() {
   this.writer = "";
   this.writerImage;
-  this.timestamp;
   this.time = new Date();
   this.text = "";
   this.image;
@@ -27,11 +26,9 @@ Post.prototype.setText = function (text) {
 
 
 function createPost(Post) {
-  
-  window.onload = function () {
-
     /*   connect all box and inline tags  */
     var posts = document.getElementsByClassName("timeline-posts")[0];
+    
     var post = document.createElement("article");
     post.className = "post media";
     posts.appendChild(post);
@@ -120,11 +117,6 @@ function createPost(Post) {
       writerImage.src = "images/default-writerImage.png";
     }
     else writerImage = Post.writerImage;
-
-
-    /* calculate timestamp */
-  };
-
 }
 
 //testcase
@@ -132,4 +124,13 @@ var james = new Post();
 
 james.setWriter("james");
 james.text = "My name is james";
-createPost(james);
+
+var jin = new Post();
+jin.writer = "jin";
+jin.text = "my name is jin";
+
+window.onload = function () {
+  createPost(james);
+  createPost(jin);
+};
+
