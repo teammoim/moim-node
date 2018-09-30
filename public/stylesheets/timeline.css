@@ -1,4 +1,4 @@
-html,body {
+html, body {
   height:100%;
   background-color: #ebeef4;
 }
@@ -60,8 +60,6 @@ span.middle-dot {
 a.level-item {
   width: auto;
   padding: 0em 1em 0em 1em;
-  margin-left:3.8em;
-  margin-right:4em;
   color: grey;
   border-radius: 10px;
 }
