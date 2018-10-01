@@ -57,10 +57,15 @@ span.middle-dot {
   width: 100%;
 }
 
+.content-image img{
+  margin-top:10px;
+}
+
 a.level-item {
   width: auto;
   padding: 0em 1em 0em 1em;
   color: grey;
+  margin-left:10%;
   border-radius: 10px;
 }
 
@@ -68,9 +73,6 @@ a.level-item:hover {
   background-color: gainsboro;
 }
 
-img.content-image {
-  padding:unset;
-}
 i.level {
   font-size: 1.5em;
   margin-right:0.8em;

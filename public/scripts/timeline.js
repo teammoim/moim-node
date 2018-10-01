@@ -4,8 +4,9 @@ function Post() {
   this.writerImage;
   this.time = new Date();
   this.text = "";
-  this.image;
+  this.images = [];
   this.likes = 0;
+  this.presslike = false;
   this.comments = new Object();
 }
 
@@ -21,17 +22,28 @@ Post.prototype.setTime = function (y, m, d, hour, min, sec) {
 Post.prototype.setText = function (text) {
   this.text = text;
 };
-/* function associated image will be composed*/
-
-
-
+Post.prototype.setWriterImage = function (Image) {
+  this.writerImage = Image;
+};
+Post.prototype.setImage = function (Image) {
+  while (this.images.length !== 0) this.images.pop();
+  this.images.push(Image);
+};
+Post.prototype.pushImage = function (Image) {
+  this.images.push(Image);
+}
+var posts = [];
 function createPost(Post) {
+  posts.push(Post);
+}
+
+function implementPost(Post) {
     /*   connect all box and inline tags  */
-    var posts = document.getElementsByClassName("timeline-posts")[0];
+    var timeline_posts = document.getElementsByClassName("timeline-posts")[0];
     
     var post = document.createElement("article");
     post.className = "post media";
-    posts.appendChild(post);
+    timeline_posts.appendChild(post);
 
     var media_content = document.createElement("div");
     media_content.className = "media-content";
@@ -116,21 +128,37 @@ function createPost(Post) {
     if (typeof Post.writerImage !== 'object') {
       writerImage.src = "images/default-writerImage.png";
     }
-    else writerImage = Post.writerImage;
+  else writerImage = Post.writerImage;
+  if (Post.images.length !== 0) {
+    for (var i = 0; i < Post.images.length; i++) {
+      image_box.appendChild(Post.images[i]);
+    }
+  }
 }
 
 //testcase
 var james = new Post();
 
 james.setWriter("james");
-james.text = "My name is james";
+james.setText("My name is james");
+
+
 
 var jin = new Post();
 jin.writer = "jin";
 jin.text = "my name is jin";
+moim = new Image();
+moim.src = "images/logo.png";
+jin.setImage(moim);
+
+createPost(james);
+createPost(jin);
+
+//
 
 window.onload = function () {
-  createPost(james);
-  createPost(jin);
+  for (var i = 0; i < posts.length; i++) {
+    implementPost(posts[i]);
+  }
 };
 
