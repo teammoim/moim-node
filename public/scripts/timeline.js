@@ -101,21 +101,19 @@ function implementPost(Post) {
 
     var level = document.createElement("nav");
     level.className = "level is-mobile";
-    level.innerHTML = '' +
-      '<div class="level-left">' +
-      '<a class="level-item" >' +
-      '  <span class="icon is-small"><i class="level material-icons">favorite</i></span>' +
-      '   Like' +
-      '          </a >' +
-      '<a class="level-item">' +
-      '  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>' +
-      '    Comment' +
-      '          </a>' +
-      '<a class="level-item">' +
-      '  <span class="icon is-small"><i class="level material-icons">share</i> </span>' +
-      '   Share' +
-      '          </a>' +
-      '        </div >';
+  level.innerHTML = '' +
+    '<a class="level-item" >' +
+    '  <span class="icon is-small"><i class="level material-icons">favorite</i></span>' +
+    '   Like' +
+    '          </a >' +
+    '<a class="level-item">' +
+    '  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>' +
+    '    Comment' +
+    '          </a>' +
+    '<a class="level-item">' +
+    '  <span class="icon is-small"><i class="level material-icons">share</i> </span>' +
+    '   Share' +
+    '          </a>';
     var like = level.getElementsByClassName("level-item")[0];
     var comment = level.getElementsByClassName("level-item")[1];
     var share = level.getElementsByClassName("level-item")[2];
