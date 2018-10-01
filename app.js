@@ -12,6 +12,7 @@ var settingRouter = require('./routes/setting');
 var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signup');
 var timeLineRouter = require('./routes/timeline');
+var mobiletimelineRouter = require('./routes/mobiletimeline')
 
 var app = express();
 
@@ -36,11 +37,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/profile', profileRouter);
+app.use('/setting', settingRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/timeline', timeLineRouter);
-app.use('/profile', profileRouter);
-app.use('/setting', settingRouter);
+app.use('/mobiletimeline', mobiletimelineRouter)
 
 app.post('/trylogin', (request, response) =>
 {
