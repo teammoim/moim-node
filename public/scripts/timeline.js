@@ -7,16 +7,12 @@ function Post(writer = "unknown", text = "", images = []) {
   this.images = [];
   this.likes = 0;
   this.presslike = false;
-<<<<<<< HEAD
   this.comments = []; //  argument : Comment
-=======
-  this.comments = new Object();
   for (i = 0; i<images.length;i++){
     var image = new Image();
     image.src = images[i];
     this.images.push(image);
   }
->>>>>>> master
 }
 
 
@@ -45,7 +41,6 @@ Post.prototype.addImage = function (Image) {
 Post.prototype.addComment = function (Comment) {
   this.comments.push(Comment);
 }
-<<<<<<< HEAD
 
 function Comment() {
   this.writer = "";
@@ -71,9 +66,6 @@ Comment.prototype.setTime = function (y, m, d, hour, min, sec) {
   this.time = new Date(y, m, d, hour, min, sec);
 };
 
-
-
-=======
 Post.prototype.Calc_timestamp = function(){//compare now time with post time to make timestamp
   var date = new Date();
   var Minute = 1000*60;//millisecond
@@ -93,7 +85,7 @@ Post.prototype.Calc_timestamp = function(){//compare now time with post time to 
   }
   return timestamp;
 }
->>>>>>> master
+
 var posts = [];
 function createPost(Post) {
   posts.push(Post);
@@ -284,27 +276,20 @@ var james = new Post("james", "My name is james");
 james.setTime(2018, 9, 3, 4, 32, 0);
 
 
-<<<<<<< HEAD
-var jin = new Post();
-jin.writer = "jin";
-jin.text = "my name is jin";
-moim = new Image();
-moim.src = "images/logo.png";
-jin.addImage(moim);
-
 var an = new Post();
 an.writer = "An";
 an.text = "this is post";
+
 var jang_comment = new Comment();
 an.addComment(jang_comment);
 jang_comment.writer = "Jang";
 jang_comment.text = "this is comment";
+
 var jang_comment2 = new Comment();
 an.addComment(jang_comment2);
 jang_comment2.writer = "Jang";
 jang_comment2.text = "And this is comment2";
-=======
->>>>>>> master
+
 
 var jin = new Post("jin", "my name is jin", ["images/logo.png", "images/logo.png"]);
 jin.setTime(2018, 9, 3, 23, 46, 0);
