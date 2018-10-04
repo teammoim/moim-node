@@ -1,13 +1,18 @@
 
-function Post() {
-  this.writer = "";
+function Post(writer = "unknown", text = "", images = []) {
+  this.writer = writer;
   this.writerImage;
   this.time = new Date();
-  this.text = "";
+  this.text = text;
   this.images = [];
   this.likes = 0;
   this.presslike = false;
   this.comments = new Object();
+  for (i = 0; i<images.length;i++){
+    var image = new Image();
+    image.src = images[i];
+    this.images.push(image);
+  }
 }
 
 Post.prototype.setWriter = function (writer) {
@@ -162,22 +167,13 @@ function implementPost(Post) {
 }
 
 //testcase
-var james = new Post();
-
-james.setWriter("james");
-james.setText("My name is james");
+var james = new Post("james", "My name is james");
 james.setTime(2018, 9, 3, 4, 32, 0);
 
 
 
-var jin = new Post();
-jin.writer = "jin";
-jin.text = "my name is jin";
+var jin = new Post("jin", "my name is jin", ["images/logo.png", "images/logo.png"]);
 jin.setTime(2018, 9, 3, 23, 46, 0);
-moim = new Image();
-moim.src = "images/logo.png";
-jin.setImage(moim);
-
 createPost(james);
 createPost(jin);
 
