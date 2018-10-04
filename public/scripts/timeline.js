@@ -1,13 +1,22 @@
 
-function Post() {
-  this.writer = "";
+function Post(writer = "unknown", text = "", images = []) {
+  this.writer = writer;
   this.writerImage;
   this.time = new Date();
-  this.text = "";
+  this.text = text;
   this.images = [];
   this.likes = 0;
   this.presslike = false;
+<<<<<<< HEAD
   this.comments = []; //  argument : Comment
+=======
+  this.comments = new Object();
+  for (i = 0; i<images.length;i++){
+    var image = new Image();
+    image.src = images[i];
+    this.images.push(image);
+  }
+>>>>>>> master
 }
 
 
@@ -36,6 +45,7 @@ Post.prototype.addImage = function (Image) {
 Post.prototype.addComment = function (Comment) {
   this.comments.push(Comment);
 }
+<<<<<<< HEAD
 
 function Comment() {
   this.writer = "";
@@ -63,6 +73,27 @@ Comment.prototype.setTime = function (y, m, d, hour, min, sec) {
 
 
 
+=======
+Post.prototype.Calc_timestamp = function(){//compare now time with post time to make timestamp
+  var date = new Date();
+  var Minute = 1000*60;//millisecond
+  var Hour = Minute*60;
+  var Day = Hour*24;
+  var Millisecond = date.getTime() - this.time.getTime();
+  var timestamp;
+  if (Millisecond<Minute){timestamp = "방금"}
+  else if (Millisecond<Hour){timestamp = parseInt(Millisecond/Minute) + "분 전"}
+  else if (Millisecond<Day){timestamp = parseInt(Millisecond/Hour) + "시간 전"}
+  else{
+    var hourmin = (this.time.getHours()<12 ? "오전 " : "오후 ") + this.time.getHours() + ":" + this.time.getMinutes();
+    var monthday = (this.time.getMonth()+1) + "월 " + this.time.getDate() + "일 ";
+    if (Millisecond<Day*2){timestamp = "어제 " + hourmin}
+    else if (this.time.getTime()>=1514732400000){timestamp = monthday + hourmin} // before 2018
+    else {timestamp = this.time.getFullYear() + "년 " + monthday}// after 2018
+  }
+  return timestamp;
+}
+>>>>>>> master
 var posts = [];
 function createPost(Post) {
   posts.push(Post);
@@ -169,11 +200,17 @@ function implementPost(Post) {
     var writer = document.createElement("span");
     writer.className = "writer";
     writer_right.appendChild(writer);
+    var br = document.createElement("br");
+    writer_right.appendChild(br);
 
     //in writer-right tag
     var timestamp = document.createElement("span");
     timestamp.className = "timestamp";
     writer_right.appendChild(timestamp);
+
+    var timestamp_time = document.createElement("small");
+    timestamp_time.className = "timestamp_time";
+    writer_right.appendChild(timestamp_time);
 
     var content = document.createElement("div");
     media_content.appendChild(content);
@@ -226,6 +263,8 @@ function implementPost(Post) {
   /*  Input all the information of post  */
     writer.innerText = Post.writer;//set writer's name
     text.innerText = Post.text; //set content text
+    timestamp.innerText = "@" + Post.writer + " ";
+    timestamp_time.innerText = Post.Calc_timestamp();
     //if writer image is not ready, set writer image default
     if (typeof Post.writerImage !== 'object') {
       writerImage.src = "images/default-writerImage.png";
@@ -241,13 +280,11 @@ function implementPost(Post) {
 }
 
 //testcase
-var james = new Post();
-
-james.setWriter("james");
-james.setText("My name is james");
+var james = new Post("james", "My name is james");
+james.setTime(2018, 9, 3, 4, 32, 0);
 
 
-
+<<<<<<< HEAD
 var jin = new Post();
 jin.writer = "jin";
 jin.text = "my name is jin";
@@ -266,7 +303,11 @@ var jang_comment2 = new Comment();
 an.addComment(jang_comment2);
 jang_comment2.writer = "Jang";
 jang_comment2.text = "And this is comment2";
+=======
+>>>>>>> master
 
+var jin = new Post("jin", "my name is jin", ["images/logo.png", "images/logo.png"]);
+jin.setTime(2018, 9, 3, 23, 46, 0);
 createPost(james);
 createPost(jin);
 createPost(an);
