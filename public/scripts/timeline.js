@@ -200,8 +200,8 @@ function implementPost(Post) {
     timestamp.className = "timestamp";
     writer_right.appendChild(timestamp);
 
-    var timestamp_time = document.createElement("small");
-    timestamp_time.className = "timestamp_time";
+    var timestamp_time = document.createElement("span");
+    timestamp_time.className = "timestamp";
     writer_right.appendChild(timestamp_time);
 
     var content = document.createElement("div");
@@ -255,7 +255,6 @@ function implementPost(Post) {
   /*  Input all the information of post  */
     writer.innerText = Post.writer;//set writer's name
     text.innerText = Post.text; //set content text
-    timestamp.innerText = "@" + Post.writer + " ";
     timestamp_time.innerText = Post.Calc_timestamp();
     //if writer image is not ready, set writer image default
     if (typeof Post.writerImage !== 'object') {
@@ -267,8 +266,16 @@ function implementPost(Post) {
       image_box.appendChild(Post.images[i]);
     }
   }
-  /* compose comment*/
   
+}
+
+/* cookie method is arbitary function.
+ * if server is developed this will be
+ * changed. */
+
+function setCookie(cookie_name, value) {
+  var exdate = new Date();
+  exdate.setDate(exdate.getDate() + 15);
 }
 
 //testcase

@@ -42,10 +42,15 @@ html, body {
   padding-top: 15px;
   width: 88%;
   font-size:1.2em;
+
+}
+.writer {
+  margin-left:2px;
 }
 
 span.timestamp {
   color: gray;
+  font-size:0.7em;
 }
 
 img.writer-image {
