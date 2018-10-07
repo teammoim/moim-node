@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "babel-core": "^6.26.3",
+    "body-parser": "^1.18.3",
     "bulma": "^0.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
