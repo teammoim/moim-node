@@ -12,8 +12,8 @@ var settingRouter = require('./routes/setting');
 var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signup');
 var timeLineRouter = require('./routes/timeline');
-var mobiletimelineRouter = require('./routes/mobiletimeline')
-
+var mobiletimelineRouter = require('./routes/mobiletimeline');
+var gpsmapRouter = require('./routes/gpsmap');
 var app = express();
 
 // Initialize firebase
@@ -42,7 +42,8 @@ app.use('/setting', settingRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/timeline', timeLineRouter);
-app.use('/mobiletimeline', mobiletimelineRouter)
+app.use('/mobiletimeline', mobiletimelineRouter);
+app.use('/gpsmap', gpsmapRouter);
 
 app.post('/trylogin', (request, response) =>
 {
