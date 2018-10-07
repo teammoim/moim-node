@@ -109,6 +109,7 @@ i.level {
   width: 85%;
   margin-left: 5%;
   margin-right:10%;
+  padding-bottom:4px;
   min-height: 50px;
   align-items: unset;
   display: block;
@@ -143,7 +144,7 @@ i.level {
   font-size:1em;
 }
 .media + .media {
-  padding-top:15px;
+  padding-top:11px;
   padding-left:unset;
 }
 
