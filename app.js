@@ -8,10 +8,12 @@ var logger = require('morgan');
 // Require routers
 var indexRouter = require('./routes/index');
 var profileRouter = require('./routes/profile');
+var settingRouter = require('./routes/setting');
 var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signup');
 var timeLineRouter = require('./routes/timeline');
-
+var mobiletimelineRouter = require('./routes/mobiletimeline');
+var gpsmapRouter = require('./routes/gpsmap');
 var app = express();
 
 // Initialize firebase
@@ -35,10 +37,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/profile', profileRouter);
+app.use('/setting', settingRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/timeline', timeLineRouter);
-app.use('/profile', profileRouter);
+app.use('/mobiletimeline', mobiletimelineRouter);
+app.use('/gpsmap', gpsmapRouter);
 
 app.post('/trylogin', (request, response) =>
 {

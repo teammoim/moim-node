@@ -1,0 +1,152 @@
+html, body {
+  height: 100%;
+  background-color: #ebeef4;
+}
+.timeline {
+  background-color: #ebeef4;
+}
+.media + .media {
+  padding:6px;
+}
+
+.timeline-posts {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.post {
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0.1px 0.1px 0.2px 0.2px grey;
+}
+.post + .post {
+  margin-top:10px;
+}
+
+
+.post-writer {
+  width: 100%;
+  height: 40px; /*to-do 45px*/
+}
+
+.writer-left {
+  float: left;
+  width: 11%;
+  padding:6px 10px 5px 10px;
+}
+
+.writer-right {
+  float: left;
+  padding-left: 10px;
+  padding-top: 15px;
+  width: 88%;
+  font-size:1.2em;
+
+}
+.writer {
+  margin-left:2px;
+}
+
+span.timestamp {
+  color: gray;
+  font-size:0.7em;
+}
+
+img.writer-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+
+span.middle-dot {
+  color: gray;
+  font-size: medium;
+  padding: 0px 4px 0px 4px;
+}
+
+.timeline image {
+  width: 100%;
+}
+
+.content-image img {
+  margin-top: 10px;
+}
+
+/* bulma css */
+a.level-item { 
+  width: auto;
+  padding: 0.3em 1em 0.3em 1em;
+  color: grey;
+  border-radius: 10px;
+}
+
+a.level-item:hover {
+  background-color: gainsboro;
+}
+
+.content-text {
+  padding: 6px 10px 6px 10px;
+}
+.content-image {
+  padding-bottom: 20px;
+}
+
+/*bulma css */
+i.level {
+  font-size: 1.5em;
+  margin-right:0.8em;
+}
+
+
+.comments-box {
+  background-color:#f6f6f6;
+  white-space:normal;
+  word-break:break-all;
+}
+.comment {
+  width: 85%;
+  margin-left: 5%;
+  margin-right:10%;
+  padding-bottom:4px;
+  min-height: 50px;
+  align-items: unset;
+  display: block;
+}
+.comment-writer {
+  width:100%;
+  height:32px;
+  font-size:1.2em;
+  font-weight:700;
+}
+.comment-writer-left{
+  float:left;
+  width:11%;
+  height:32px;
+  display:inline-block;
+}
+.comment-writer-right{
+  float:left;
+  width:88%;
+  height:32px;
+  display:inline-block;
+  padding-top:5px; /*there is no timestamp at comment*/
+}
+.comment-writer-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 2px;
+}
+.comment-textbox{
+  margin-left:11%;
+  font-size:1em;
+}
+.media + .media {
+  padding-top:11px;
+  padding-left:unset;
+}
+
+
+

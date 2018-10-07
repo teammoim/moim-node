@@ -1,0 +1,3 @@
+.media + .media {
+  padding-top: 6px; /*is not working on timeline.css*/
+}

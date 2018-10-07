@@ -1,0 +1,37 @@
+<html>
+  <head>
+      <title>Event List</title>
+  </head>>
+  <body>
+  <% include header %>
+  <div id="mapdiv"></div>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script>
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+    var lonLat = new OpenLayers.LonLat( 126.997 ,37.610 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+    var eventLoc1 = new OpenLayers.LonLat(126.99769, 37.609640)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+    var eventLoc2 = new OpenLayers.LonLat(126.99704, 37.61015)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+          
+    var zoom=18;
+
+    var event1 = new OpenLayers.Layer.Markers( "Markers" );
+    event1.addMarker(new OpenLayers.Marker(eventLoc1));
+    event1.addMarker(new OpenLayers.Marker(eventLoc2));    
+
+    map.addLayer(event1);    
+    map.setCenter (lonLat, zoom);
+  </script>
+</body></html>
