@@ -46,16 +46,16 @@ app.post('/trylogin', (request, response) =>
     userdata = request.body;
     userid = userdata.uid;
     userpwd = userdata.pwd;
-    firebase.auth().signInWithEmailAndPassword(userid, userpwd).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    response.send(errorMessage);
-    console.log("INVALID USER : ", userdata.uid);
-    //response.render('login.ejs');
+    firebase.auth().signInWithEmailAndPassword(userid, userpwd).catch(function(error)
+    {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        response.send(errorMessage);
+        console.log("INVALID USER : ", userdata.uid);
     });
+    response.redirect('../timeline');
 });
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {next(createError(404));});
