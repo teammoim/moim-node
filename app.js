@@ -4,6 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 // Require routers
 var indexRouter = require('./routes/index');
@@ -35,6 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', indexRouter);
 app.use('/profile', profileRouter);
@@ -45,13 +48,25 @@ app.use('/timeline', timeLineRouter);
 app.use('/mobiletimeline', mobiletimelineRouter);
 app.use('/gpsmap', gpsmapRouter);
 
-app.post('/trylogin', (request, response) =>
-{
-    console.log("Trying login -> ", request.body);
-    userdata = request.body;
-    userid = userdata.uid;
-    userpwd = userdata.pwd;
-    firebase.auth().signInWithEmailAndPassword(userid, userpwd).catch(function(error)
+app.post('/trysignup', function(req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+    });
+
+    res.redirect('/');
+});
+
+app.post('/trylogin', function(request, response) {
+    var email = request.body.email;
+    var password = request.body.password;
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error)
     {
         // Handle Errors here.
         var errorCode = error.code;
@@ -59,7 +74,11 @@ app.post('/trylogin', (request, response) =>
         response.send(errorMessage);
         console.log("INVALID USER : ", userdata.uid);
     });
-    response.redirect('../timeline');
+
+    var user = firebase.auth().currentUser;
+    console.log(user);
+
+    response.redirect('/profile');
 });
 
 // catch 404 and forward to error handler
