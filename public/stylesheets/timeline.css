@@ -23,16 +23,54 @@ html, body {
 .post + .post {
   margin-top:10px;
 }
+.write-post-left {
+  width: 60px;
+  min-height: 50px;
+  float: left;
+  padding: 6px 10px 5px 10px;
+  display:inline-block;
+}
+.write-post-right {
+  width: 82%;
+  float: left;
+  display: inline-block;
+  padding-top: 15px;
+}
+.write-post-textarea{
+  border-radius:5px;
+  min-height:60px;
+  overflow-y:hidden;
+  padding:0.4em 0.2em 0em 0.2em;
+  width:100%;
+}
+.write-post-textarea:focus{
+  outline:none;
+}
+.write-post-button{
+  width:50px;
+  height:30px;
+  margin-left:84%;
+  margin-top:6px;
+  background-color:#efeef4;
+  border-radius:10px;
+  border:0.5px solid gray;
+}
 
+.write-post-button:focus{
+  outline:none;
+}
+.write-post-button:hover{
+  background-color:#e5e4eb;
+}
 
 .post-writer {
   width: 100%;
-  height: 40px; /*to-do 45px*/
+  height:60px;
 }
 
 .writer-left {
   float: left;
-  width: 11%;
+  width: 60px;
   padding:6px 10px 5px 10px;
 }
 
@@ -40,9 +78,8 @@ html, body {
   float: left;
   padding-left: 10px;
   padding-top: 15px;
-  width: 88%;
+  width: 80%;
   font-size:1.2em;
-
 }
 .writer {
   margin-left:2px;
@@ -89,9 +126,7 @@ a.level-item:hover {
 .content-text {
   padding: 6px 10px 6px 10px;
 }
-.content-image {
-  padding-bottom: 20px;
-}
+
 
 /*bulma css */
 i.level {

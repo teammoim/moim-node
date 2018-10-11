@@ -15,7 +15,6 @@ function Post(writer = "unknown", text = "", images = []) {
   }
 }
 
-
 Post.prototype.setWriter = function (writer) {
   this.writer = writer;
 };
@@ -87,66 +86,12 @@ Post.prototype.Calc_timestamp = function(){//compare now time with post time to 
 }
 
 var posts = [];
+
 function createPost(Post) {
   posts.push(Post);
 }
 
-function implementComment(Comments, where) {
-  
-  var comments_box = document.createElement("div");
-  comments_box.className = "comments-box";
-  where.appendChild(comments_box);
-  hr_comment = document.createElement("hr");
-  hr_comment.style.marginTop = "10px";
-  comments_box.appendChild(hr_comment);
-  
-  for (i = 0; i < Comments.length; i++) {
-    
-    var comment = document.createElement("article");
-    comment.className = "media comment";
-    comments_box.appendChild(comment);
-    
-    var comment_writer = document.createElement("div");
-    comment_writer.className = "comment-writer";
-    comment.appendChild(comment_writer);
 
-    var comment_writer_left = document.createElement("div");
-    comment_writer_left.className = "comment-writer-left";
-    comment_writer.appendChild(comment_writer_left);
-
-    var commentWriterImage = document.createElement("img");
-    commentWriterImage.className = "comment-writer-image";
-    comment_writer_left.appendChild(commentWriterImage);
-
-    var comment_writer_right = document.createElement("div");
-    comment_writer_right.className = "comment-writer-right";
-    comment_writer.appendChild(comment_writer_right);
-
-    var commentWriter = document.createElement("span");
-    comment_writer_right.appendChild(commentWriter);
-
-    var comment_content = document.createElement("div");
-    comment_content.className = "content";
-    comment.appendChild(comment_content);
-
-    var comment_textbox = document.createElement("p");
-    comment_textbox.className = "comment-textbox";
-    comment_content.appendChild(comment_textbox);
-
-    var commentText = document.createElement("span");
-    commentText.className = "comment-text";
-    comment_textbox.appendChild(commentText);
-
-    var currentComment = Comments[i];
-    commentText.innerText = currentComment.text;
-    commentWriter.innerText = currentComment.writer;
-    if (typeof currentComment.writerImage !== 'object') {
-      commentWriterImage.src = "images/default-writerImage.png";
-    }
-    else commentWriterImage.src = currentComment.writerImage.src;
-
-  }
-}
 
 function commentClick(Comments_array, where) {
   var comment_box = where.getElementsByClassName("comments-box");
@@ -196,10 +141,6 @@ function implementPost(Post) {
     writer_right.appendChild(br);
 
     //in writer-right tag
-    var timestamp = document.createElement("span");
-    timestamp.className = "timestamp";
-    writer_right.appendChild(timestamp);
-
     var timestamp_time = document.createElement("span");
     timestamp_time.className = "timestamp";
     writer_right.appendChild(timestamp_time);
@@ -213,7 +154,6 @@ function implementPost(Post) {
     content.appendChild(content_text);
 
     var text = document.createElement("p");
-    text.style.paddingTop = "1em";
     content_text.appendChild(text);
 
 
@@ -229,15 +169,15 @@ function implementPost(Post) {
     var level = document.createElement("nav");
   level.className = "level is-mobile";
   level.innerHTML = '' +
-    '<a class="level-item" >' +
+    '<a class="level-item" style="margin-bottom:5px;" >' +
     '  <span class="icon is-small"><i class="level material-icons">favorite</i></span>' +
     '   Like' +
     '          </a >' +
-    '<a class="level-item">' +
+    '<a class="level-item" style="margin-bottom:5px;">' +
     '  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>' +
     '    Comment' +
     '          </a>' +
-    '<a class="level-item">' +
+    '<a class="level-item" style="margin-bottom:5px;">' +
     '  <span class="icon is-small"><i class="level material-icons">share</i> </span>' +
     '   Share' +
     '          </a>';
@@ -249,7 +189,7 @@ function implementPost(Post) {
 
   commentButton.onclick = function () {
     commentClick(Post.comments, post);
-  }
+  };
 
 
   /*  Input all the information of post  */
@@ -265,17 +205,126 @@ function implementPost(Post) {
     for (i = 0; i < Post.images.length; i++) {
       image_box.appendChild(Post.images[i]);
     }
+    image_box.style.paddingBottom = "15px";
   }
   
 }
+function implementComment(Comments, where) {
 
-/* cookie method is arbitary function.
- * if server is developed this will be
- * changed. */
+  var comments_box = document.createElement("div");
+  comments_box.className = "comments-box";
+  where.appendChild(comments_box);
+  hr_comment = document.createElement("hr");
+  hr_comment.style.marginTop = "0px";
+  hr_comment.style.marginBottom = "10px";
+  comments_box.appendChild(hr_comment);
 
-function setCookie(cookie_name, value) {
-  var exdate = new Date();
-  exdate.setDate(exdate.getDate() + 15);
+  for (i = 0; i < Comments.length; i++) {
+
+    var comment = document.createElement("article");
+    comment.className = "media comment";
+    comments_box.appendChild(comment);
+
+    var comment_writer = document.createElement("div");
+    comment_writer.className = "comment-writer";
+    comment.appendChild(comment_writer);
+
+    var comment_writer_left = document.createElement("div");
+    comment_writer_left.className = "comment-writer-left";
+    comment_writer.appendChild(comment_writer_left);
+
+    var commentWriterImage = document.createElement("img");
+    commentWriterImage.className = "comment-writer-image";
+    comment_writer_left.appendChild(commentWriterImage);
+
+    var comment_writer_right = document.createElement("div");
+    comment_writer_right.className = "comment-writer-right";
+    comment_writer.appendChild(comment_writer_right);
+
+    var commentWriter = document.createElement("span");
+    comment_writer_right.appendChild(commentWriter);
+
+    var comment_content = document.createElement("div");
+    comment_content.className = "content";
+    comment.appendChild(comment_content);
+
+    var comment_textbox = document.createElement("p");
+    comment_textbox.className = "comment-textbox";
+    comment_content.appendChild(comment_textbox);
+
+    var commentText = document.createElement("span");
+    commentText.className = "comment-text";
+    comment_textbox.appendChild(commentText);
+
+    var currentComment = Comments[i];
+    commentText.innerText = currentComment.text;
+    commentWriter.innerText = currentComment.writer;
+    if (typeof currentComment.writerImage !== 'object') {
+      commentWriterImage.src = "images/default-writerImage.png";
+    }
+    else commentWriterImage.src = currentComment.writerImage.src;
+
+  }
+}
+function implementWritePost() {
+  var timeline_posts = document.getElementsByClassName("timeline-posts")[0];
+  var post = document.createElement("article");
+  post.className = "post";
+  timeline_posts.appendChild(post);
+
+  var box = document.createElement("div");
+  box.className = "post-writer";
+  post.appendChild(box);
+
+  var box_left = document.createElement("div");
+  box_left.className = "write-post-left";
+  box.appendChild(box_left);
+
+  var writerImage = document.createElement("img");
+  writerImage.className = "writer-image";
+  writerImage.src = "images/default-writerImage.png";
+  box_left.appendChild(writerImage);
+
+  var box_right = document.createElement("div");
+  box_right.className = "write-post-right";
+  box.appendChild(box_right);
+
+  var textarea = document.createElement("textarea");
+  textarea.className = "write-post-textarea";
+  textarea.placeholder = "Write here";
+  box_right.appendChild(textarea);
+  textarea.onclick = function () {
+    textarea.style.height = "130px";
+  };
+  var box_under = document.createElement("div");
+  box_under.style.width = "100%";
+  box_under.style.paddingBottom = "3px";
+  post.appendChild(box_under);
+
+  var postButton = document.createElement("button");
+  postButton.className = "write-post-button";
+  postButton.innerText = "Post";
+  postButton.onclick = function () {
+    var time = new Date();
+    var toString = "testname" + ";|;" + textarea.value + ";|;" +
+      time.getFullYear() + ";" + time.getMonth() + ";" + time.getDate() + ";"+
+    time.getHours() + ";" + time.getMinutes() + ";" + time.getSeconds();
+    localStorage.setItem(localStorage.length, toString);
+    location.reload();
+  };
+  box_under.appendChild(postButton);
+
+}
+function implementLocalstorage() {
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var value = localStorage.getItem(i);
+    
+    var parse = value.split(";|;");
+    var newPost = new Post(parse[0], parse[1]);
+    var arrd = parse[2].split(";"); //toString of Date to array
+    newPost.setTime(arrd[0], arrd[1], arrd[2], arrd[3], arrd[4], arrd[5]);
+    implementPost(newPost);
+  }
 }
 
 //testcase
@@ -289,6 +338,7 @@ an.text = "this is post";
 
 var jang_comment = new Comment();
 an.addComment(jang_comment);
+james.addComment(jang_comment);
 jang_comment.writer = "Jang";
 jang_comment.text = "this is comment";
 
@@ -307,8 +357,16 @@ createPost(an);
 //
 
 window.onload = function () {
+  var clearButton = document.createElement("button");
+  clearButton.innerText = "Clear ";
+  clearButton.onclick = function () {
+    localStorage.clear();
+  }
+  document.body.appendChild(clearButton);
+  implementWritePost();
+  implementLocalstorage();
   for (var i = 0; i < posts.length; i++) {
     implementPost(posts[i]);
-  }
+  } 
 };
 
