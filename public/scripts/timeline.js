@@ -335,6 +335,7 @@ james.setTime(2018, 9, 3, 4, 32, 0);
 var an = new Post();
 an.writer = "An";
 an.text = "this is post";
+an.setTime(2018, 9, 3, 1, 12, 10);
 
 var jang_comment = new Comment();
 an.addComment(jang_comment);
@@ -349,7 +350,7 @@ jang_comment2.text = "And this is comment2";
 
 
 var jin = new Post("jin", "my name is jin", ["images/logo.png", "images/logo.png"]);
-jin.setTime(2018, 9, 3, 23, 46, 0);
+jin.setTime(2018, 9, 2, 23, 46, 0);
 createPost(james);
 createPost(jin);
 createPost(an);
@@ -361,7 +362,7 @@ window.onload = function () {
   clearButton.innerText = "Clear ";
   clearButton.onclick = function () {
     localStorage.clear();
-  }
+  };
   document.body.appendChild(clearButton);
   implementWritePost();
   implementLocalstorage();
