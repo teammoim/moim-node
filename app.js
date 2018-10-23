@@ -24,6 +24,8 @@ var dbconfig = require('./fbconfig.js');
 firebase.initializeApp(dbconfig);
 
 var timelines = firebase.database();
+var provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 // view engine setup
 // Team MOIM will use ejs templates
