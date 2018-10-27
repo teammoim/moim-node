@@ -9,6 +9,7 @@ cache:
 
 before_script:
   - ./createFirebaseTempFileForTravis.sh
+  - npm run build
 
 script:
-  - npm run build
+  - npm test
