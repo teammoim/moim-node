@@ -61,7 +61,6 @@ typings/
 .next
 
 # Firebase key config
-fbconfig.js
 .DS_Store
 package-lock.json
 
