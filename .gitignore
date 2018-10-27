@@ -105,5 +105,3 @@ Thumbs.db
 dist/**/*
 
 package-lock.json
-
-# fbconfig.js
