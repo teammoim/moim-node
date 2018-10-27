@@ -1,3 +1,6 @@
+#/bin/bash
+
+cat > ./fbconfig.js << "EOF"
 module.exports = {
 apiKey: "",
 authDomain: "",
@@ -6,3 +9,4 @@ projectId: "",
 storageBucket: "",
 messagingSenderId: ""
 };
+EOF
