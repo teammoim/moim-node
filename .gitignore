@@ -106,4 +106,4 @@ dist/**/*
 
 package-lock.json
 
-fbconfig.js
+# fbconfig.js
