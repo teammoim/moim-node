@@ -6,3 +6,10 @@ node_js:
 cache:
   directories:
     - "node_modules"
+
+before_script:
+  - ./createFirebaseTempFileForTravis.sh
+  - npm run build
+
+script:
+  - npm test
