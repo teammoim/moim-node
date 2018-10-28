@@ -9,19 +9,18 @@ const timelines = firebase.database();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 
-const app = express();
-
-export let index = (req: Request, res: Response) => {
-  res.render("user/login", {
-    title: "Home"
-  });
+export let index = (req: Request, res: Response) =>
+{
+  res.render("user/login", {title: "Home"});
 };
 
-export let login = (req: Request, res: Response) => {
+export let login = (req: Request, res: Response) =>
+{
   const email = req.body.email;
   const password = req.body.password;
 
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error)
+  {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -34,10 +33,9 @@ export let login = (req: Request, res: Response) => {
   res.redirect("/profile");
 };
 
-export let loginProvider = (req: Request, res: Response) => {
-  res.render("user/login", {
-    title: "Home"
-  });
+export let loginProvider = (req: Request, res: Response) =>
+{
+  res.render("user/login", {title: "Home"});
   firebase.auth().signInWithPopup(provider).then(function (result) {
     firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
       const token = idToken;
