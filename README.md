@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/teammoim/moim-node.svg?branch=master)](https://travis-ci.org/teammoim/moim-node)
+
 # MOIM node server & client
 
 node JS server-side & client-side framework repository
