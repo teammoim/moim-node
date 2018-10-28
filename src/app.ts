@@ -32,7 +32,6 @@ app.get("/timeline", timelineController.index);
 
 app.post("/trysignup", signupController.signup);
 app.post("/trylogin", loginController.login);
-app.post("/loginprovider", loginController.loginProvider);
 
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
