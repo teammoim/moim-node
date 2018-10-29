@@ -81,8 +81,8 @@ npm run tslint  // runs only TSLint
 
 ## Open source css framework
 
-we are using Bulma and Material Design icons. 
-if you want to use them, check out the site below
+We are using Bulma and Material Design icons. 
+If you want to use them, check out the site below
 
 Bulma : https://bulma.io/
 
@@ -90,4 +90,4 @@ Material Design : https://www.w3schools.com/icons/google_icons_intro.asp
 
 ## License
 
-This project is licensed under the GPL3 License - see the [LICENSE](LICENSE.md) file for details
+This project is licensed under the GPL3 License - see the [LICENSE](LICENSE) file for details
