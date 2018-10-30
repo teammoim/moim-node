@@ -1,0 +1,33 @@
+<% include ../core %>
+<button onclick="window.location.href='../map'">HOME</button>
+<body>
+    <script type="text/javascript" src="/js/lib/leaflet.js"></script>
+    <% include ../navigation %>
+    <div id="map" style="width: 100%; height: 80%; z-index: 1;"></div>
+    <script>
+        //지도 영역 'map' DOM Element를 mymap 변수로 정의
+        var mymap = L.map('map').setView([37.5, 127], 7);
+
+
+        //Open Steet Map 서버 주소 입력
+        L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mymap);
+        var marker = L.marker([37, 127]).addTo(mymap);
+        //마커 객체에 풍선 도움말 자동 띄움.
+        //marker.bindPopup("Hello world!").openPopup();
+        mymap.on('click', onMapClick);
+
+        //지도를 클릭하면 해당 지점의 좌표값 메시지 표시
+        function onMapClick(e) {
+            marker.bindPopup("클릭한 좌표값: " + e.latlng).openPopup();
+        }
+    </script>
+    <span style="float:right;">
+        <button
+            type="button"
+            style="font-size:2em; border-radius:0.5em; padding:5px 20px;"
+            onclick="alert('이 버튼은 도움말 띄우기 예제 입니다')">도움말</button>
+    </span> 
+    <% include ../footer %>
+</body>
+
+</html>
