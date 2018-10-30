@@ -1,5 +1,5 @@
 <% include ../core %>
-
+<button onclick="window.location.href='../2dmap'"style="position:fixed;right:10px;bottom:150px;z-index:999">HOME</button>
 <body>
     <link href="https://cdn.osmbuildings.org/4.0.1/OSMBuildings.css" rel="stylesheet">
     <script src="https://cdn.osmbuildings.org/4.0.1/OSMBuildings.js"></script>
@@ -25,7 +25,6 @@
             }
             return html;
         }
-
         for(var i = 0; i < json.length; i++) {
     
             // Current object
@@ -33,15 +32,12 @@
             var pos = {latitude: obj.latitude, longitude: obj.longitude, altitude: 30};
             osmb.addMarker(pos, obj.title, {color: 'red'});
         }
-
-        
-
+              
         osmb.addMapTiles(
             'https://{s}.tiles.mapbox.com/v3/osmbuildings.kbpalbpk/{z}/{x}/{y}.png', {
                 attribution: '© Data <a href="http://openstreetmap.org/copyright/">OpenStreetMap</a> · © Map <a href="http://mapbox.com">Mapbox</a>'
             }
         );
-
         osmb.addGeoJSONTiles('http://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
     </script>
     <% include ../footer %>
