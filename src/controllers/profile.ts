@@ -13,6 +13,7 @@ export let index = (req: Request, res: Response) => {
     const yourmail = you.email;
     // const yournickname = you.displayName;
   res.render("user/profile", {
-    title: "Home"
+    title: "Home",
+    email: yourmail
   });
 };
