@@ -1,5 +1,8 @@
 <% include ../core %>
-<button onclick="window.location.href='../map'"style="position:fixed;right:10px;bottom:150px;z-index:999">HOME</button>
+<div class="field has-addons"style="position:fixed;right:0px;bottom:130px;z-index:999">
+<button onclick="window.location.href='../map'" class="button is-medium is-dark is-outlined" >3D</button>
+<button class="button is-medium is-dark" >2D</button>
+</div>
 <body>
     <script type="text/javascript" src="/js/lib/leaflet.js"></script>
     <% include ../navigation %>
