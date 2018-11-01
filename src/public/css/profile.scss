@@ -1,60 +1,40 @@
 .profile {
   width: 100%;
   display: block;
-  height: 270px;
-  padding-left: 10%;
-  padding-right: 10%;
-  background-color: #dcdee2
+  height: 190px;
+  margin-top: 40px;
 }
 
 .profile-left {
-  float: left;
   width: 30%;
-  height: 270px;
-}
-
-.profile-image {
-  border-radius: 75px;
-  width: 150px;
-  height: 150px;
-  margin: 75px 75px 75px 75px;
+  height: 190px;
+  display: inline-block;
+  float: left;
 }
 
 .profile-right {
-  float: left;
-  padding: 60px 10% 10px 10px;
-  width: 60%;
-  height: 270px;
-}
-
-.profile-right-top {
-  float: left;
-  width: 100%;
-  height: 40px;
-}
-
-.profile-right-mid {
-  float: left;
-  height: 40px;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.profile-right-intro {
-  float: left;
   width: 70%;
-  height: 100px;
-  text-overflow: ellipsis;
-  word-break: break-all;
+  height: 190px;
+  display: inline-block;
+  float: left;
+  font-size: 1.2em;
+  padding-left: 10%;
+  padding-top: 18px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  margin-left: 50%;
+  width: 170px;
+  padding-top: 10px;
 }
 
 .profile-name {
+  padding-top: 15px;
   font-size: 2em;
-  float: left;
+  height: 1.6em;
 }
 
-.profile-right-top-buttons {
-  float: left;
-  margin-left: 15%;
-  margin-top: 10px;
+.profile-setting-button {
+  outline: solid 0.1px rgb(46, 46, 46);
 }
