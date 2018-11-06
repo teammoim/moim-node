@@ -1,35 +1,48 @@
 <% include ../core %>
-<div class="field has-addons"style="position:fixed;right:0px;bottom:130px;z-index:999">
-<button onclick="window.location.href='../map'" class="button is-medium is-dark is-outlined" >3D</button>
-<button class="button is-medium is-dark" >2D</button>
+<div class="field has-addons" style="position:fixed;right:0px;bottom:130px;z-index:999">
+    <button onclick="window.location.href='../map'" class="button is-medium is-dark is-outlined">3D</button>
+    <button class="button is-medium is-dark">2D</button>
 </div>
+
 <body>
     <script type="text/javascript" src="/js/lib/leaflet.js"></script>
     <% include ../navigation %>
     <div id="map" style="width: 100%; height: 80%; z-index: 1;"></div>
     <script>
+        var json = [{ "id": 48, "title": "Helgelandskysten", "latitude": "37.609640", "longitude": "126.99769" }, { "id": 46, "title": "Tysfjord", "latitude": "37.609640", "longitude": "126.99369" }, { "id": 44, "title": "Sledehunds-ekspedisjon", "latitude": "37.607640", "longitude": "126.99769" }, { "id": 43, "title": "Amundsens sydpolferd", "latitude": "37.611640", "longitude": "126.99769" }, { "id": 39, "title": "Vikingtokt", "latitude": "37.609640", "longitude": "126.99969" }, { "id": 6, "title": "Tungtvann- sabotasjen", "latitude": "37.610740", "longitude": "126.99889" }];
         //지도 영역 'map' DOM Element를 mymap 변수로 정의
         var mymap = L.map('map').setView([37.610, 126.997], 19);
 
 
         //Open Steet Map 서버 주소 입력
         L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mymap);
-        var marker = L.marker([37, 127]).addTo(mymap);
+
+        var myIcon = L.icon({
+            iconUrl: "/images/red_marker.png"
+        });
+        for (var i = 0; i < json.length; i++) {
+            // Current object
+            var obj = json[i];
+            var marker = L.marker([obj.latitude, obj.longitude], {icon: myIcon}).bindPopup(obj.title).addTo(mymap);
+            //var layer = L.Polygon(latlngs).bindPopup('Hi There!').addTo(map);
+            marker.on('mousein', function (e) { //마커 마우스 이벤트
+                //마커에 팝업 연결하기
+                marker.openPopup();
+            });
+            marker.on('mouseleave', function (e) {
+                marker.closePopup();
+            })
+        }
         //마커 객체에 풍선 도움말 자동 띄움.
         //marker.bindPopup("Hello world!").openPopup();
+        //지도 클릭 이벤트 추가
         mymap.on('click', onMapClick);
 
         //지도를 클릭하면 해당 지점의 좌표값 메시지 표시
         function onMapClick(e) {
-            marker.bindPopup("클릭한 좌표값: " + e.latlng).openPopup();
+            alert("클릭한 좌표값: " + e.latlng);
         }
     </script>
-    <span style="float:right;">
-        <button
-            type="button"
-            style="font-size:2em; border-radius:0.5em; padding:5px 20px;"
-            onclick="alert('이 버튼은 도움말 띄우기 예제 입니다')">도움말</button>
-    </span> 
     <% include ../footer %>
 </body>
 
