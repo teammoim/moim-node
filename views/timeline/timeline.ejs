@@ -3,7 +3,7 @@
 <body style="padding:0px">
     <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
     <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
-    <script src="/js/lib/timeline-posts.js"></script>
+    <script src="/js/lib/timeline.js"></script>
     <% include ../navigation %>
     <div class="timeline">
         <div class="timeline-profile">
@@ -52,7 +52,49 @@
 
     })
 
-    
+    var friends = [] // argument : friend
+    var friend = function (name = "", image = "/images/default-writerImage.png" ) {
+      this.name = name;
+      this.image = image;
+    }
+
+    var friend_list = document.createElement("div");;
+    $(window).resize(function () {
+      var friendsBox = document.getElementsByClassName("timeline-friends")[0];
+      if (window.innerWidth > 880) {
+        if (friendsBox.childElementCount == 0) {
+          friendsBox.appendChild(friend_list);
+          implementFriends();
+        }
+      }
+      else {
+        friendsBox.removeChild(friendsBox.firstChild);
+      }
+    })
+
+    function implementFriends() {
+      for (var i = 0; i < friends.length; i++) {
+        var friend = document.createElement("div");
+        friend.className = "friend";
+        friend_list.appendChild(friend);
+
+        var friend_left = document.createElement("div");
+        friend_left.className = "friend-left";
+        friend.appendChild(friend_left);
+
+        var friend_image = new Image();
+        friend_image.className = "friend-image";
+        friend_image.src = friends[i].image;
+        friend_left.appendChild(friend_image);
+
+        var friend_right = document.createElement("div");
+        friend_right.className = "friend-right";
+        friend_right.innerText = friends[i].name;
+        friend.appendChild(friend_right);
+      }
+    }
+
+
   </script>
   <style>
     
