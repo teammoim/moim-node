@@ -3,9 +3,9 @@
 <body style="padding:0px">
     <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
     <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
-    <script src="/js/lib/timeline-profile.js"></script>
+    <script src="/js/lib/timeline-profile.js"></script><!-- not work-->
     <script src="/js/lib/timeline-posts.js"></script>
-    <script src="/js/lib/timeline-followers.js"></script>
+    <script src="/js/lib/timeline-followers.js"></script><!-- not work-->
     <% include ../navigation %>
     <div class="timeline">
         <div class="timeline-profile">
@@ -15,6 +15,75 @@
         <div class="timeline-followers">
         </div>
     </div>
+  <script>
+    $(window).resize(function () {
+      var profileBox = document.getElementsByClassName("timeline-profile")[0];
+
+      if (window.innerWidth > 880 ) {
+        if (profileBox.childElementCount == 0) {
+          var profile = document.createElement("div");
+          profile.className = "profile-list";
+          profileBox.appendChild(profile);
+
+          var profile_first = document.createElement("div");
+          profile_first.className = "profile-first"
+          profile.appendChild(profile_first);
+
+          var profile_image = new Image();
+          profile_image.className = "profile-image";
+          profile_image.src = "/images/default-writerImage.png";
+          profile_first.appendChild(profile_image);
+
+          //contains profile name
+          var profile_second = document.createElement("div");
+          profile_second.className = "profile-second"
+          profile_second.innerText = "name";
+          profile.appendChild(profile_second);
+
+          //contains followers and friends number
+          var profile_third = document.createElement("div");
+          profile_third.className = "profile-third";
+          profile_third.innerText = " friends : " + 1 + " followers : " + 4;
+          profile.appendChild(profile_third);
+        }
+
+      }
+      else {
+        profileBox.removeChild(profileBox.firstChild)
+      }
+
+    })
+  </script>
+  <style>
+    .profile-list{
+      margin-left:unset;
+      margin-left:10px;
+      width:200px;
+      border:0.1px solid black;
+      background-color:white;
+    }
+    .profile-first{
+      width:100%;
+      height:200px;
+    }
+    .profile-image{
+      width:90%;
+      margin-left:10px;
+      border-radius:50%;
+    }
+    .profile-second{
+      width:100%;
+      height:50px;
+      text-align:center;
+      font-size:1.5em;
+    }
+    .profile-third{
+      width:100%;
+      height:50px;
+      text-align:center;
+      font-size:0.9em;
+    }
+  </style>
 </body>
 
 </html>

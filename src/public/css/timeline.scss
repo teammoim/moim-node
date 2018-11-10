@@ -8,13 +8,58 @@ html, body {
 .media + .media {
   padding:6px;
 }
-
-.timeline-posts {
+.timeline {
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  display: inline-block;
 }
 
+.timeline-posts {
+  float: left;
+  display: inline-block;
+}
+.timeline-profile {
+  float: left;
+  display: inline-block;
+}
+.timeline-followers {
+  float: left;
+  display: inline-block;
+}
+// timeline-profile
+.profile-list {
+  margin-left: unset;
+  margin-left: 10px;
+  width: 200px;
+  border: 0.1px solid black;
+  background-color: white;
+}
+
+.profile-first {
+  width: 100%;
+  height: 200px;
+}
+
+.profile-image {
+  width: 90%;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+.profile-second {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.profile-third {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 0.9em;
+}
+//timeline-post
 .post {
   border-radius: 5px;
   background-color: white;
