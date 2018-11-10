@@ -3,16 +3,14 @@
 <body style="padding:0px">
     <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
     <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
-    <script src="/js/lib/timeline-profile.js"></script><!-- not work-->
     <script src="/js/lib/timeline-posts.js"></script>
-    <script src="/js/lib/timeline-followers.js"></script><!-- not work-->
     <% include ../navigation %>
     <div class="timeline">
         <div class="timeline-profile">
         </div>
         <div class="timeline-posts">
         </div>
-        <div class="timeline-followers">
+        <div class="timeline-friends">
         </div>
     </div>
   <script>
@@ -53,36 +51,11 @@
       }
 
     })
+
+    
   </script>
   <style>
-    .profile-list{
-      margin-left:unset;
-      margin-left:10px;
-      width:200px;
-      border:0.1px solid black;
-      background-color:white;
-    }
-    .profile-first{
-      width:100%;
-      height:200px;
-    }
-    .profile-image{
-      width:90%;
-      margin-left:10px;
-      border-radius:50%;
-    }
-    .profile-second{
-      width:100%;
-      height:50px;
-      text-align:center;
-      font-size:1.5em;
-    }
-    .profile-third{
-      width:100%;
-      height:50px;
-      text-align:center;
-      font-size:0.9em;
-    }
+    
   </style>
 </body>
 
