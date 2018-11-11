@@ -370,4 +370,103 @@ window.onload = function () {
     implementPost(posts[i]);
   }
 };
+var friend_list = [] // argument : friend
+var Friend = function (name = "", image = "/images/default-writerImage.png") {
+  this.name = name;
+  this.image = image;
+}
+var An = new Friend("AnHeeun");
+var Ang = new Friend("AngHeeun");
+friend_list.push(An);
+friend_list.push(Ang);
+var Ahn = new Friend("AhnHeeun");
+friend_list.push(Ahn);
+
+
+$(window).resize(function () {
+
+  var profileBox = document.getElementsByClassName("timeline-profile")[0];
+  if (window.innerWidth > 880) {
+    if (profileBox.childElementCount == 0) {
+      implementProfile();
+    }
+  }
+  else {
+    profileBox.removeChild(profileBox.firstChild);
+  }
+
+})
+
+
+
+
+
+$(window).resize(function () {
+  var friendsBox = document.getElementsByClassName("timeline-friends")[0];
+  if (window.innerWidth > 880) {
+    if (friendsBox.childElementCount == 0) {
+      implementFriends();
+    }
+  }
+  else {
+    friendsBox.removeChild(friendsBox.firstChild);
+  }
+})
+
+function implementProfile() {
+  var profileBox = document.getElementsByClassName("timeline-profile")[0];
+
+  var profile = document.createElement("div");
+  profile.className = "profile-list";
+  profileBox.appendChild(profile);
+
+  var profile_first = document.createElement("div");
+  profile_first.className = "profile-first"
+  profile.appendChild(profile_first);
+
+  var profile_image = new Image();
+  profile_image.className = "profile-image";
+  profile_image.src = "/images/default-writerImage.png";
+  profile_first.appendChild(profile_image);
+
+  //contains profile name
+  var profile_second = document.createElement("div");
+  profile_second.className = "profile-second"
+  profile_second.innerText = "name";
+  profile.appendChild(profile_second);
+
+  //contains followers and friends number
+  var profile_third = document.createElement("div");
+  profile_third.className = "profile-third";
+  profile_third.innerText = " friends : " + 1 + " followers : " + 4;
+  profile.appendChild(profile_third);
+}
+
+function implementFriends() {
+  var friendsBox = document.getElementsByClassName("timeline-friends")[0];
+
+  var friends = document.createElement("div");
+  friends.className = "friends";
+  friendsBox.appendChild(friends);
+
+  for (var i = 0; i < friend_list.length; i++) {
+    var friend = document.createElement("div");
+    friend.className = "friend";
+    friends.appendChild(friend);
+
+    var friend_left = document.createElement("div");
+    friend_left.className = "friend-left";
+    friend.appendChild(friend_left);
+
+    var friend_image = new Image();
+    friend_image.className = "friend-image";
+    friend_image.src = friend_list[i].image;
+    friend_left.appendChild(friend_image);
+
+    var friend_right = document.createElement("div");
+    friend_right.className = "friend-right";
+    friend_right.innerText = friend_list[i].name;
+    friend.appendChild(friend_right);
+  }
+}
 
