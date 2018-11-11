@@ -355,21 +355,6 @@ createPost(james);
 createPost(jin);
 createPost(an);
 
-//
-
-window.onload = function () {
-  var clearButton = document.createElement("button");
-  clearButton.innerText = "Clear ";
-  clearButton.onclick = function () {
-    localStorage.clear();
-  };
-  document.body.appendChild(clearButton);
-  implementWritePost();
-  implementLocalstorage();
-  for (var i = 0; i < posts.length; i++) {
-    implementPost(posts[i]);
-  }
-};
 var friend_list = [] // argument : friend
 var Friend = function (name = "", image = "/images/default-writerImage.png") {
   this.name = name;
@@ -382,11 +367,34 @@ friend_list.push(Ang);
 var Ahn = new Friend("AhnHeeun");
 friend_list.push(Ahn);
 
+//
+
+window.onload = function () {
+  var clearButton = document.createElement("button");
+  clearButton.innerText = "Clear ";
+  clearButton.onclick = function () {
+    localStorage.clear();
+  };
+  document.body.appendChild(clearButton);
+  implementWritePost();
+  implementLocalstorage();
+  if (window.innerWidth > 800) {
+    implementProfile();
+  }
+  if (window.innerWidth > 1100) {
+    implementFriends();
+  }
+  for (var i = 0; i < posts.length; i++) {
+    implementPost(posts[i]);
+  }
+};
+
+
 
 $(window).resize(function () {
 
   var profileBox = document.getElementsByClassName("timeline-profile")[0];
-  if (window.innerWidth > 880) {
+  if (window.innerWidth > 800) {
     if (profileBox.childElementCount == 0) {
       implementProfile();
     }
@@ -403,7 +411,7 @@ $(window).resize(function () {
 
 $(window).resize(function () {
   var friendsBox = document.getElementsByClassName("timeline-friends")[0];
-  if (window.innerWidth > 880) {
+  if (window.innerWidth > 1100) {
     if (friendsBox.childElementCount == 0) {
       implementFriends();
     }
