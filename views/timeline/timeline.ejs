@@ -52,18 +52,28 @@
 
     })
 
-    var friends = [] // argument : friend
-    var friend = function (name = "", image = "/images/default-writerImage.png" ) {
+    var friend_list = [] // argument : friend
+    var Friend = function (name = "", image = "/images/default-writerImage.png" ) {
       this.name = name;
       this.image = image;
     }
+    var An = new Friend("AnHeeun");
+    var Ang = new Friend("AngHeeun");
+    friend_list.push(An);
+    friend_list.push(Ang);
+    var Ahn = new Friend("AhnHeeun");
+    friend_list.push(Ahn);
 
-    var friend_list = document.createElement("div");;
+    var friends = document.createElement("div");
+    friends.className = "friends";
+
     $(window).resize(function () {
       var friendsBox = document.getElementsByClassName("timeline-friends")[0];
+      
+
       if (window.innerWidth > 880) {
         if (friendsBox.childElementCount == 0) {
-          friendsBox.appendChild(friend_list);
+          friendsBox.appendChild(friends);
           implementFriends();
         }
       }
@@ -73,10 +83,10 @@
     })
 
     function implementFriends() {
-      for (var i = 0; i < friends.length; i++) {
+      for (var i = 0; i < friend_list.length; i++) {
         var friend = document.createElement("div");
         friend.className = "friend";
-        friend_list.appendChild(friend);
+        friends.appendChild(friend);
 
         var friend_left = document.createElement("div");
         friend_left.className = "friend-left";
@@ -84,20 +94,64 @@
 
         var friend_image = new Image();
         friend_image.className = "friend-image";
-        friend_image.src = friends[i].image;
+        friend_image.src = friend_list[i].image;
         friend_left.appendChild(friend_image);
 
         var friend_right = document.createElement("div");
         friend_right.className = "friend-right";
-        friend_right.innerText = friends[i].name;
+        friend_right.innerText = friend_list[i].name;
         friend.appendChild(friend_right);
       }
     }
+    
 
 
   </script>
   <style>
-    
+    .friend + .friend:hover {
+      margin-top:unset;
+      margin-bottom:unset;
+      border-top: none;
+    }
+    .friends {
+      width: 200px;
+      height: 100%;
+      border: 0.1px solid black;
+      background-color:lightgray;
+      display: inline-block;
+    }
+    .friend {
+      width:100%;
+      height:50px;
+      display:inline-block;
+    }
+      .friend:hover {
+        border-top: 0.5px solid #c5c3c3;
+        border: 0.1px solid black;
+        border-bottom: none;
+        background-color: #cecdcd;
+      }
+    .friend-left {
+      width: 30%;
+      height:50px;
+      display:inline-block;
+      float:left;
+    }
+    .friend-image {
+      width:70%;
+      border-radius:50%;
+      margin-left:3.5%;
+      margin-top:3px;
+    }
+    .friend-right{
+      width: 60%;
+      font-size:1.3em;
+      display:inline-block;
+      padding:1px;
+      float:left;
+      padding-top:15px;
+      padding-left:10px;
+    }
   </style>
 </body>
 
