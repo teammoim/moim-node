@@ -370,18 +370,12 @@ friend_list.push(Ahn);
 //
 
 window.onload = function () {
-  var clearButton = document.createElement("button");
-  clearButton.innerText = "Clear ";
-  clearButton.onclick = function () {
-    localStorage.clear();
-  };
-  document.body.appendChild(clearButton);
   implementWritePost();
   implementLocalstorage();
-  if (window.innerWidth > 800) {
+  if (window.innerWidth > 950) {
     implementProfile();
   }
-  if (window.innerWidth > 1100) {
+  if (window.innerWidth > 1250) {
     implementFriends();
   }
   for (var i = 0; i < posts.length; i++) {
@@ -392,32 +386,27 @@ window.onload = function () {
 
 
 $(window).resize(function () {
-
   var profileBox = document.getElementsByClassName("timeline-profile")[0];
-  if (window.innerWidth > 800) {
-    if (profileBox.childElementCount == 0) {
+  if (window.innerWidth > 950) {
+    if (profileBox.childElementCount === 0) {
       implementProfile();
     }
   }
   else {
-    profileBox.removeChild(profileBox.firstChild);
+    profileBox.removeChild(profileBox.firstElementChild);
   }
 
 })
 
-
-
-
-
 $(window).resize(function () {
   var friendsBox = document.getElementsByClassName("timeline-friends")[0];
-  if (window.innerWidth > 1100) {
-    if (friendsBox.childElementCount == 0) {
+  if (window.innerWidth > 1250) {
+    if (friendsBox.childElementCount === 0) {
       implementFriends();
     }
   }
   else {
-    friendsBox.removeChild(friendsBox.firstChild);
+    friendsBox.removeChild(friendsBox.firstElementChild);
   }
 })
 
@@ -439,14 +428,14 @@ function implementProfile() {
 
   //contains profile name
   var profile_second = document.createElement("div");
-  profile_second.className = "profile-second"
+  profile_second.className = "profile-second";
   profile_second.innerText = "name";
   profile.appendChild(profile_second);
 
   //contains followers and friends number
   var profile_third = document.createElement("div");
   profile_third.className = "profile-third";
-  profile_third.innerText = " friends : " + 1 + " followers : " + 4;
+  profile_third.innerText = " friends : ";
   profile.appendChild(profile_third);
 }
 

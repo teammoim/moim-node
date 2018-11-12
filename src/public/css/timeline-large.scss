@@ -1,12 +1,7 @@
-@media (min-width: 580px) and (max-width: 1000px) {
+@media (min-width: 580px)  {
   .timeline-posts {
     width: 570px;
-    padding: 0px 5px 0px 8px;
+    padding: 0px 5px 0px 10px;
   }
 }
-@media (min-width: 1001px)  {
-  .timeline-posts {
-    width: 570px;
-    padding: 0px 5px 0px 8px;
-  }
-}
+
