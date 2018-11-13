@@ -176,10 +176,6 @@ function implementPost(Post) {
     '<a class="level-item" style="margin-bottom:5px;">' +
     '  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>' +
     '    Comment' +
-    '          </a>' +
-    '<a class="level-item" style="margin-bottom:5px;">' +
-    '  <span class="icon is-small"><i class="level material-icons">share</i> </span>' +
-    '   Share' +
     '          </a>';
     var likeButton = level.getElementsByClassName("level-item")[0];
     var commentButton = level.getElementsByClassName("level-item")[1];
