@@ -29,7 +29,7 @@
       <div class="profile-info">
         게시물 <span id="posts-length" style="margin:0em 1em 0em 1em">1</span>
         팔로워 <span id="followers-length" style="margin:0em 1em 0em 1em">2</span>
-        <button class="profile-setting-button" style="margin-left:0.5em;">프로필 설정</button>
+        <button onclick="location.href='/setting'" class="profile-setting-button" style="margin-left:0.5em; ">프로필 설정</button>
       </div> <br />
       <div class="profile-intro"></div>
     </div>
@@ -43,7 +43,23 @@
     image.src = "images/default-writerImage.png";
     image.className = "profile-image";
     profileImg.appendChild(image);
+
+
   </script>
+  <style>
+    .profile-image {
+      border-radius: 50%;
+      margin-left: 50%;
+      width: 170px;
+      padding-top: 10px;
+    }
+
+    @media (max-width:800px) {
+      .profile-image {
+        margin-left: unset;
+      }
+    }
+  </style>
 </body>
 
 </html>

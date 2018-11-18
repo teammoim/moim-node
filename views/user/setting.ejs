@@ -1,7 +1,8 @@
 <% include ../core %>
 
 <body>
-    <% include ../navigation %>
+  <% include ../navigation %>
+  <!--
     <div class="tabs is-centered is-boxed is-medium">
         <ul>
             <li>
@@ -18,7 +19,47 @@
             </li>
         </ul>
     </div>
-    <% include ../footer %>
+  -->
+  <section class="section">
+    <div class="container">
+      <h1 class="title">설정</h1>
+      <form action="/trySetting" method="post">
+        <div class="field">
+          <div class="setting-title">이름</div>
+          <p class="control has-icons-left">
+            <input class="input" type="text" id="name" value="오오!">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <div class="setting-title">닉네임</div>
+          <p class="control has-icons-left">
+            <input class="input" type="text" id="nickName" value="오오!">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <div class="setting-title">소개문구</div>
+          <div class="control">
+            <textarea class="textarea" rows="10" cols="6"></textarea>
+          </div>
+        </div>
+        <input class="button" type="submit" value="결정">
+      </form>
+    </div>
+  </section>
+
+  <style>
+    .setting-title{
+      margin-bottom:10px;
+    }
+    
+  </style>
 </body>
 
 </html>
