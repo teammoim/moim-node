@@ -3,6 +3,7 @@
   display: block;
   height: 190px;
   margin-top: 40px;
+  min-width:500px;
 }
 
 .profile-left {
@@ -10,6 +11,18 @@
   height: 190px;
   display: inline-block;
   float: left;
+}
+.profile-image {
+  border-radius: 50%;
+  margin-left: 50%;
+  width: 170px;
+  padding-top: 10px;
+}
+
+@media (max-width:800px) {
+  .profile-image {
+    margin-left: unset;
+  }
 }
 
 .profile-right {
@@ -22,12 +35,6 @@
   padding-top: 18px;
 }
 
-.profile-image {
-  border-radius: 50%;
-  margin-left: 50%;
-  width: 170px;
-  padding-top: 10px;
-}
 
 .profile-name {
   padding-top: 15px;
