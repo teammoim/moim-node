@@ -32,6 +32,7 @@ export let login = (req: Request, res: Response) => {
       }
       else {
         // No user is signed in.
+        res.redirect("/login");
       }
   });
 };
