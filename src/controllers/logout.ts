@@ -10,7 +10,7 @@ const auth = firebase.auth();
 export let logout = (req: Request, res: Response) => {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
-      res.redirect("/login");
+      res.redirect("/");
     }, function(error) {
       // An error happened.
       res.redirect("/");
