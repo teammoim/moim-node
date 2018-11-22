@@ -8,6 +8,11 @@ export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : fireba
 const auth = firebase.auth();
 
 export let logout = (req: Request, res: Response) => {
-    auth.signOut();
-    res.redirect("/login");
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      res.redirect("/login");
+    }, function(error) {
+      // An error happened.
+      res.redirect("/");
+    });
 };
