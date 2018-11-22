@@ -90,6 +90,9 @@ var posts = [];
 function createPost(Post) {
   posts.push(Post);
 }
+function gotoProfile() {
+
+}
 
 
 
@@ -140,6 +143,10 @@ function implementPost(Post) {
     var br = document.createElement("br");
     writer_right.appendChild(br);
 
+  var writer_follow = document.createElement("div");
+  writer_follow.className = "writer-follow";
+  post_writer.appendChild(writer_follow);
+
     //in writer-right tag
     var timestamp_time = document.createElement("span");
     timestamp_time.className = "timestamp";
@@ -188,8 +195,21 @@ function implementPost(Post) {
   };
 
 
+  
+
+  //add follow_button
+  var follow_button = document.createElement("button");
+  writer_follow.appendChild(follow_button);
+  //if(is followed) button.innerText = "followed"
+  follow_button.innerText = "follow";
+  follow_button.className = "follow-button";
+  follow_button.parentElement = post_writer;
+  follow_button.onclick = function () {
+    this.innerText = "followed";
+  }
+
   /*  Input all the information of post  */
-    writer.innerText = Post.writer;//set writer's name
+  writer.innerText = Post.writer;//set writer's name
     text.innerText = Post.text; //set content text
     timestamp_time.innerText = Post.Calc_timestamp();
     //if writer image is not ready, set writer image default
