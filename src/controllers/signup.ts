@@ -6,12 +6,14 @@ import * as firebase from "firebase";
 const dbconfig = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
 const timelines = firebase.database();
+const auth = firebase.auth();
 
 export let index = (req: Request, res: Response) => {
   res.render("user/signup", {
     title: "Home"
   });
 };
+
 export let signup = (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -19,13 +21,16 @@ export let signup = (req: Request, res: Response) => {
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
-      const tempuid = userData.user.uid;
-      userData.user.displayName = nickname;
-      timelines.ref("/users/" + tempuid).set({
-          email: userData.user.email,
-          name: userData.user.displayName,
-          uid: tempuid
-      });
+      if (userData) {
+          timelines.ref("/users/" + userData.user.uid).set({
+              email: userData.user.email,
+              name: nickname,
+              uid: userData.user.uid
+          });
+      }
+      else {
+
+      }
   })
   .catch(function (error) {
     // Handle Errors here.

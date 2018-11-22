@@ -11,6 +11,15 @@ export let index = (req: Request, res: Response) => {
         res.redirect("/login");
     }
     else {
+        timelines.ref("/users/" + curruser.uid).once("value").then((snapshot) => {
+        if (!snapshot.val()) {
+            timelines.ref("/users/" + curruser.uid).set({
+                email: curruser.email,
+                name: (curruser.displayName) ? curruser.displayName : "Nonamed",
+                uid: curruser.uid
+            });
+        }
+    });
         const currusermail = curruser.email;
         res.render("user/profile", {
           title: "Home",
