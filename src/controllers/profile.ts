@@ -5,15 +5,16 @@ export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : fireba
 const timelines = firebase.database();
 
 export let index = (req: Request, res: Response) => {
-    const you = firebase.auth().currentUser;
-    if (!you) {
-        console.log("You have not logged");
-        res.send();
+    const curruser = firebase.auth().currentUser;
+    if (!curruser) {
+        console.log("you have not logged");
+        res.redirect("/login");
     }
-    const yourmail = you.email;
-    // const yournickname = you.displayName;
-  res.render("user/profile", {
-    title: "Home",
-    email: yourmail
-  });
+    else {
+        const currusermail = curruser.email;
+        res.render("user/profile", {
+          title: "Home",
+          email: currusermail
+        });
+    }
 };
