@@ -265,8 +265,8 @@ function implementComment(Comments, where) {
     comment.appendChild(comment_content);
 
     var comment_textbox = document.createElement("p");
-    comment_textbox.className = "comment-textbox";
     comment_content.appendChild(comment_textbox);
+    comment_textbox.className = "comment-textbox";
 
     var commentText = document.createElement("span");
     commentText.className = "comment-text";
@@ -279,7 +279,6 @@ function implementComment(Comments, where) {
       commentWriterImage.src = "images/default-writerImage.png";
     }
     else commentWriterImage.src = currentComment.writerImage.src;
-
   }
 }
 function implementWritePost() {
@@ -331,17 +330,6 @@ function implementWritePost() {
   box_under.appendChild(postButton);
 
 }
-function implementLocalstorage() {
-  for (var i = localStorage.length - 1; i >= 0; i--) {
-    var value = localStorage.getItem(i);
-    
-    var parse = value.split(";|;");
-    var newPost = new Post(parse[0], parse[1]);
-    var arrd = parse[2].split(";"); //toString of Date to array
-    newPost.setTime(arrd[0], arrd[1], arrd[2], arrd[3], arrd[4], arrd[5]);
-    implementPost(newPost);
-  }
-}
 
 //testcase
 var james = new Post("james", "My name is james");
@@ -387,7 +375,6 @@ friend_list.push(Ahn);
 
 window.onload = function () {
   implementWritePost();
-  implementLocalstorage();
   if (window.innerWidth > 950) {
     implementProfile();
   }
