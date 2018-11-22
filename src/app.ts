@@ -6,6 +6,7 @@ import path from "path";
 
 import * as indexController from "./controllers/index";
 import * as loginController from "./controllers/login";
+import * as logoutController from "./controllers/logout";
 import * as mapController from "./controllers/map";
 import * as tdmapController from "./controllers/2dmap";
 import * as mobileController from "./controllers/mobile";
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", indexController.index);
 app.get("/login", loginController.index);
+app.get("/logout", logoutController.logout);
 app.get("/map", mapController.index);
 app.get("/2dmap", tdmapController.index);
 app.get("/mobile", mobileController.index);

@@ -12,9 +12,9 @@ export let index = (req: Request, res: Response) => {
 };
 
 export let login = (req: Request, res: Response) => {
-    if (auth.currentUser) {
-        console.log(auth.currentUser);
-  }
+    if (!!auth.currentUser) {
+        res.redirect("/profile");
+    }
   const email = req.body.email;
   const password = req.body.password;
   const promise = auth.signInWithEmailAndPassword(email, password);
