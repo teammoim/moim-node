@@ -17,14 +17,25 @@ export let index = (req: Request, res: Response) => {
 export let signup = (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
+  const phone = req.body.phonenumber;
+  const realname = req.body.name;
   const nickname = req.body.nickname;
+  const birth = req.body.birthdate;
+  const gender = req.body.chk_info;
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
       if (userData) {
+          userData.user.displayName = nickname;
+          userData.user.phoneNumber = phone;
+
           timelines.ref("/users/" + userData.user.uid).set({
+              birthday: birth,
               email: userData.user.email,
-              name: nickname,
+              name: realname,
+              nickname: nickname,
+              gender: gender,
+              phonenumber: phone,
               uid: userData.user.uid
           });
       }
