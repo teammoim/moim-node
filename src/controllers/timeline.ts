@@ -10,7 +10,7 @@ export let index = (req: Request, res: Response) => {
         res.redirect("/login");
     }
     else {
-        // tl have json object => {body: ~~~, like: ~~~, time: ~~~, title: ~~~}
+        // tl have json object of timline
         const tl: object[] = [];
         timelines.ref("/timeline/").once("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
