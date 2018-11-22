@@ -23,22 +23,24 @@
   <section class="section">
     <div class="container">
       <h1 class="title">설정</h1>
-      <form action="/trySetting" method="post">
+      <form action="/trysetting" method="post">
         <div class="field">
-          <div class="setting-title">이름</div>
-          <p class="control has-icons-left">
-            <input class="input" type="text" id="name" value="오오!">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" name="email" type="email" placeholder="Email">
             <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
             </span>
           </p>
         </div>
+
         <div class="field">
-          <div class="setting-title">닉네임</div>
           <p class="control has-icons-left">
-            <input class="input" type="text" id="nickName" value="오오!">
+            <input class="input" name="password" type="password" placeholder="Password">
             <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
+              <i class="fas fa-lock"></i>
             </span>
           </p>
         </div>
@@ -49,16 +51,60 @@
             <textarea class="textarea" rows="10" cols="6"></textarea>
           </div>
         </div>
-        <input class="button" type="submit" value="결정">
+
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" name="phonenumber" type="text" placeholder="Phone number">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" name="realname" type="text" placeholder="Name">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" name="nickname" type="text" placeholder="Nick Name">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <p>생년월일을 입력하세요.</p>
+          <p class="control has-icons-left">
+            <input class="datepicker" name="birthdate" type="date">
+          </p>
+        </div>
+
+        <div class="field">
+          <p>성별을 골라주세요.</p>
+          <p class="control has-icons-left">
+            <input type="radio" name="chk_info" value="M">남성
+            <input type="radio" name="chk_info" value="F" checked="checked">여성
+            <input type="radio" name="chk_info" value="Z">기타
+          </p>
+        </div>
+
+        <input class="button" type="submit" value="회원가입 하기">
       </form>
     </div>
   </section>
+  
 
   <style>
-    .setting-title{
-      margin-bottom:10px;
+    .setting-title {
+      margin-bottom: 10px;
     }
-    
   </style>
 </body>
 
