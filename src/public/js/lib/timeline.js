@@ -116,6 +116,26 @@ function implementPost(Post) {
     post.className = "post";
     timeline_posts.appendChild(post);
 
+    var form = document.createElement("form");
+    form.action = "/tryfollow";
+    form.method = "post";
+    post.appendChild(form);
+
+    var uid = document.createElement("input");
+    form.appendChild(uid);
+    uid.type = "hidden";
+    uid.name = "uid";
+    uid.value = "uid sample";
+
+    var postid = document.createElement("input");
+    form.appendChild(postid);
+    postid.type = "hidden";
+    postid.name = "postid";
+    postid.value = "postid sample";
+
+
+
+
     var media_content = document.createElement("div");
     post.appendChild(media_content);
 
@@ -186,14 +206,26 @@ function implementPost(Post) {
     '          </a>';
     var likeButton = level.getElementsByClassName("level-item")[0];
     var commentButton = level.getElementsByClassName("level-item")[1];
-    var shareButton = level.getElementsByClassName("level-item")[2];
     media_content.appendChild(level);
   /* add event listeners to button */
+  var islike = false;
+  likeButton.onclick = function () {
+    if (islike) {
+      likeButton.style.color = "gainsbro";
+      islike = true;
+    }
+    else {
+      likeButton.style.color = "red";
+      islike = false;
+    }
+    form.action = "/trylike";
+    form.submit();
+  }
 
   commentButton.onclick = function () {
     commentClick(Post.comments, post);
   };
-
+  
 
   
 
@@ -204,8 +236,18 @@ function implementPost(Post) {
   follow_button.innerText = "follow";
   follow_button.className = "follow-button";
   follow_button.parentElement = post_writer;
+  var isfollowed = true;
   follow_button.onclick = function () {
-    this.innerText = "followed";
+    if (isfollowed) {
+      this.innerText = "followed";
+      isfollowed = false;
+    }
+    else {
+      this.innerText = "followed";
+      isfollowed = true;
+    }
+    form.action = "tryfollow";
+    form.submit();
   }
 
   /*  Input all the information of post  */
@@ -307,13 +349,21 @@ function implementWritePost() {
   box_right.className = "write-post-right";
   box.appendChild(box_right);
 
+  var form = document.createElement("form");
+  form.action = "/trypost";
+  form.method = "post";
+  box_right.appendChild(form);
+
   var textarea = document.createElement("textarea");
   textarea.className = "write-post-textarea";
   textarea.placeholder = "Write here";
-  box_right.appendChild(textarea);
+  textarea.name = "text";
+  form.appendChild(textarea);
   textarea.onclick = function () {
     textarea.style.height = "130px";
   };
+  
+  
   var box_under = document.createElement("div");
   box_under.style.width = "100%";
   box_under.style.paddingBottom = "3px";
@@ -323,19 +373,21 @@ function implementWritePost() {
   postButton.className = "write-post-button";
   postButton.innerText = "Post";
   postButton.onclick = function () {
-    var time = new Date();
-    var toString = "testname" + ";|;" + textarea.value + ";|;" +
-      time.getFullYear() + ";" + time.getMonth() + ";" + time.getDate() + ";"+
-    time.getHours() + ";" + time.getMinutes() + ";" + time.getSeconds();
-    
+    form.submit();
   };
   box_under.appendChild(postButton);
 
 }
 function implementWriteComment(comments_box) {
+  var form = document.createElement("form");
+  form.action = "/trycomment";
+  form.method = "post";
+  comments_box.appendChild(form);
+
   var write_comment = document.createElement("article");
   write_comment.className = "media comment";
-  comments_box.appendChild(write_comment);
+  form.appendChild(write_comment);
+
 
   var write_comment_left = document.createElement("div");
   write_comment_left.className = "write-comment-left";
@@ -353,16 +405,24 @@ function implementWriteComment(comments_box) {
   var textarea = document.createElement("textarea");
   textarea.className = "write-post-textarea";
   textarea.placeholder = "Write here";
+  textarea.name = "text";
   write_comment_right.appendChild(textarea);
   textarea.onclick = function () {
     textarea.style.height = "80px";
   };
-  
+
+  var postid = document.createElement("input");
+  postid.type = "hidden";
+  postid.name = "postid";
+  postid.value = "postid";
 
   var write_comment_button = document.createElement("button");
   write_comment_button.className = "write-post-button";
   write_comment_button.style = "margin-left:81%;";
   write_comment_button.innerText = "Post";
+  write_comment_button.onclick = function () {
+    form.submit();
+  }
   comments_box.appendChild(write_comment_button);
 
 
