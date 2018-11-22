@@ -7,7 +7,7 @@ const auth = firebase.auth();
 const timelines = firebase.database();
 
 export let index = (req: Request, res: Response) => {
-    /*if (!auth.currentUser) {
+    if (!auth.currentUser) {
         res.redirect("/login");
     }
     else {
@@ -20,7 +20,7 @@ export let index = (req: Request, res: Response) => {
             });
             // console.log(tl);
         });
-    }*/
+    }
 
   res.render("timeline/timeline", {
     title: "Home"
