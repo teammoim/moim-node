@@ -234,6 +234,9 @@ function implementComment(Comments, where) {
   hr_comment.style.marginTop = "0px";
   hr_comment.style.marginBottom = "10px";
   comments_box.appendChild(hr_comment);
+  //at first add posting comment
+
+  implementWriteComment(comments_box);
 
   for (i = 0; i < Comments.length; i++) {
 
@@ -324,10 +327,44 @@ function implementWritePost() {
     var toString = "testname" + ";|;" + textarea.value + ";|;" +
       time.getFullYear() + ";" + time.getMonth() + ";" + time.getDate() + ";"+
     time.getHours() + ";" + time.getMinutes() + ";" + time.getSeconds();
-    localStorage.setItem(localStorage.length, toString);
-    location.reload();
+    
   };
   box_under.appendChild(postButton);
+
+}
+function implementWriteComment(comments_box) {
+  var write_comment = document.createElement("article");
+  write_comment.className = "media comment";
+  comments_box.appendChild(write_comment);
+
+  var write_comment_left = document.createElement("div");
+  write_comment_left.className = "write-comment-left";
+  write_comment.appendChild(write_comment_left);
+
+  var write_comment_image = new Image();
+  write_comment_image.src = "images/default-writerImage.png";
+  write_comment_image.className = "comment-writer-image";
+  write_comment_left.appendChild(write_comment_image);
+
+  var write_comment_right = document.createElement("div");
+  write_comment_right.className = "write-comment-right";
+  write_comment.appendChild(write_comment_right);
+
+  var textarea = document.createElement("textarea");
+  textarea.className = "write-post-textarea";
+  textarea.placeholder = "Write here";
+  write_comment_right.appendChild(textarea);
+  textarea.onclick = function () {
+    textarea.style.height = "80px";
+  };
+  
+
+  var write_comment_button = document.createElement("button");
+  write_comment_button.className = "write-post-button";
+  write_comment_button.style = "margin-left:81%;";
+  write_comment_button.innerText = "Post";
+  comments_box.appendChild(write_comment_button);
+
 
 }
 
