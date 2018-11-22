@@ -11,6 +11,8 @@ export let index = (req: Request, res: Response) => {
         res.redirect("/login");
     }
     else {
+        // Valid the user have correct json data.
+        /*
         timelines.ref("/users/" + curruser.uid).once("value").then((snapshot) => {
         if (!snapshot.val()) {
             timelines.ref("/users/" + curruser.uid).set({
@@ -20,6 +22,7 @@ export let index = (req: Request, res: Response) => {
             });
         }
     });
+    */
         const currusermail = curruser.email;
         res.render("user/profile", {
           title: "Home",
