@@ -32,7 +32,9 @@ export let index = (req: Request, res: Response) => {
         const currusermail = curruser.email;
         res.render("user/profile", {
           title: "Home",
-          email: currusermail
+          email: currusermail;
+          //if you want to show user information, write here
+          //and need timeline posts 
         });
     }
 };
