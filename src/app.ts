@@ -43,7 +43,7 @@ app.post("/tryfollow", timelineController.follow);
 app.post("/trylike", timelineController.like);
 app.post("/goprofile", timelineController.goprofile);
 
-app.post("/trysetting", settingController.setting);
+app.post("/changesetting", settingController.changesetting);
 
 
 app.use(
