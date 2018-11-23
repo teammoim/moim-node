@@ -12,17 +12,23 @@ export let index = (req: Request, res: Response) => {
     }
     else {
         // Valid the user have correct json data.
-        /*
         timelines.ref("/users/" + curruser.uid).once("value").then((snapshot) => {
-        if (!snapshot.val()) {
-            timelines.ref("/users/" + curruser.uid).set({
-                email: curruser.email,
-                name: (curruser.displayName) ? curruser.displayName : "Nonamed",
-                uid: curruser.uid
-            });
-        }
+
+        console.log(snapshot);
+
+        // if (!snapshot.val()) {
+        //     timelines.ref("/users/" + curruser.uid).set({
+        //         birthday: "Undetected",
+        //         email: curruser.email,
+        //         name: "Unvaliduser" ,
+        //         nickname: (curruser.displayName) ? curruser.displayName : "Unvaliduser",
+        //         gender: "Notdefiend",
+        //         phonenumber: "Notvalid",
+        //         uid: curruser.uid
+        //     });
+        // }
     });
-    */
+
         const currusermail = curruser.email;
         res.render("user/profile", {
           title: "Home",
