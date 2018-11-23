@@ -511,8 +511,11 @@ $(window).resize(function () {
 })
 
 function implementProfile() {
-  var profileBox = document.getElementsByClassName("timeline-profile")[0];
+  if (document.getElementsByClassName("timeline-profile").length === 0) {
+    return;
+  }
 
+  var profileBox = document.getElementsByClassName("timeline-profile")[0];
   var profile = document.createElement("div");
   profile.className = "profile-list";
   profileBox.appendChild(profile);
@@ -540,6 +543,11 @@ function implementProfile() {
 }
 
 function implementFriends() {
+  if (document.getElementsByClassName("timeline-friends").length === 0) {
+    return;
+  }
+  
+
   var friendsBox = document.getElementsByClassName("timeline-friends")[0];
 
   var friends = document.createElement("div");
