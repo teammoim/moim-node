@@ -25,7 +25,6 @@ export let index = (req: Request, res: Response) => {
        title: "Home"
        /* to-do
         * give client to DB JSON Data
-        
         /* client need...
            contents : {
              profile : [{name : "name", photourl : "" }]
@@ -48,9 +47,9 @@ export let index = (req: Request, res: Response) => {
           photourl은 게시물 올린 사람의 프로필 이미지 - single
           imageurl은 게시물 내부의 이미지 - 여러개의 이미지 쉼표(,)로 구분
 
-          timeline.ejs에서는 유저가 팔로우한 친구의 게시물들을 최신부터 표시 
+          timeline.ejs에서는 유저가 팔로우한 친구의 게시물들을 최신부터 표시
           profile.ejs에서는 유저가 쓴 게시물들을 최신부터 표시
-           */
+     */
      });
 
 };
