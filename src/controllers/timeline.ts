@@ -25,27 +25,30 @@ export let index = (req: Request, res: Response) => {
        title: "Home"
        /* to-do
         * give client to DB JSON Data
-        * hope variable name is contents
-          contents : JSON */
+        
+        /* client need...
+           contents : {
+             profile : [{name : "name", photourl : "" }]
+             posts : [{ uid : "", postid : "", name: "kim", text : "my name is kim", imageurl : "firstsrc,secondsrc" ,
+               comments : [{ uid : "", commentid : "" , photourl: "", name: "", text: "" },
+                           { uid : "", commentid : "" , photourl: "", name: "", text: "" },
+                           { uid : "", commentid : "" , photourl: "", name: "", text: "" }]},
 
-          /*
-          Example of contents =>
-          [ { name: 't@t.com', text: 'hello, world!!' },
-{ name: 'test@test.com', text: 'hi t@t.com!' },
-{ name: 'smart8612@gmail.com', text: '74890378920' },
-{ name: 'smart8612@gmail.com', text: '123456789' },
-{ name: 'smart8612@gmail.com', text: '안녕하세요' },
-{ name: 'smart8612@gmail.com', text: '최호경 ㅎㅇㅎㅇ' },
-{ name: 'smart8612@gmail.com', text: 'ㅂㅈㄷㄱ' },
-{ name: 'smart8612@gmail.com', text: '쇼ㅕㅑ' },
-{ name: 'smart8612@gmail.com', text: 'ㅠ오어암' },
-{ name: 'smart8612@gmail.com', text: 'ㅍ노어더ㅗㅓ' },
-{ name: 'smart8612@gmail.com', text: '안녕하세요' },
-{ name: 'smart8612@gmail.com', text: 'ifjiehisfh' },
-{ name: 'smart8612@gmail.com', text: 'qwertyy' },
-{ name: 'qwerty@qwerty.com', text: 'didjejjwj' },
-{ name: 'qwertyu@qwertyu.com', text: 'bxcxhlcchkc' } ]
-          */
+                      { uid : "", postid : "", name : "Joh" text : "my name is joh", imageurl : "firstsrc,second" ,
+               comments : [{ uid : "", commentid : "" , photourl: "", name: "", text: "" },
+                           { uid : "", commentid : "" , photourl: "", name: "", text: "" },
+                           { uid : "", commentid : "" , photourl: "", name: "", text: "" }]
+             }]
+             friends : [{uid : "", photourl="" , name : "zelda"},
+                        {uid : "", photourl="" , name : "link"}]
+           }
+
+          client must need all of them
+
+          photourl은 게시물 올린 사람의 프로필 이미지 - single
+          imageurl은 게시물 내부의 이미지 - 여러개의 이미지 쉼표(,)로 구분
+
+           */
      });
 
    };
