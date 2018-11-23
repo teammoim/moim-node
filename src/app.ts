@@ -37,6 +37,15 @@ app.get("/timeline", timelineController.index);
 app.post("/trysignup", signupController.signup);
 app.post("/trylogin", loginController.login);
 
+app.post("/trypost", timelineController.post);
+app.post("/trycomment", timelineController.comment);
+app.post("/tryfollow", timelineController.follow);
+app.post("/trylike", timelineController.like);
+app.post("/goprofile", timelineController.goprofile);
+
+app.post("/trysetting", settingController.setting);
+
+
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );

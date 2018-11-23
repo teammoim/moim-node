@@ -251,6 +251,22 @@ i.level {
   padding-left:unset;
 }
 
+.write-comment-left{
+  float:left;
+  width:10%;
+  display:inline-block;
+}
+
+.write-comment-right {
+  float: left;
+  width: 90%;
+  display: inline-block;
+}
+.comment-textarea{
+  width:100%;
+  height:40px;
+}
+
 //timeline - friends list
 
 .friends {
