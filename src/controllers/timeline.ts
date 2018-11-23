@@ -17,7 +17,7 @@ export let index = (req: Request, res: Response) => {
                 const child = childSnapshot.val();
                 tl.push(child);
             });
-            // console.log(tl);
+            console.log(tl);
         });
     }
 
