@@ -51,5 +51,5 @@ export let signup = (req: Request, res: Response) => {
     // ...
   });
 
-  res.redirect("/setting");
+  res.redirect("/changesetting");
 };
