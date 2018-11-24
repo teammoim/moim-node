@@ -2,11 +2,38 @@
 
 <body>
     <% include ../navigation %>
+    <script>
+    var validateform = () => {
+        if($("input[name=email]").val().indexOf("@") < 0) {
+            alert("이메일 형식이 올바르지 않습니다!");
+            return;
+        }
+        else if($("input[name=password]").val().length < 8) {
+            alert("비밀번호는 8자 이상이어야 합니다!");
+            return;
+        }
+        else if($("input[name=phonenumber]").val() == "") {
+            alert("전화번호를 입력해주세요!");
+            return;
+        }
+        else if($("input[name=realname]").val() == "") {
+            alert("성함을 입력해주세요!");
+            return;
+        }
+        else if($("input[name=nickname]").val() == "") {
+            alert("별명을 입력해주세요!");
+            return;
+        }
+        else {
+            document.getElementById("signupform").submit();
+        }
+    }
+    </script>
 
     <section class="section">
         <div class="container">
             <h1 class="title">회원가입</h1>
-            <form action="/trysignup" method="post">
+            <form id="signupform" action="/trysignup" method="post">
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
                         <input class="input" name="email" type="email" placeholder="Email">
@@ -71,7 +98,7 @@
                     </p>
                 </div>
 
-                <input class="button" type="submit" value="회원가입 하기">
+                <input class="button" type="submit" value="회원가입 하기" onclick="validateform();">
             </form>
         </div>
     </section>
