@@ -25,6 +25,8 @@ export let signup = (req: Request, res: Response) => {
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
+      userData.additionalUserInfo.username = nickname;
+
       if (userData) {
           timelines.ref("/users/" + userData.user.uid).set({
               birthday: birth,
@@ -33,7 +35,12 @@ export let signup = (req: Request, res: Response) => {
               nickname: nickname,
               gender: gender,
               phonenumber: phone,
-              uid: userData.user.uid
+              uid: userData.user.uid,
+              intro: ""
+          });
+          userData.user.updateProfile({
+              displayName: nickname,
+              photoURL: ""
           });
       }
       else {
@@ -45,8 +52,7 @@ export let signup = (req: Request, res: Response) => {
     const errorMessage = error.message;
     console.log(errorCode + " " + errorMessage);
     res.redirect("/signup");
-    // ...
   });
 
-  res.redirect("/profile");
+  res.redirect("/login");
 };
