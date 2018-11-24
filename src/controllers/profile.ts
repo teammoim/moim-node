@@ -14,7 +14,7 @@ export let index = (req: Request, res: Response) => {
         // Valid the user have correct json data.
         timelines.ref("/users/" + curruser.uid).once("value").then((snapshot) => {
 
-        console.log(snapshot);
+        console.log(snapshot.val());
 
         // if (!snapshot.val()) {
         //     timelines.ref("/users/" + curruser.uid).set({

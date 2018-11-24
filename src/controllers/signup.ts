@@ -18,13 +18,14 @@ export let signup = (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
   const phone = req.body.phonenumber;
-  const realname = req.body.name;
+  const realname = req.body.realname;
   const nickname = req.body.nickname;
   const birth = req.body.birthdate;
   const gender = req.body.chk_info;
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
+      // console.log(email + " " + password + " " + phone + " " + realname + " " + nickname + " " + birth + " " + gender);
       if (userData) {
           userData.user.displayName = nickname;
           userData.user.phoneNumber = phone;
@@ -40,7 +41,7 @@ export let signup = (req: Request, res: Response) => {
           });
       }
       else {
-
+          res.redirect("/signup");
       }
   })
   .catch(function (error) {
@@ -50,5 +51,5 @@ export let signup = (req: Request, res: Response) => {
     // ...
   });
 
-  res.redirect("/");
+  res.redirect("/setting");
 };
