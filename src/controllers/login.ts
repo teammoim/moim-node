@@ -23,15 +23,17 @@ export let login = (req: Request, res: Response) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log(errorCode + " " + errorMessage);
 });
 
   auth.onAuthStateChanged(function(user) {
       if (user) {
-          res.redirect("/profile");
         // User is signed in.
+        res.redirect("/profile");
       }
       else {
         // No user is signed in.
+        res.redirect("/login");
       }
   });
 };
