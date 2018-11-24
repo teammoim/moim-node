@@ -25,11 +25,7 @@ export let signup = (req: Request, res: Response) => {
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
-      // console.log(email + " " + password + " " + phone + " " + realname + " " + nickname + " " + birth + " " + gender);
       if (userData) {
-          userData.user.displayName = nickname;
-          userData.user.phoneNumber = phone;
-
           timelines.ref("/users/" + userData.user.uid).set({
               birthday: birth,
               email: userData.user.email,
@@ -41,15 +37,16 @@ export let signup = (req: Request, res: Response) => {
           });
       }
       else {
-          res.redirect("/signup");
       }
   })
   .catch(function (error) {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log(errorCode + " " + errorMessage);
+    res.redirect("/signup");
     // ...
   });
 
-  res.redirect("/changesetting");
+  res.redirect("/profile");
 };
