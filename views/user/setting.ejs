@@ -23,7 +23,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">설정</h1>
-      <form action="/trysetting" method="post">
+      <form action="/changesetting" method="post">
         <div class="field">
           <p class="control has-icons-left has-icons-right">
             <input class="input" name="email" type="email" placeholder="Email">
@@ -46,9 +46,8 @@
         </div>
 
         <div class="field">
-          <div class="setting-title">소개문구</div>
           <div class="control">
-            <textarea class="textarea" rows="10" cols="6" name="intro"></textarea>
+            <textarea class="textarea" rows="4"  name="intro" placeholder="Introduction"></textarea>
           </div>
         </div>
 
@@ -94,12 +93,19 @@
             <input type="radio" name="chk_info" value="Z">기타
           </p>
         </div>
+<<<<<<< HEAD
 
         <input class="button" type="submit" value="사용자 정보 업데이트">
       </form>
     </div>
   </section>
 
+=======
+        <input class="button" type="submit" value="Confirm"> <br />
+      </form>
+    </div>
+  </section>
+>>>>>>> d5736da086c0bdad9367d8b96be08eecbe073850
 
   <style>
     .setting-title {
