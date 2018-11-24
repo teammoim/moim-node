@@ -5,6 +5,10 @@ export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : fireba
 const timelines = firebase.database();
 const auth = firebase.auth();
 
+function notNull(target: string) {
+    return (target != undefined && target != "");
+}
+
 export let index = (req: Request, res: Response) => {
   res.render("user/setting", {
     title: "Home"
@@ -12,29 +16,51 @@ export let index = (req: Request, res: Response) => {
 };
 
 export let changesetting = (req: Request, res: Response) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const phone = req.body.phonenumber;
-  const realname = req.body.name;
-  const nickname = req.body.nickname;
-  const birth = req.body.birthdate;
-  const gender = req.body.chk_info;
-  const intro = req.body.intro;
+    const user = auth.currentUser;
+    const dbaccess = timelines.ref("/users/" + user.uid);
 
-  console.log("Update info" + email + " " + password + " " + phone + " " + realname + " " + nickname + " " + birth + " " + gender);
+    // Umm.... ok, I think I can refactor this codes...
+    const email = req.body.email;
+    if (notNull(email) && (email.indexOf("@") > 0)) {
+        user.updateEmail(email).then(() => {
+            dbaccess.update({email : email});
+        })
+        .catch(() => {
+            console.log("Error detected : EMAIL");
+        });
+    }
+    const password = req.body.password;
+    if (notNull(password) && (7 < password.length)) {
+        user.updatePassword(password).then(() => {
+        }).catch(() => {
+            console.log("Error detected : PASSWORD");
+        });
+    }
+    const phone = req.body.phonenumber;
+    if (notNull(phone) && (10 < phone.length)) {
+        dbaccess.update({phonenumber: phone});
+    }
+    const realname = req.body.name;
+    if (notNull(realname)) {
+        dbaccess.update({name: realname});
+    }
+    const nick = req.body.nickname;
+    if (notNull(nick)) {
+        dbaccess.update({nickname: nick});
+    }
+    const birth = req.body.birthdate;
+    if (notNull(birth)) {
+        dbaccess.update({birthday: birth});
+    }
+    const sex = req.body.chk_info;
+    if (notNull(sex)) {
+        dbaccess.update({gender: sex});
+    }
+    const userintro = req.body.intro;
+    dbaccess.update({intro: userintro});
 
-  timelines.ref("/users/" + auth.currentUser.uid).once("value", (snapshot) => {
-      const x = snapshot.val();
-      console.log(x);
-  });
-  // timelines.ref("/users/" + auth.currentUser.uid).set({
-  //     birthday: (birth != "" && birth != undefined) ? birth : "????/??/??",
-  //     email: (email != "" && email != undefined) ? email : auth.currentUser.email,
-  //     name: (realname != "" && realname != undefined) ? realname : "Nonamed user",
-  //     nickname: (nickname != "" && nickname != undefined) ? nickname : "Nonamed user",
-  //     gender: (gender != "" && gender != undefined) ? gender : "Z",
-  //     phonenumber: (phone != "" && phone != undefined) ? phone : "???????????",
-  //     uid: auth.currentUser.uid
-  // });
-
+    dbaccess.once("value", (snapshot) => {
+        const x = snapshot.val();
+        console.log(x);
+    });
 };
