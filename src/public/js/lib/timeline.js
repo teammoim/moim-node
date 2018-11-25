@@ -408,6 +408,7 @@ function implementWritePost() {
   form.appendChild(textarea);
   textarea.onclick = function () {
     textarea.style.height = "130px";
+    post.style.height = "190px";
   };
   
   
@@ -431,6 +432,10 @@ function implementWritePost() {
   var writeButtonBox = document.createElement("div");
   writeButtonBox.className = "write-button-box";
   box_under.appendChild(writeButtonBox);
+
+  var buttonsform = document.createElement("form");
+  writeButtonBox.appendChild(buttonsform);
+
 
   var imagePostbutton = document.createElement("div");
   imagePostbutton.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
