@@ -460,6 +460,7 @@ function implementWriteComment(comments_box) {
   postid.type = "hidden";
   postid.name = "postid";
   postid.value = "post id sample"; // need postid from server
+  form.appendChild(postid);
 
   var write_comment_button = document.createElement("button");
   write_comment_button.className = "write-post-button";
@@ -567,8 +568,9 @@ function implementProfile() {
 
   var uid = document.createElement("input");
   uid.type = "hidden";
-  uid.value = "uid sample" // need uid from server
-  profile.appendChild(uid.value);
+  uid.value = "uid sample";
+  profile.appendChild(uid);
+  
 
   var profile_first = document.createElement("div");
   profile_first.className = "profile-first";
@@ -579,7 +581,7 @@ function implementProfile() {
   profile_image.src = "/images/default-writerImage.png";
   profile_image.onclick = function () {
     goProfile(uid.value);
-  }
+  };
   profile_first.appendChild(profile_image);
 
   //contains profile name
@@ -592,7 +594,7 @@ function implementProfile() {
   var profile_third = document.createElement("div");
   profile_third.className = "profile-third";
   profile_third.innerText = " friends : ";
-  profile.appendChild(profile_third);
+  profile.appendChild(profile_third); 
 }
 
 function implementFriends() {
@@ -614,7 +616,7 @@ function implementFriends() {
 
     var uid = document.createElement("input");
     uid.type = "hidden";
-    uid.value = "uid sample" // need uid from server
+    uid.value = "uid sample"; // need uid from server
     friend.appendChild(uid);
 
     friend.onclick = function () {
