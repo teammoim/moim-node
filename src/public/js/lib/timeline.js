@@ -90,8 +90,18 @@ var posts = [];
 function createPost(Post) {
   posts.push(Post);
 }
-function gotoProfile() {
+function goProfile(uidvalue) {
+  var form = document.createElement("form");
+  form.action = "/goprofile";
+  form.type = "post";
 
+  var uid = document.createElement("input");
+  form.appendChild(uid);
+  uid.type = "hidden";
+  uid.name = "uid";
+  uid.value = uidvalue;
+
+  alert(uidvalue);
 }
 
 
@@ -122,19 +132,30 @@ function implementPost(Post) {
     post.appendChild(form);
 
     var uid = document.createElement("input");
-    form.appendChild(uid);
     uid.type = "hidden";
     uid.name = "uid";
-    uid.value = "uid sample";
+  uid.value = "uid sample"; // need uid from server
+  form.appendChild(uid);
 
     var postid = document.createElement("input");
     form.appendChild(postid);
     postid.type = "hidden";
     postid.name = "postid";
-    postid.value = "postid sample";
+  postid.value = "postid sample"; // need postid from server
 
+  var islike = document.createElement("input");
+  form.appendChild(islike);
+  islike.type = "hidden";
+  islike.name = "islike";
+  islike.value = "true";
 
+  var isfollow = document.createElement("input");
+  form.appendChild(isfollow);
+  isfollow.type = "hidden";
+  isfollow.name = "isfollow";
+  isfollow.value = "true";
 
+  
 
     var media_content = document.createElement("div");
     post.appendChild(media_content);
@@ -149,7 +170,10 @@ function implementPost(Post) {
 
     //in writer-left tag
     var writerImage = document.createElement("img");
-    writerImage.className = "writer-image";
+  writerImage.className = "writer-image";
+  writerImage.onclick = function () {
+    goProfile(uid.value);
+  }
     writer_left.appendChild(writerImage);
 
     var writer_right = document.createElement("div");
@@ -158,10 +182,14 @@ function implementPost(Post) {
 
     //in writer-right tag
     var writer = document.createElement("span");
-    writer.className = "writer";
+  writer.className = "writer";
+  writer.onclick = function () {
+    goProfile(uid.value);
+  }
     writer_right.appendChild(writer);
     var br = document.createElement("br");
     writer_right.appendChild(br);
+  
 
   var writer_follow = document.createElement("div");
   writer_follow.className = "writer-follow";
@@ -208,15 +236,15 @@ function implementPost(Post) {
     var commentButton = level.getElementsByClassName("level-item")[1];
     media_content.appendChild(level);
   /* add event listeners to button */
-  var islike = false;
+  presslike = false;
   likeButton.onclick = function () {
     if (islike) {
       likeButton.style.color = "gainsbro";
-      islike = true;
+      presslike = true;
     }
     else {
       likeButton.style.color = "red";
-      islike = false;
+      presslike = false;
     }
     form.action = "/trylike";
     form.submit();
@@ -286,6 +314,19 @@ function implementComment(Comments, where) {
     comment.className = "media comment";
     comments_box.appendChild(comment);
 
+    var commentid = document.createElement("input");
+    commentid.type = "hidden";
+    commentid.name = "commentid";
+    commentid.value = "comment id sample";
+    comment.appendChild(commentid);
+
+    var uid = document.createElement("input");
+    uid.type = "hidden";
+    uid.name = "uid";
+    uid.value = "uid sample"; // need uid from server
+    comment.appendChild(uid);
+
+
     var comment_writer = document.createElement("div");
     comment_writer.className = "comment-writer";
     comment.appendChild(comment_writer);
@@ -296,6 +337,9 @@ function implementComment(Comments, where) {
 
     var commentWriterImage = document.createElement("img");
     commentWriterImage.className = "comment-writer-image";
+    commentWriterImage.onclick = function () {
+      goProfile(uid.value);
+    }
     comment_writer_left.appendChild(commentWriterImage);
 
     var comment_writer_right = document.createElement("div");
@@ -303,6 +347,9 @@ function implementComment(Comments, where) {
     comment_writer.appendChild(comment_writer_right);
 
     var commentWriter = document.createElement("span");
+    commentWriter.onclick = function () {
+      goProfile(uid.value);
+    }
     comment_writer_right.appendChild(commentWriter);
 
     var comment_content = document.createElement("div");
@@ -414,7 +461,7 @@ function implementWriteComment(comments_box) {
   var postid = document.createElement("input");
   postid.type = "hidden";
   postid.name = "postid";
-  postid.value = "postid";
+  postid.value = "post id sample"; // need postid from server
 
   var write_comment_button = document.createElement("button");
   write_comment_button.className = "write-post-button";
@@ -520,13 +567,21 @@ function implementProfile() {
   profile.className = "profile-list";
   profileBox.appendChild(profile);
 
+  var uid = document.createElement("input");
+  uid.type = "hidden";
+  uid.value = "uid sample" // need uid from server
+  profile.appendChild(uid.value);
+
   var profile_first = document.createElement("div");
-  profile_first.className = "profile-first"
+  profile_first.className = "profile-first";
   profile.appendChild(profile_first);
 
   var profile_image = new Image();
   profile_image.className = "profile-image";
   profile_image.src = "/images/default-writerImage.png";
+  profile_image.onclick = function () {
+    goProfile(uid.value);
+  }
   profile_first.appendChild(profile_image);
 
   //contains profile name
@@ -558,6 +613,15 @@ function implementFriends() {
     var friend = document.createElement("div");
     friend.className = "friend";
     friends.appendChild(friend);
+
+    var uid = document.createElement("input");
+    uid.type = "hidden";
+    uid.value = "uid sample" // need uid from server
+    friend.appendChild(uid);
+
+    friend.onclick = function () {
+      goProfile(uid.value);
+    }
 
     var friend_left = document.createElement("div");
     friend_left.className = "friend-left";
