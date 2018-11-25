@@ -113,9 +113,7 @@ function commentClick(Comments_array, where) {
     where.removeChild(comment_box[0]);
   }
   else {
-    if (Comments_array.length > 0) {
-      implementComment(Comments_array, where);
-    }
+    implementComment(Comments_array, where);
   }
 }
 
