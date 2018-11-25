@@ -14,6 +14,7 @@ import * as profileController from "./controllers/profile";
 import * as settingController from "./controllers/setting";
 import * as signupController from "./controllers/signup";
 import * as timelineController from "./controllers/timeline";
+import * as subcribeController from "./controllers/subcribe";
 const app = express();
 
 app.set("port", process.env.PORT || 3000);
@@ -33,6 +34,7 @@ app.get("/profile", profileController.index);
 app.get("/setting", settingController.index);
 app.get("/signup", signupController.index);
 app.get("/timeline", timelineController.index);
+app.get("/subcribe", subcribeController.index);
 
 app.post("/trysignup", signupController.signup);
 app.post("/trylogin", loginController.login);
@@ -44,6 +46,8 @@ app.post("/trylike", timelineController.like);
 app.post("/goprofile", timelineController.goprofile);
 
 app.post("/changesetting", settingController.changesetting);
+app.post("/requestfind", subcribeController.finduser);
+app.post("/requestadd", subcribeController.subcribe);
 
 
 app.use(
