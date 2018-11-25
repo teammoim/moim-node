@@ -3,8 +3,17 @@
 <body>
     <% include ../navigation %>
     <script>
+    var isEmail = (target) => {
+        const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return pattern.test(target);
+    }
+    var isNumber = (target) => {
+        const pattern = /^\d+$/;
+        return pattern.test(target);
+    }
+
     var validateform = () => {
-        if($("input[name=email]").val().indexOf("@") < 0) {
+        if(!isEmail($("input[name=email]").val())) {
             alert("이메일 형식이 올바르지 않습니다!");
             return;
         }
@@ -14,6 +23,10 @@
         }
         else if($("input[name=phonenumber]").val() == "") {
             alert("전화번호를 입력해주세요!");
+            return;
+        }
+        else if(!isNumber($("input[name=phonenumber]").val())) {
+            alert("전화번호에는 숫자만 입력해주십시오.");
             return;
         }
         else if($("input[name=realname]").val() == "") {

@@ -23,16 +23,6 @@ export let signup = (req: Request, res: Response) => {
   const birth = req.body.birthdate;
   const gender = req.body.chk_info;
 
-  let processedphone = "";
-
-  for (let i = 0; i < phone.length; i++) {
-      if (phone[i] != "-") {
-          processedphone += phone[i];
-      } else {
-          continue;
-      }
-  }
-
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
       userData.additionalUserInfo.username = nickname;
@@ -44,7 +34,7 @@ export let signup = (req: Request, res: Response) => {
               name: realname,
               nickname: nickname,
               gender: gender,
-              phonenumber: processedphone,
+              phonenumber: phone,
               uid: userData.user.uid,
               intro: ""
           });
