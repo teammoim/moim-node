@@ -23,7 +23,7 @@ function dataChecker(target: string) {
     else if (check.nickname == "" || check.nickname == undefined) {
         flag = false;
     }
-    else if (check.phonenumber == "" || check.phonenumber == undefined) {
+    else if (check.phone == "" || check.phone == undefined) {
         flag = false;
     }
     else if (check.uid == "" || check.uid == undefined) {
@@ -45,10 +45,16 @@ export let index = (req: Request, res: Response) => {
         if (!dataChecker(JSON.stringify(snapshot.val()))) {
             // Some data not written
             console.log("User infomation saved not correctly");
-            res.redirect("/changesetting");
+            console.log(snapshot.val());
+            res.redirect("/setting");
         } else {
             // All data saved to DB correctly
+            const printingname = curruser.displayName;
 
+            res.render("user/profile", {
+              title: "Home",
+              name: printingname
+            });
         }
         // if (!snapshot.val()) {
         //     timelines.ref("/users/" + curruser.uid).set({
@@ -61,13 +67,6 @@ export let index = (req: Request, res: Response) => {
         //         uid: curruser.uid
         //     });
         // }
-    });
-
-    const printingname = (curruser.displayName == "" || curruser.displayName == undefined) ? curruser.email : curruser.displayName;
-
-    res.render("user/profile", {
-      title: "Home",
-      name: printingname
     });
     }
 };
