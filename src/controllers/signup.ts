@@ -22,6 +22,13 @@ export let signup = (req: Request, res: Response) => {
   const nickname = req.body.nickname;
   const birth = req.body.birthdate;
   const gender = req.body.chk_info;
+  const gotlist: string[] = [email, password, phone, realname, nickname, birth, gender];
+
+  for (let i = 0; i < gotlist.length; i++) {
+      if (gotlist[i] == "" || gotlist[i] == undefined) {
+          res.redirect("/signup");
+      }
+  }
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then((userData) => {
