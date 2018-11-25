@@ -7,17 +7,18 @@ const timelines = firebase.database();
 
 export let index = (req: Request, res: Response) => {
     if (!auth.currentUser) {
+        console.log("You have not logged");
         res.redirect("/login");
-    }
-    else {
+    } else {
         // contents have json object of timline
         const contents: object[] = [];
-        timelines.ref("/timeline/").once("value", (snapshot) => {
+        timelines.ref("/posts/").once("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const child = childSnapshot.val();
                 contents.push(child);
             });
-            console.log(contents);
+            // contents will have many data
+            // console.log(contents);
         });
     }
 
