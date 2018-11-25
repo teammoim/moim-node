@@ -345,6 +345,7 @@ function implementComment(Comments, where) {
     comment_writer.appendChild(comment_writer_right);
 
     var commentWriter = document.createElement("span");
+    commentWriter.className = "commentWriter";
     commentWriter.onclick = function () {
       goProfile(uid.value);
     }
@@ -386,8 +387,9 @@ function implementWritePost() {
   box.appendChild(box_left);
 
   var writerImage = document.createElement("img");
-  writerImage.className = "writer-image";
+  writerImage.className = "write-writer-image";
   writerImage.src = "images/default-writerImage.png";
+  writerImage.style.cursor = "defalut";
   box_left.appendChild(writerImage);
 
   var box_right = document.createElement("div");
@@ -440,7 +442,9 @@ function implementWriteComment(comments_box) {
 
   var write_comment_image = new Image();
   write_comment_image.src = "images/default-writerImage.png";
-  write_comment_image.className = "comment-writer-image";
+  write_comment_image.style.cursor = "default";
+  write_comment_image.className = "comment-write-writer-image";
+  
   write_comment_left.appendChild(write_comment_image);
 
   var write_comment_right = document.createElement("div");

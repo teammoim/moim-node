@@ -46,6 +46,7 @@ html, body {
   width: 90%;
   margin-left: 10px;
   border-radius: 50%;
+  cursor:pointer;
 }
 
 .profile-second {
@@ -151,6 +152,10 @@ html, body {
 }
 .writer {
   margin-left:2px;
+  cursor:pointer;
+}
+.writer:hover {
+  text-decoration:underline;
 }
 
 span.timestamp {
@@ -159,6 +164,13 @@ span.timestamp {
 }
 
 img.writer-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+  cursor:pointer;
+}
+img.write-writer-image {
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -237,7 +249,20 @@ i.level {
   display:inline-block;
   padding-top:5px; /*there is no timestamp at comment*/
 }
+.commentWriter{
+  cursor:pointer;
+}
+.commentWriter:hover{
+  text-decoration:underline;
+}
 .comment-writer-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 2px;
+  cursor:pointer;
+}
+.comment-write-writer-image {
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -283,6 +308,7 @@ i.level {
   width: 100%;
   height: 50px;
   display: inline-block;
+  cursor:pointer;
 }
 
 .friend:hover {
