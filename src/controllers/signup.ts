@@ -44,8 +44,8 @@ export let signup = (req: Request, res: Response) => {
               phone: phonenum,
               uid: userData.user.uid,
               intro: "",
-              follow: {}
           });
+          // Follow child will update.
           userData.user.updateProfile({
               displayName: nickname,
               photoURL: ""

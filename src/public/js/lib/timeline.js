@@ -345,6 +345,7 @@ function implementComment(Comments, where) {
     comment_writer.appendChild(comment_writer_right);
 
     var commentWriter = document.createElement("span");
+    commentWriter.className = "commentWriter";
     commentWriter.onclick = function () {
       goProfile(uid.value);
     }
@@ -386,8 +387,9 @@ function implementWritePost() {
   box.appendChild(box_left);
 
   var writerImage = document.createElement("img");
-  writerImage.className = "writer-image";
+  writerImage.className = "write-writer-image";
   writerImage.src = "images/default-writerImage.png";
+  writerImage.style.cursor = "defalut";
   box_left.appendChild(writerImage);
 
   var box_right = document.createElement("div");
@@ -412,7 +414,11 @@ function implementWritePost() {
   var box_under = document.createElement("div");
   box_under.style.width = "100%";
   box_under.style.paddingBottom = "3px";
+  box_under.style.height = "60px";
   post.appendChild(box_under);
+
+  
+
 
   var postButton = document.createElement("button");
   postButton.className = "write-post-button";
@@ -422,6 +428,13 @@ function implementWritePost() {
   };
   box_under.appendChild(postButton);
 
+  var writeButtonBox = document.createElement("div");
+  writeButtonBox.className = "write-button-box";
+  box_under.appendChild(writeButtonBox);
+
+  var imagePostbutton = document.createElement("div");
+  imagePostbutton.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
+  writeButtonBox.appendChild(imagePostbutton);
 }
 function implementWriteComment(comments_box) {
   var form = document.createElement("form");
@@ -429,10 +442,13 @@ function implementWriteComment(comments_box) {
   form.method = "post";
   comments_box.appendChild(form);
 
-  var write_comment = document.createElement("article");
-  write_comment.className = "media comment";
-  form.appendChild(write_comment);
+  var comment = document.createElement("article");
+  comment.className = "media comment";
+  form.appendChild(comment);
 
+  var write_comment = document.createElement("div");
+  write_comment.className = "write-comment";
+  comment.appendChild(write_comment);
 
   var write_comment_left = document.createElement("div");
   write_comment_left.className = "write-comment-left";
@@ -440,7 +456,7 @@ function implementWriteComment(comments_box) {
 
   var write_comment_image = new Image();
   write_comment_image.src = "images/default-writerImage.png";
-  write_comment_image.className = "comment-writer-image";
+  write_comment_image.className = "comment-write-writer-image";
   write_comment_left.appendChild(write_comment_image);
 
   var write_comment_right = document.createElement("div");
@@ -462,14 +478,20 @@ function implementWriteComment(comments_box) {
   postid.value = "post id sample"; // need postid from server
   form.appendChild(postid);
 
+  var box_under = document.createElement("div");
+  box_under.style.width = "100%";
+  box_under.style.paddingBottom = "3px";
+  box_under.style.height = "60px";
+  comment.appendChild(box_under);
+
   var write_comment_button = document.createElement("button");
   write_comment_button.className = "write-post-button";
-  write_comment_button.style = "margin-left:81%;";
   write_comment_button.innerText = "Post";
+  write_comment_button.style = "margin-right:unset";
   write_comment_button.onclick = function () {
     form.submit();
   }
-  comments_box.appendChild(write_comment_button);
+  box_under.appendChild(write_comment_button);
 
 
 }

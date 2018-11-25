@@ -46,6 +46,7 @@ html, body {
   width: 90%;
   margin-left: 10px;
   border-radius: 50%;
+  cursor:pointer;
 }
 
 .profile-second {
@@ -93,10 +94,19 @@ html, body {
 .write-post-textarea:focus{
   outline:none;
 }
+.write-button-box {
+  width: 50px;
+  height: 30px;
+  float: left;
+  margin-left: 60px;
+  margin-top: 6px;
+  
+}
 .write-post-button{
   width:50px;
   height:30px;
-  margin-left:84%;
+  float:right;
+  margin-right:40px;
   margin-top:6px;
   background-color:#efeef4;
   border-radius:10px;
@@ -151,6 +161,10 @@ html, body {
 }
 .writer {
   margin-left:2px;
+  cursor:pointer;
+}
+.writer:hover {
+  text-decoration:underline;
 }
 
 span.timestamp {
@@ -159,6 +173,13 @@ span.timestamp {
 }
 
 img.writer-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+  cursor:pointer;
+}
+img.write-writer-image {
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -237,7 +258,20 @@ i.level {
   display:inline-block;
   padding-top:5px; /*there is no timestamp at comment*/
 }
+.commentWriter{
+  cursor:pointer;
+}
+.commentWriter:hover{
+  text-decoration:underline;
+}
 .comment-writer-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 2px;
+  cursor:pointer;
+}
+.comment-write-writer-image {
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -250,6 +284,10 @@ i.level {
 .media + .media {
   padding-top:11px;
   padding-left:unset;
+}
+.write-comment{
+  width:100%;
+  height:40px;
 }
 
 .write-comment-left{
@@ -283,6 +321,7 @@ i.level {
   width: 100%;
   height: 50px;
   display: inline-block;
+  cursor:pointer;
 }
 
 .friend:hover {
