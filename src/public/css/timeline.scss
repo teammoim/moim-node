@@ -94,10 +94,19 @@ html, body {
 .write-post-textarea:focus{
   outline:none;
 }
+.write-button-box {
+  width: 50px;
+  height: 30px;
+  float: left;
+  margin-left: 60px;
+  margin-top: 6px;
+  
+}
 .write-post-button{
   width:50px;
   height:30px;
-  margin-left:84%;
+  float:right;
+  margin-right:40px;
   margin-top:6px;
   background-color:#efeef4;
   border-radius:10px;
@@ -275,6 +284,10 @@ i.level {
 .media + .media {
   padding-top:11px;
   padding-left:unset;
+}
+.write-comment{
+  width:100%;
+  height:40px;
 }
 
 .write-comment-left{
