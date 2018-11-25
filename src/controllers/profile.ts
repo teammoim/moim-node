@@ -67,6 +67,8 @@ export let index = (req: Request, res: Response) => {
         //         uid: curruser.uid
         //     });
         // }
-    });
+    }).catch((error) => {
+    console.log(error);
+});
     }
 };
