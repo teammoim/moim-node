@@ -17,12 +17,12 @@ export let index = (req: Request, res: Response) => {
 export let signup = (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
-  const phone = req.body.phonenumber;
+  const phonenum = req.body.phonenum;
   const realname = req.body.realname;
   const nickname = req.body.nickname;
   const birth = req.body.birthdate;
   const gender = req.body.chk_info;
-  const gotlist: string[] = [email, password, phone, realname, nickname, birth, gender];
+  const gotlist: string[] = [email, password, phonenum, realname, nickname, birth, gender];
 
   for (let i = 0; i < gotlist.length; i++) {
       if (gotlist[i] == "" || gotlist[i] == undefined) {
@@ -41,9 +41,10 @@ export let signup = (req: Request, res: Response) => {
               name: realname,
               nickname: nickname,
               gender: gender,
-              phonenumber: phone,
+              phone: phonenum,
               uid: userData.user.uid,
-              intro: ""
+              intro: "",
+              follow: {}
           });
           userData.user.updateProfile({
               displayName: nickname,
