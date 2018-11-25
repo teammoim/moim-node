@@ -19,6 +19,11 @@ export let changesetting = (req: Request, res: Response) => {
     const user = auth.currentUser;
     const dbaccess = timelines.ref("/users/" + user.uid);
 
+    if (!user) {
+        console.log("you have not logged");
+        res.redirect("/login");
+    }
+
     // Umm.... ok, I think I can refactor this codes...
     const email = req.body.email;
     if (notNull(email) && (email.indexOf("@") > 0)) {
