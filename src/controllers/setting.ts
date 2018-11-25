@@ -68,4 +68,6 @@ export let changesetting = (req: Request, res: Response) => {
         const x = snapshot.val();
         console.log(x);
     });
+
+    res.redirect("/profile");
 };
