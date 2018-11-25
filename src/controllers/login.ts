@@ -17,23 +17,14 @@ export let login = (req: Request, res: Response) => {
     }
   const email = req.body.email;
   const password = req.body.password;
-  const promise = auth.signInWithEmailAndPassword(email, password);
-
-  promise.catch(function (error) {
+  auth.signInWithEmailAndPassword(email, password).then((user) => {
+      res.redirect("/profile");
+  })
+  .catch(function (error) {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode + " " + errorMessage);
+    res.send("로그인 실패! 다시 시도해주십시오.");
 });
-
-  auth.onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        res.redirect("/profile");
-      }
-      else {
-        // No user is signed in.
-        res.redirect("/login");
-      }
-  });
 };
