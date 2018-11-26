@@ -36,7 +36,7 @@ app.get("/signup", signupController.index);
 app.get("/timeline", timelineController.index);
 app.get("/subscribe", subscribeController.index);
 
-app.post("/trysignup", signupController.signup);
+app.post("/trysignup", signupController.signUp);
 app.post("/trylogin", loginController.login);
 
 app.post("/trypost", timelineController.post);
