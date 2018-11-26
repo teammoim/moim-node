@@ -4,7 +4,7 @@ import express from "express";
 /* Initialize firebase */
 import * as firebase from "firebase";
 const dbconfig: any = require("../../fbconfig.js");
-export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
+!firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
 const auth = firebase.auth();
 
 const DEBUG_MODE = false;
