@@ -4,7 +4,6 @@ const dbconfig = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
 const auth = firebase.auth();
 const timelines = firebase.database();
-const storage = firebase.storage();
 
 export let index = (req: Request, res: Response) => {
     if (!auth.currentUser) {
