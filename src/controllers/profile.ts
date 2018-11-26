@@ -3,6 +3,7 @@ import * as firebase from "firebase";
 const dbconfig = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
 const timelines = firebase.database();
+const storage = firebase.storage();
 
 function dataChecker(target: string) {
     const check = JSON.parse(target);
