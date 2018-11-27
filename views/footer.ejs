@@ -1,4 +1,4 @@
-<footer class="footer" style="z-index: 999; height:24px; position : fixed; bottom: 0pt; left: 0pt;">
+<footer class="footer" style="z-index: 999; height:24px; position : fixed; bottom: 0pt; left: 0pt; ">
     <div class="content has-text-centered">
         <p>
             <strong>MOIM</strong> by <a href="https://teammoim.github.io/">Team MOIM</a>. The source code is licensed
@@ -7,3 +7,17 @@
         </p>
     </div>
 </footer>
+<script>
+  window.onscroll = function(){ removeFooter() }
+  function removeFooter(){
+    var footer = document.getElementsByClassName("footer")[0];
+    footer.classList.add("removeSlowly");
+    setTimeout(function () { footer.parentNode.removeChild(footer) },2000)
+  }
+</script>
+<style>
+  .footer.removeSlowly{
+    opacity:0;
+    transition:opacity 2s;
+  }
+</style>
