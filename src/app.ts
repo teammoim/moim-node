@@ -15,6 +15,8 @@ import * as settingController from "./controllers/setting";
 import * as signupController from "./controllers/signup";
 import * as timelineController from "./controllers/timeline";
 import * as subscribeController from "./controllers/subscribe";
+import * as opensourcesController from "./controllers/opensources";
+
 const app = express();
 
 app.set("port", process.env.PORT || 3000);
@@ -35,6 +37,7 @@ app.get("/setting", settingController.index);
 app.get("/signup", signupController.index);
 app.get("/timeline", timelineController.index);
 app.get("/subscribe", subscribeController.index);
+app.get("/opensources", opensourcesController.index);
 
 app.post("/trysignup", signupController.signUp);
 app.post("/trylogin", loginController.login);
