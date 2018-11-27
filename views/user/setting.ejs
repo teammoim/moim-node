@@ -38,12 +38,18 @@
 
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" name="password" type="button" value="Password" style="color:gainsboro" id="password">
+            <input class="input" name="password" type="button" value="Password"  id="password">
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
           </p>
         </div>
+
+        <!-- If password button clicked, more password setting is created at password-setting 
+             that will be last password, new password and new password confirm-->
+
+        <div id="password-setting"></div> 
+
         <div class="field">
           <p class="control has-icons-left">
             <input class="input" name="realname" type="text" placeholder="Name">
@@ -100,7 +106,7 @@
         </div>
 
 
-        <input class="button" type="submit" value="사용자 정보 업데이트">
+        <input class="button" type="submit" value="사용자 정보 업데이트" id="submitButton">
       </form>
     </div>
   </section>
@@ -110,12 +116,80 @@
     .setting-title {
       margin-bottom: 10px;
     }
+    #password{
+      color:gainsboro;
+      cursor:pointer;
+    }
+    #password:focus {
+      border-color: #b5b5b5;
+      box-shadow: unset;
+    }
   </style>
   <script>
     var psword = document.getElementById("password");
-    var is
+    var isclicked = false
     psword.onclick = function () {
-
+      var pswordSetting = document.getElementById("password-setting");
+      if (isclicked) {
+        pswordSetting.removeChild(pswordSetting.firstChild);
+        isclicked = false;
+      }
+      else {
+        var moreps = document.createElement("div");
+        moreps.style = 'margin-left:30px'
+        moreps.innerHTML = '<div class="field">\
+          <p class="control has-icons-left" >\
+            <input class="input" name="old_password" type="password" placeholder="Current password" >\
+              <span class="icon is-small is-left">\
+                <i class="fas fa-lock"></i>\
+              </span>\
+          </p>\
+        </div >\
+          <div class="field">\
+            <p class="control has-icons-left">\
+              <input class="input" name="new_password" type="password" placeholder="New password" id="newps">\
+                <span class="icon is-small is-left">\
+                  <i class="fas fa-lock"></i>\
+                </span>\
+          </p>\
+        </div>\
+          <div class="field">\
+            <p class="control has-icons-left">\
+              <input class="input" type="password" placeholder= "Re-enter new password" id="newps-confirm">\
+                <span class="icon is-small is-left">\
+                  <i class="fas fa-lock"></i>\
+                </span>\
+          </p>\
+          <div class="field">\
+          <p id="password-confirm-msg" style="height:40px;margin-left:10px;margin-top:10px;font-size:0.8em;color:rgb(135,135,135)"></p>\
+          </div>\
+        </div> '
+        pswordSetting.appendChild(moreps);
+        var newps = document.getElementById("newps");
+        var newps_confirm = document.getElementById("newps-confirm");
+        var msg = document.getElementById("password-confirm-msg");
+        newps.onkeydown = function () {
+          if (newps_confirm.value.length != 0) {
+            showMessege();
+          }
+        }
+        newps_confirm.onkeydown = function () {
+          showMessege();
+        }
+        isclicked = true;
+        function showMessege() {
+          setTimeout(function () { // wait until input set
+            if (newps.value !== newps_confirm.value) {
+              msg.innerText = "비밀번호가 맞지 않습니다!"
+              document.getElementById("submitButton").disabled = true;
+            }
+            else {
+              msg.innerText = ""
+              document.getElementById("submitButton").disabled = false;
+            }
+          }, 100);
+        }
+      }
     }
   </script>
 </body>

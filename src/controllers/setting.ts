@@ -33,10 +33,12 @@ export let changesetting = (req: Request, res: Response) => {
         .catch(() => {
             console.log("Error detected : EMAIL");
         });
-    }
-    const password = req.body.password;
-    if (notNull(password) && (7 < password.length)) {
-        user.updatePassword(password).then(() => {
+  }
+    const oldPassword = req.body.old_password;
+    // need to check whether oldPassword is correct or not
+    const newPassword = req.body.new_password;
+    if (notNull(newPassword) && (7 < newPassword.length)) {
+        user.updatePassword(newPassword).then(() => {
         }).catch(() => {
             console.log("Error detected : PASSWORD");
         });
