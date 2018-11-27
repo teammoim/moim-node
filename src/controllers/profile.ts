@@ -7,30 +7,12 @@ const timelines = firebase.database();
 
 function dataChecker(target: string) {
     const check = JSON.parse(target);
-    let flag = true;
 
-    if (check.birthday == "" || check.birthday == undefined) {
-        flag = false;
-    }
-    else if (check.email == "" || check.email == undefined) {
-        flag = false;
-    }
-    else if (check.gender == "" || check.gender == undefined) {
-        flag = false;
-    }
-    else if (check.name == "" || check.name == undefined) {
-        flag = false;
-    }
-    else if (check.nickname == "" || check.nickname == undefined) {
-        flag = false;
-    }
-    else if (check.phone == "" || check.phone == undefined) {
-        flag = false;
-    }
-    else if (check.uid == "" || check.uid == undefined) {
-        flag = false;
-    }
-    return flag;
+    Object.keys(check).forEach((k) => {
+        if (check[k] === "" || check[k] === undefined) { return false; }
+    });
+
+    return true;
 }
 
 export let index = (req: Request, res: Response) => {
