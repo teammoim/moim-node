@@ -23,7 +23,8 @@ export let index = (req: Request, res: Response) => {
     }
 
     res.render("timeline/timeline", {
-       title: "Home"
+      title: "Home",
+      contents: "{'number':123,'name':good}"
        /* to-do
         * give client to DB JSON Data
         /* client need...
@@ -53,5 +54,14 @@ export let index = (req: Request, res: Response) => {
    };
  // go profile page of clicked user
    export let goprofile = (req: Request, res: Response) => {
-     const uid = req.body.uid;
+     const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid
+     timelines.ref("/users/" + uid).once("value").then(function (snapshot) {
+       const userData = snapshot.val();
+       let name = userData.name;
+       //and what you want
+       res.render("user/profile", {
+         title: "Home",
+         name: name
+       });
+     });
    };
