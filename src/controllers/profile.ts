@@ -9,7 +9,7 @@ function dataChecker(target: string) {
     const check = JSON.parse(target);
 
     Object.keys(check).forEach((k) => {
-        if (check[k] === "" || check[k] === undefined) { return false; }
+        if (check[k] === undefined) { return false; }
     });
 
     return true;
