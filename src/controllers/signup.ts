@@ -17,10 +17,9 @@ export let index = (req: Request, res: Response) => {
 };
 
 export let signUp = (req: Request, res: Response) => {
-    const signUp_Info: string[] = [
-        req.body.email, req.body.password, req.body.phonenum,
-        req.body.realname, req.body.nickname, req.body.birthdate,
-        req.body.chk_info];
+  const signUp_Info: string[] = [
+    req.body.email, req.body.password,
+    req.body.realname ];
 
     for (let i = 0; i < signUp_Info.length; i++) {
         /* 빈 칸이 존재하는 채로 데이터가 서버로 들어옴 */
@@ -38,18 +37,14 @@ export let signUp = (req: Request, res: Response) => {
 
   firebase.auth().createUserWithEmailAndPassword(signUp_Info[0], signUp_Info[1])
   .then((userData) => {
-      userData.additionalUserInfo.username = signUp_Info[4];
+      userData.additionalUserInfo.username = signUp_Info[2];
 
       if (!userData) {
           return;
       }
       timelines.ref("/users/" + userData.user.uid).set({
-          birthday: signUp_Info[5],
           email: userData.user.email,
-          name: signUp_Info[3],
-          nickname: signUp_Info[4],
-          gender: signUp_Info[6],
-          phone: signUp_Info[2],
+          name: signUp_Info[2],
           uid: userData.user.uid,
           intro: "",
       });

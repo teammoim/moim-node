@@ -21,20 +21,8 @@
             alert("비밀번호는 8자 이상이어야 합니다!");
             return;
         }
-        else if($("input[name=phonenumber]").val() == "") {
-            alert("전화번호를 입력해주세요!");
-            return;
-        }
-        else if(!isNumber($("input[name=phonenum]").val())) {
-            alert("전화번호에는 숫자만 입력해주십시오.");
-            return;
-        }
         else if($("input[name=realname]").val() == "") {
             alert("성함을 입력해주세요!");
-            return;
-        }
-        else if($("input[name=nickname]").val() == "") {
-            alert("별명을 입력해주세요!");
             return;
         }
         else {
@@ -70,47 +58,12 @@
 
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input" name="phonenum" type="text" placeholder="Phone number">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                    </p>
-                </div>
-
-                <div class="field">
-                    <p class="control has-icons-left">
                         <input class="input" name="realname" type="text" placeholder="Name">
                         <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
                     </p>
                 </div>
-
-                <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" name="nickname" type="text" placeholder="Nick Name">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </p>
-                </div>
-
-                <div class="field">
-                    <p>생년월일을 입력하세요.</p>
-                    <p class="control has-icons-left">
-                        <input class="datepicker" name="birthdate" type="date">
-                    </p>
-                </div>
-
-                <div class="field">
-                    <p>성별을 골라주세요.</p>
-                    <p class="control has-icons-left">
-                        <input type="radio" name="chk_info" value="M">남성
-                        <input type="radio" name="chk_info" value="F" checked="checked">여성
-                        <input type="radio" name="chk_info" value="Z">기타
-                    </p>
-                </div>
-
                 <input class="button" type="button" value="회원가입 하기" onclick="validateform();">
             </form>
         </div>
