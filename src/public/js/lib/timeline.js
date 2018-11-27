@@ -85,24 +85,30 @@ Post.prototype.Calc_timestamp = function(){//compare now time with post time to 
   return timestamp;
 }
 
+
+
+
+function goProfile(uidvalue) {
+  var goprofile = document.createElement("form");
+  goprofile.action = "/goprofile";
+  goprofile.method = "post";
+  document.body.appendChild(goprofile);
+
+  var goprofileuid = document.createElement("input");
+  goprofileuid.type = "hidden";
+  goprofileuid.name = "uid";
+  goprofile.appendChild(goprofileuid);
+
+  goprofileuid.value = uidvalue;
+  goprofile.submit();
+}
+
 var posts = [];
 
 function createPost(Post) {
   posts.push(Post);
 }
-function goProfile(uidvalue) {
-  var form = document.createElement("form");
-  form.action = "/goprofile";
-  form.type = "post";
 
-  var uid = document.createElement("input");
-  form.appendChild(uid);
-  uid.type = "hidden";
-  uid.name = "uid";
-  uid.value = uidvalue;
-
-  alert(uidvalue);
-}
 
 
 
@@ -648,7 +654,7 @@ function implementFriends() {
 
     friend.onclick = function () {
       goProfile(uid.value);
-    }
+    };
 
     var friend_left = document.createElement("div");
     friend_left.className = "friend-left";
