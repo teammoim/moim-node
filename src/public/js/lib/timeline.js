@@ -266,7 +266,8 @@ function implementPost(Post) {
   writer_follow.appendChild(follow_button);
   //if(is followed) button.innerText = "followed"
   follow_button.innerText = "follow";
-  follow_button.className = "follow-button";
+  follow_button.className = "button is-rounded is-info";
+ 
   follow_button.parentElement = post_writer;
   var isfollowed = true;
   follow_button.onclick = function () {
@@ -428,7 +429,7 @@ function implementWritePost() {
 
 
   var postButton = document.createElement("button");
-  postButton.className = "write-post-button";
+  postButton.className = "button is-info write-post-button";
   postButton.innerText = "Post";
   postButton.onclick = function () {
     form.submit();
@@ -497,9 +498,9 @@ function implementWriteComment(comments_box) {
   comment.appendChild(box_under);
 
   var write_comment_button = document.createElement("button");
-  write_comment_button.className = "write-post-button";
+  write_comment_button.className = "button is-info write-post-button";
   write_comment_button.innerText = "Post";
-  write_comment_button.style = "margin-right:unset";
+  write_comment_button.style = "margin-right:10px";
   write_comment_button.onclick = function () {
     form.submit();
   }
