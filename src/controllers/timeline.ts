@@ -6,10 +6,7 @@ const auth = firebase.auth();
 const timelines = firebase.database();
 
 export let index = (req: Request, res: Response) => {
-    if (!auth.currentUser) {
-        console.log("You have not logged");
-        res.redirect("/login");
-    } else {
+    if (auth.currentUser) {
         // contents have json object of timline
         const contents: object[] = [];
         timelines.ref("/posts/").once("value", (snapshot) => {
@@ -20,6 +17,9 @@ export let index = (req: Request, res: Response) => {
             // contents will have many data
             // console.log(contents);
         });
+    } else {
+        console.log("You have not logged");
+        res.redirect("/login");
     }
 
     res.render("timeline/timeline", {
@@ -57,11 +57,11 @@ export let index = (req: Request, res: Response) => {
      const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid
      timelines.ref("/users/" + uid).once("value").then(function (snapshot) {
        const userData = snapshot.val();
-       let name = userData.name;
-       //and what you want
+       const tmp_name = userData.name;
+
        res.render("user/profile", {
          title: "Home",
-         name: name
+         name: tmp_name
        });
      });
    };
