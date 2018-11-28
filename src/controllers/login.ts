@@ -22,12 +22,12 @@ export let index = (req: Request, res: Response) => {
 
 export let login = (req: Request, res: Response) => {
     if (!!auth.currentUser) {
-        res.redirect("/profile");
+        res.redirect("/"); // go to intro
     }
     const email = req.body.email;
     const password = req.body.password;
     auth.signInWithEmailAndPassword(email, password).then((user) => {
-        res.redirect("/profile");
+        res.redirect("/"); // go to intro
     }).catch(function (error) {
         if (DEBUG_MODE) {
             console.log(error.code + " " + error.message);
