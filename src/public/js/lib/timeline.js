@@ -481,6 +481,7 @@ function implementWriteComment(comments_box) {
   write_comment_right.appendChild(textarea);
   textarea.onclick = function () {
     textarea.style.height = "80px";
+    comment.style.height = "120px";
   };
 
   var postid = document.createElement("input");
