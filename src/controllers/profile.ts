@@ -21,10 +21,10 @@ export let index = (req: Request, res: Response) => {
         console.log("you have not logged");
         res.redirect("/login");
     } else {
-        // Valid the user have correct json data.
+      // Valid the user have correct json data.
         timelines.ref("/users/" + curruser.uid).once("value").then((snapshot) => {
-        console.log(snapshot.val());
-
+        const userData = snapshot.val();
+        console.log(userData);
         if (!dataChecker(JSON.stringify(snapshot.val()))) {
             // Some data not written
             console.log("User infomation saved not correctly");
@@ -32,11 +32,12 @@ export let index = (req: Request, res: Response) => {
             res.redirect("/setting");
         } else {
             // All data saved to DB correctly
-            const printingname = curruser.displayName;
-
+          const name = userData.name;
             res.render("user/profile", {
               title: "Home",
-              name: printingname
+              name: name,
+              isfollow: "me", // "true","false","me"
+              uid : "" // not need uid
             });
         }
         // if (!snapshot.val()) {

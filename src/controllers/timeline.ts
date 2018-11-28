@@ -54,14 +54,17 @@ export let index = (req: Request, res: Response) => {
    };
  // go profile page of clicked user
    export let goprofile = (req: Request, res: Response) => {
-     const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid
+     const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid sample
+     const isfollow = "true";
      timelines.ref("/users/" + uid).once("value").then(function (snapshot) {
        const userData = snapshot.val();
        const tmp_name = userData.name;
 
        res.render("user/profile", {
          title: "Home",
-         name: tmp_name
+         name: tmp_name,
+         isfollow: "true", // isfollow = "true","false","me"
+         uid: uid
        });
      });
    };

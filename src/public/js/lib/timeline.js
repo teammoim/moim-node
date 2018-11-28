@@ -279,7 +279,7 @@ function implementPost(Post) {
       this.innerText = "followed";
       isfollowed = true;
     }
-    form.action = "tryfollow";
+    form.action = "/tryfollow";
     form.submit();
   }
 
