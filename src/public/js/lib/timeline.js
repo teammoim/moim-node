@@ -596,7 +596,7 @@ function implementProfile() {
 
   var profileBox = document.getElementsByClassName("timeline-profile")[0];
   var profile = document.createElement("div");
-  profile.className = "profile-list";
+  profile.className = "profile-box";
   profileBox.appendChild(profile);
 
   var uid = document.createElement("input");
