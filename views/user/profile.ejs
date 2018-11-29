@@ -32,11 +32,28 @@
         <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
             <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
       </div> <br />
-      <div class="profile-intro"></div>
+             <div class="profile-intro">대한민국 대통령 문재인입니다. President of the Republic of Korea. 나라다운 나라를 만들기 위해 국민여러분과 함께 하겠습니다.</div>
     </div>
   </div>
   <hr />
-  <div class="timeline-posts"></div>
+  <div class="profile-body-container">
+    <div class="more-profile">
+      <p class="row">
+        Nickname : 
+      </p>
+      <p class="row">
+        Email : 
+      </p>
+      <p class="row">
+        Gender : M
+      </p>
+      <p class="row">
+        Birthday :
+      </p>
+    </div>
+    <div class="timeline-posts"></div>
+    <div class="timeline-friends"></div>
+  </div>
   <form id="form_uid" method="post">
     <input type="hidden" name="uid" value="<%= uid %>" />
   </form>
@@ -91,8 +108,8 @@
         followButton.innerText = "follow";
       }
     }
-    
 
+    
 
 
 
@@ -105,18 +122,63 @@
       width: 170px;
       padding-top: 10px;
     }
+    .profile-body-container {
+      margin-left: auto;
+      margin-right: auto;
+      width: max-content;
+      margin-top: 10px;
+      height: 80%;
+    }
+    .more-profile{
+      width:300px;
+      float:left;
+      background-color:white;
+      border:0.3px solid black;
+      font-size:0.8em;
+      margin-bottom:20px;
+    }
+    .underline {
+      border-bottom:0.5px solid gainsboro
+    }
+    .row{
+      min-height:50px;
+      padding:10px 10px 10px 10px;
+    }
     .timeline-posts{
-      margin-left: 25%;
+      margin-bottom:20px;
+    }
+    @media (max-width:580px){
+      .more-profile{
+        width:100%;
+      }
+      .friends{
+        width:100%;
+        margin-left:unset;
+      }
+      
     }
 
     @media (max-width:800px) {
       .profile-image {
         margin-left: unset;
       }
-      .timeline-posts {
-        margin-left: unset;
+      .friends {
+        width: 555px;
+      }
+      .more-profile{
+        width: 555px;
+        margin-left:10px;
       }
     }
+    @media (max-width:1100px){
+      .profile-body-container {
+        margin-left: unset;
+        margin-right: unset;
+        width: inherit;
+      }
+    }
+
+
 
   </style>
 </body>

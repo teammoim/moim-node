@@ -630,7 +630,7 @@ window.onload = function () {
   if (window.innerWidth > 950) {
     implementProfile();
   }
-  if (window.innerWidth > 1250) {
+  if (window.innerWidth > 1250 || document.getElementsByClassName("timeline-profile").length === 0) {
     implementFriends();
   }
   for (var i = 0; i < posts.length; i++) {

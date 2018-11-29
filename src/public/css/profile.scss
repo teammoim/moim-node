@@ -1,7 +1,7 @@
 .profile {
   width: 100%;
   display: block;
-  height: 190px;
+  min-height: 190px;
   margin-top: 40px;
   min-width:500px;
 }
@@ -16,12 +16,12 @@
 
 .profile-right {
   width: 70%;
-  height: 190px;
   display: inline-block;
   float: left;
   font-size: 1.2em;
   padding-left: 10%;
   padding-top: 18px;
+  margin-bottom:20px;
 }
 
 
@@ -34,3 +34,5 @@
 .profile-setting-button {
   outline: solid 0.1px rgb(46, 46, 46);
 }
+
+
