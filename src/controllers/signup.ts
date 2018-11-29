@@ -46,7 +46,12 @@ export let signUp = (req: Request, res: Response) => {
           email: userData.user.email,
           name: signUp_Info[2],
           uid: userData.user.uid,
-          intro: "",
+        intro: "",
+        birthday: "",
+        gender:  "",
+        nickname: "",
+        phone: "",
+        follow: {}
       });
 
       auth.signInWithEmailAndPassword(signUp_Info[0], signUp_Info[1]).then((user) => {
