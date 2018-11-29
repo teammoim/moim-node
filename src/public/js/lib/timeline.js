@@ -91,6 +91,13 @@ document.body.appendChild(sendform);
 
 var sendElement = document.createElement("input");
 sendElement.type = "hidden";
+sendform.appendChild(sendElement);
+
+var sendElement1 = document.createElement("input");
+sendElement1.type = "hidden";
+sendform.appendChild(sendElement1);
+
+
 
 
 function goProfile(uidvalue) {
@@ -100,11 +107,14 @@ function goProfile(uidvalue) {
   sendElement.value = uidvalue;
   sendform.submit();
 }
-function editPost(postidvalue) {
+function editPost(postidvalue , textareavalue) {
   sendform.action = "/editpost";
 
   sendElement.name = "postid";
   sendElement.value = postidvalue;
+
+  sendElement1.name = "text";
+  sendElement1.value= textareavalue;
   sendform.submit();
 }
 function deletePost(postidvalue) {
@@ -273,15 +283,56 @@ function implementPost(Post) {
   if (Post.writer === "james") { // james is first object of sample timeline
     var edit_button = document.createElement("a");
     edit_button.className = "icon-button";
-    edit_button.onclick = function () { editPost(postid.value); }
     edit_button.innerHTML = '<i class="material-icons">mode_edit</i> ';
     writer_follow.appendChild(edit_button);
+
+    var isEditClick = false;
+    var temptext;
+    edit_button.onclick = function () {
+      if (isEditClick === false) {
+        temptext = content_text.innerText;
+        content_text.innerHTML = "";
+        var edit_textarea = document.createElement("textarea");
+        edit_textarea.className = "write-post-textarea";
+        edit_textarea.name = "text";
+        edit_textarea.placeholder = "write you want";
+        edit_textarea.style.fontSize = "130%";
+        edit_textarea.value = temptext;
+        content_text.appendChild(edit_textarea);
+
+        var edit_footer = document.createElement("div");
+        edit_footer.style.height = "30px";
+        edit_footer.style.marginTop = "5px";
+        content_text.appendChild(edit_footer);
+
+        var edit_accept = document.createElement("button");
+        edit_accept.className = "button is-info";
+        edit_accept.innerText = "Save";
+        edit_accept.style.cssFloat = "right";
+        edit_accept.onclick = function () {
+          editPost(postid.value, edit_textarea.value);
+        }
+        edit_footer.appendChild(edit_accept);
+        isEditClick = true;
+      }
+      else {
+        while (content_text.firstElementChild) {
+          content_text.removeChild(content_text.firstElementChild);
+        }
+        var paragraph = document.createElement("p");
+        paragraph.innerText = temptext;
+        content_text.appendChild(paragraph);
+        isEditClick = false;
+      }
+    }
     var delete_button = document.createElement("a");
     delete_button.className = "icon-button";
-    delete_button.onclick = function () { deletePost(postid.value); }
     delete_button.innerHTML = '<i class="material-icons">clear</i> ';
     writer_follow.appendChild(delete_button);
     writer_follow.style.marginRight = "5px";
+    delete_button.onclick = function () {
+      deletePost(postid.value);
+    }
   }
   else {
     //add follow_button
@@ -294,11 +345,11 @@ function implementPost(Post) {
     var isfollowed = true;
     follow_button.onclick = function () {
       if (isfollowed) {
-        this.innerText = "follow";
+        this.innerText = "Follow";
         isfollowed = false;
       }
       else {
-        this.innerText = "followed";
+        this.innerText = "Followed";
         isfollowed = true;
       }
       form.action = "/tryfollow";
