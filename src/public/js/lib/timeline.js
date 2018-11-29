@@ -85,22 +85,34 @@ Post.prototype.Calc_timestamp = function(){//compare now time with post time to 
   return timestamp;
 }
 
+var sendform = document.createElement("form");
+sendform.method = "post";
+document.body.appendChild(sendform);
 
+var sendElement = document.createElement("input");
+sendElement.type = "hidden";
 
 
 function goProfile(uidvalue) {
-  var goprofile = document.createElement("form");
-  goprofile.action = "/goprofile";
-  goprofile.method = "post";
-  document.body.appendChild(goprofile);
+  sendform.action = "/goprofile";
 
-  var goprofileuid = document.createElement("input");
-  goprofileuid.type = "hidden";
-  goprofileuid.name = "uid";
-  goprofile.appendChild(goprofileuid);
+  sendElement.name = "uid";
+  sendElement.value = uidvalue;
+  sendform.submit();
+}
+function editPost(postidvalue) {
+  sendform.action = "/editpost";
 
-  goprofileuid.value = uidvalue;
-  goprofile.submit();
+  sendElement.name = "postid";
+  sendElement.value = postidvalue;
+  sendform.submit();
+}
+function deletePost(postidvalue) {
+  sendform.action = "/deletepost";
+  
+  sendElement.name = "postid";
+  sendElement.value = postidvalue;
+  sendform.submit();
 }
 
 var posts = [];
@@ -257,30 +269,41 @@ function implementPost(Post) {
   commentButton.onclick = function () {
     commentClick(Post.comments, post);
   };
-  
-
-  
-
-  //add follow_button
-  var follow_button = document.createElement("button");
-  writer_follow.appendChild(follow_button);
-  //if(is followed) button.innerText = "followed"
-  follow_button.innerText = "follow";
-  follow_button.className = "button is-rounded is-info";
- 
-  follow_button.parentElement = post_writer;
-  var isfollowed = true;
-  follow_button.onclick = function () {
-    if (isfollowed) {
-      this.innerText = "followed";
-      isfollowed = false;
+  /* if(uid.value == useruid){ */
+  if (Post.writer === "james") { // james is first object of sample timeline
+    var edit_button = document.createElement("a");
+    edit_button.className = "icon-button";
+    edit_button.onclick = function () { editPost(postid.value); }
+    edit_button.innerHTML = '<i class="material-icons">mode_edit</i> ';
+    writer_follow.appendChild(edit_button);
+    var delete_button = document.createElement("a");
+    delete_button.className = "icon-button";
+    delete_button.onclick = function () { deletePost(postid.value); }
+    delete_button.innerHTML = '<i class="material-icons">clear</i> ';
+    writer_follow.appendChild(delete_button);
+    writer_follow.style.marginRight = "5px";
+  }
+  else {
+    //add follow_button
+    var follow_button = document.createElement("button");
+    writer_follow.appendChild(follow_button);
+    //if(is followed) button.innerText = "followed"
+    follow_button.innerText = "Follow";
+    follow_button.className = "button is-rounded is-info";
+    follow_button.parentElement = post_writer;
+    var isfollowed = true;
+    follow_button.onclick = function () {
+      if (isfollowed) {
+        this.innerText = "follow";
+        isfollowed = false;
+      }
+      else {
+        this.innerText = "followed";
+        isfollowed = true;
+      }
+      form.action = "/tryfollow";
+      form.submit();
     }
-    else {
-      this.innerText = "followed";
-      isfollowed = true;
-    }
-    form.action = "/tryfollow";
-    form.submit();
   }
 
   /*  Input all the information of post  */

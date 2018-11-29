@@ -52,6 +52,9 @@ app.post("/changesetting", settingController.changesetting);
 app.post("/requestfind", subscribeController.finduser);
 app.post("/requestadd", subscribeController.subscribe);
 
+app.post("/editpost", timelineController.editpost);
+app.post("/deletepost", timelineController.deletepost);
+
 
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
