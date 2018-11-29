@@ -70,7 +70,7 @@ export let index = (req: Request, res: Response) => {
 };
 export let editpost = (req: Request, res: Response) => {
 
-}
+};
 export let deletepost = (req: Request, res: Response) => {
 
-}
+};
