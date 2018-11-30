@@ -118,21 +118,27 @@ function editPost(postidvalue , textareavalue) {
   sendform.submit();
 }
 function deletePost(postidvalue) {
-  sendform.action = "/delPost";
-  
-  sendElement.name = "postid";
-  sendElement.value = postidvalue;
-  sendform.submit();
+  var r = confirm("Are you sure you want to delete");
+  if (r === true) {
+    sendform.action = "/delPost";
+
+    sendElement.name = "postid";
+    sendElement.value = postidvalue;
+    sendform.submit();
+  }
 }
 function deleteComment(postidvalue, commentidvalue) {
-  sendform.action = "/delComment";
+  var r = confirm("Are you sure you want to delete");
+  if (r === true) {
+    sendform.action = "/delComment";
 
-  sendElement.name = "postid";
-  sendElement.value = postidvalue;
+    sendElement.name = "postid";
+    sendElement.value = postidvalue;
 
-  sendElement1.name = "commentid";
-  sendElement1.value = commentidvalue;
-  sendform.submit();
+    sendElement1.name = "commentid";
+    sendElement1.value = commentidvalue;
+    sendform.submit();
+  }
 }
 
 var posts = [];
