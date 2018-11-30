@@ -108,6 +108,8 @@ html, body {
   float: right;
 }
 
+
+
 .post-writer {
   width: 100%;
   height:60px;
@@ -189,7 +191,33 @@ a.level-item:hover {
 .content-text {
   padding: 6px 10px 6px 10px;
 }
+.post-preview{
+  width:100%;
+  padding:10px 20px 10px 20px
+}
+.preview-image{
+  width:250px;
+  height:100px;
+  display:inline-block;
+  border:0.5px solid black;
+  margin:10px 10px 10px 10px;
+  border:1px solid #209cee;
+  padding:5px;
+  border-radius:0.8em;
+}
+.img-button label{
+  cursor: pointer;
+}
 
+.img-button input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
 
 /*bulma css */
 i.level {

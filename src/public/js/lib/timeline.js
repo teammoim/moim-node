@@ -6,6 +6,8 @@ function Post(writer = "unknown", text = "", images = []) {
   this.text = text;
   this.images = [];
   this.likes = 0;
+  this.postid = "";
+  this.userid = "";
   this.presslike = false;
   this.comments = []; //  argument : Comment
   for (i = 0; i<images.length;i++){
@@ -47,6 +49,8 @@ function Comment() {
   this.time = new Date();
   this.text = "";
   this.likes = 0; 
+  this.postid = "";
+  this.commentid = "";
 };
 Comment.prototype.setText = function (text) {
   this.text = text;
@@ -280,8 +284,8 @@ function implementPost(Post) {
   /* add event listeners to button */
   presslike = false;
   likeButton.onclick = function () {
-    if (islike) {
-      likeButton.style.color = "gainsbro";
+    if (presslike) {
+      likeButton.style.color = "grey";
       presslike = true;
     }
     else {
@@ -519,20 +523,20 @@ function implementWritePost() {
   textarea.placeholder = "Write here";
   textarea.name = "text";
   form.appendChild(textarea);
+  var isclick = false;
   textarea.onclick = function () {
+    if (isclick === true) return;
     textarea.style.height = "130px";
-    post.style.height = "190px";
+    isclick = true;
   };
-  
+  var preview = document.createElement("div");
+  post.appendChild(preview);
   
   var box_under = document.createElement("div");
   box_under.style.width = "100%";
   box_under.style.paddingBottom = "3px";
-  box_under.style.height = "60px";
+  box_under.style.display = "inline-block";
   post.appendChild(box_under);
-
-  
-
 
   var postButton = document.createElement("button");
   postButton.className = "button is-info write-post-button";
@@ -548,11 +552,43 @@ function implementWritePost() {
 
   var buttonsform = document.createElement("form");
   writeButtonBox.appendChild(buttonsform);
+  buttonsform.method = "post";
 
 
   var imagePostbutton = document.createElement("div");
-  imagePostbutton.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
-  writeButtonBox.appendChild(imagePostbutton);
+  imagePostbutton.className = "img-button";
+  buttonsform.appendChild(imagePostbutton);
+
+  var label = document.createElement("label");
+  label.htmlFor = "img_file";
+
+  
+  label.name = "images";
+  label.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
+  imagePostbutton.appendChild(label);
+  var imgUpload = document.createElement("input");
+  imgUpload.type = "file";
+  imgUpload.id = "img_file";
+  imgUpload.multiple = true;
+  imagePostbutton.appendChild(imgUpload);
+  imgUpload.onchange = function () {
+    if (imgUpload.files[0].type.match(/image.*/)) {
+      var reader = new FileReader();
+      var img = document.createElement("img");
+      img.className = "preview-image";
+      preview.appendChild(img);
+      preview.className = "post-preview";
+      reader.onload = function (e) {
+        img.src = e.target.result;
+      }
+      reader.readAsDataURL(imgUpload.files[0]);
+      alert(imgUpload.files);
+    }
+    else {
+      alert("Wrong file selected\n Please upload image file");
+    }
+  };
+  
 }
 function implementWriteComment(comments_box) {
   var form = document.createElement("form");
@@ -614,7 +650,32 @@ function implementWriteComment(comments_box) {
 
 
 }
-
+function JSONtoPost(JSONstring) {
+  var JSONobj = JSON.parse(JSONstring);
+  for (var i = 0; i < JSONobj.length; i++) {
+    var post = JSONobj[i];
+    var pid = post.postid;
+    var uid = post.uid;
+    var text = post.text;
+    var image = post.url;
+    var name = uid.name;
+    var userimage = uid.image;
+    var mpost = new Post(name, text);
+    mpost.postid = pid;
+    mpost.userid = uid;
+    if (image) {
+      mpost.images = image.split(",");
+    }
+    if (userimage) {
+      mpost.writerImage = userimage;
+    }
+    createPost(mpost);
+  }
+}
+function JSONtoUser(JSONstring) {
+  var JSONobj = JSON.parse(JSONstring);
+  JSON
+}
 //testcase
 var james = new Post("james", "My name is james");
 james.setTime(2018, 9, 3, 4, 32, 0);
@@ -721,7 +782,7 @@ function implementProfile() {
   profile_image.className = "profile-image";
   profile_image.src = "/images/default-writerImage.png";
   profile_image.onclick = function () {
-    goProfile(uid.value);
+    location.href = '/profile';
   };
   profile_first.appendChild(profile_image);
 
