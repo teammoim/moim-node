@@ -23,6 +23,7 @@
   <div class="profile container">
     <div class="profile-left">
       <div class="profile-image-container"></div>
+      <input type="file" id="change-image" style="display:none"/>
     </div>
     <div class="profile-right">
       <div class="profile-name"><%= name %></div> <br />
@@ -32,7 +33,7 @@
         <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
             <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
       </div> <br />
-             <div class="profile-intro">대한민국 대통령 문재인입니다. President of the Republic of Korea. 나라다운 나라를 만들기 위해 국민여러분과 함께 하겠습니다.</div>
+      <div class="profile-intro"></div>
     </div>
   </div>
   <hr />
@@ -59,13 +60,26 @@
   </form>
   <script src="/js/lib/timeline.js"></script>
   <script>
+    var isfollow = "<%= isfollow %>"
     var profileImg = document.getElementsByClassName("profile-image-container")[0];
     var image = new Image();
     image.src = "images/default-writerImage.png";
     image.className = "profile-image";
+    if (isfollow != "me") {
+      image.style.cursor = "default";
+    }
+    else {
+      image.style.cursor = "pointer";
+    }
+    
+    image.onclick = function () {
+      if (isfollow == "me") {
+        document.getElementById("change-image").click();
+      }
+    }
     profileImg.appendChild(image);
 
-    var isfollow = "<%= isfollow %>"
+    
     if (isfollow == "me") { //create setting and subscribe button
       var buttonBox = document.getElementsByClassName("profile-info")[0];
       var settingButton = document.createElement("button");
