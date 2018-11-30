@@ -118,10 +118,20 @@ function editPost(postidvalue , textareavalue) {
   sendform.submit();
 }
 function deletePost(postidvalue) {
-  sendform.action = "/deletepost";
+  sendform.action = "/delPost";
   
   sendElement.name = "postid";
   sendElement.value = postidvalue;
+  sendform.submit();
+}
+function deleteComment(postidvalue, commentidvalue) {
+  sendform.action = "/delComment";
+
+  sendElement.name = "postid";
+  sendElement.value = postidvalue;
+
+  sendElement1.name = "commentid";
+  sendElement1.value = commentidvalue;
   sendform.submit();
 }
 
@@ -405,6 +415,11 @@ function implementComment(Comments, where) {
     uid.value = "uid sample"; // need uid from server
     comment.appendChild(uid);
 
+    var postid = document.createElement("input");
+    postid.type = "hidden";
+    postid.name = "postid";
+    postid.value = "postid sample";
+    comment.appendChild(postid);
 
     var comment_writer = document.createElement("div");
     comment_writer.className = "comment-writer";
@@ -425,12 +440,23 @@ function implementComment(Comments, where) {
     comment_writer_right.className = "comment-writer-right";
     comment_writer.appendChild(comment_writer_right);
 
+
     var commentWriter = document.createElement("span");
     commentWriter.className = "commentWriter";
     commentWriter.onclick = function () {
       goProfile(uid.value);
     }
     comment_writer_right.appendChild(commentWriter);
+
+    if (uid.value === "give me timeline json") {
+      var commentdel = document.createElement("a");
+      commentdel.style = "float:right;margin-right:5px";
+      commentdel.innerHTML = '<i class="material - icons">highlight_off</i>';
+      commentdel.onclick = function () {
+        deleteComment(postid.value, commentid.value);
+      }
+      comment_writer_right.appendChild(commentdel);
+    }
 
     var comment_content = document.createElement("div");
     comment_content.className = "content";
@@ -556,7 +582,7 @@ function implementWriteComment(comments_box) {
   write_comment_right.appendChild(textarea);
   textarea.onclick = function () {
     textarea.style.height = "80px";
-    comment.style.height = "120px";
+    comment.style.height = "130px";
   };
 
   var postid = document.createElement("input");
