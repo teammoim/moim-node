@@ -33,16 +33,17 @@ export let index = (req: Request, res: Response) => {
 
 export let createPost = (req: Request, res: Response) => {
     const post_text = req.body.text;
-    const img_url = req.body.img_url;
+  // const img_url = req.body.img_url;
+
 
     const newPostKey = firebase_db.ref().child("post").push().key;
 
-    firebase_db.ref("/post/" + newPostKey).set({
+    firebase_db.ref("/post/" + auth.currentUser.uid + "/" + newPostKey).set({
         postId: newPostKey,
         text: post_text,
         uid: auth.currentUser.uid,
         timestamp: serverDate.getTime(),
-        img_url: img_url // img_url_Array
+        // img_url: img_url // img_url_Array
     }).catch(function(error) {
         if (!error) {
             // data submit successfully
@@ -52,6 +53,7 @@ export let createPost = (req: Request, res: Response) => {
             }
         }
     });
+    res.redirect("/profile");
 };
 
 export let delPost = (req: Request, res: Response) => {
