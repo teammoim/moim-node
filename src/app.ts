@@ -11,7 +11,7 @@ import * as mobileController from "./controllers/mobile";
 import * as profileController from "./controllers/profile";
 import * as settingController from "./controllers/setting";
 import * as signInController from "./controllers/signIn";
-import * as signupController from "./controllers/signup";
+import * as signUpController from "./controllers/signUp";
 import * as timelineController from "./controllers/timeline";
 import * as subscribeController from "./controllers/subscribe";
 import * as opensourcesController from "./controllers/opensources";
@@ -32,12 +32,12 @@ app.get("/2dmap", tdmapController.index);
 app.get("/mobile", mobileController.index);
 app.get("/profile", profileController.index);
 app.get("/setting", settingController.index);
-app.get("/signup", signupController.index);
+app.get("/signUp", signUpController.index);
 app.get("/timeline", timelineController.index);
 app.get("/subscribe", subscribeController.index);
 app.get("/opensources", opensourcesController.index);
 
-app.post("/trysignup", signupController.signUp);
+app.post("/submitSignUp", signUpController.signUp);
 
 app.post("/submitLogin", signInController.submitLogin);
 app.post("/submitLogout", signInController.submitLogout);
