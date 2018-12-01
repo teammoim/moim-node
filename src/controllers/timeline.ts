@@ -9,7 +9,7 @@ const firebase_db = firebase.database();
 const currentuid = auth.currentUser.uid;
 
 /* Userspace variable Initialize */
-// const serverDate = new Date(); 
+// const serverDate = new Date();
 // this is wrong because it is time that server created
 const DEBUG_FLAG = true;
 
@@ -83,7 +83,7 @@ export let comment = (req: Request, res: Response) => {
     const comments_text = req.body.text;
     const newCommentsKey = new Date().getTime();
 
-  firebase_db.ref("/post/" + currentuid +"/"+postId).child("/comments/" + newCommentsKey).set({
+    firebase_db.ref("/post/" + currentuid + "/" + postId).child( "/comments/" + newCommentsKey ).set({
         comments: comments_text,
         uid: currentuid,
     }).catch(function(error) {
@@ -96,9 +96,9 @@ export let comment = (req: Request, res: Response) => {
 export let delComments = (req: Request, res: Response) => {
     const postId = req.body.postId;
     const commentsId = req.body.commentsId;
-    firebase_db.ref("/post/" +currentuid+"/"+ postId).child("/comments/" + commentsId).once("value").then(function(data) {
+    firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + commentsId).once("value").then(function(data) {
         if (data != undefined) {
-            firebase_db.ref("/post/" + currentuid+"/"+postId).child("/comments/" + commentsId).remove();
+            firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + commentsId).remove();
         } else {
             console.log("Data is undefined");
         }
@@ -130,7 +130,7 @@ export let like = (req: Request, res: Response) => {
         console.log(error.code + " , " + error.message);
     });
 
-    firebase_db.ref("/post/" + currentuid+ "/" + postId).set({
+    firebase_db.ref("/post/" + currentuid + "/" + postId).set({
         likes_list: tmp_likes
     }).catch(function (error) {
         console.log(error.code + " , " + error.message);
@@ -139,7 +139,7 @@ export let like = (req: Request, res: Response) => {
 };
 
 export let goprofile = (req: Request, res: Response) => {
-  var uid = req.body.uid;
+  const uid = req.body.uid;
   firebase_db.ref("/users/" + uid).once("value").then(function (snapshot) {
       const userData = snapshot.val();
       res.render("user/profile", {
