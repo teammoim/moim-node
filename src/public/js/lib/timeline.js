@@ -534,7 +534,7 @@ function implementWritePost() {
 
   var imgInput = document.createElement("input");
   imgInput.type = "hidden";
-  imgInput.name = "imgfiles";
+  imgInput.name = "img_url";
   form.appendChild(imgInput);
   
   var box_under = document.createElement("div");
@@ -547,7 +547,14 @@ function implementWritePost() {
   postButton.className = "button is-info write-post-button";
   postButton.innerText = "Post";
   postButton.onclick = function () {
-    imgInput.value = imgfiles;
+    var resultarray = [];
+    var temparray = imgfiles.toString().split(",");
+    for (var i = 0; i < temparray.length; i++) {
+      if (i % 2 === 1) {
+        resultarray.push(temparray[i]);
+      }
+    }
+    imgInput.value = resultarray;
     form.submit();
   };
   box_under.appendChild(postButton);
