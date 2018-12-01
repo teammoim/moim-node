@@ -6,7 +6,6 @@ const firebase_config = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(firebase_config) : firebase.app();
 const auth = firebase.auth();
 const firebase_db = firebase.database();
-const currentuid = auth.currentUser.uid;
 
 /* Userspace variable Initialize */
 // const serverDate = new Date();
@@ -41,7 +40,7 @@ export let createPost = (req: Request, res: Response) => {
 
   const newPostKey = new Date().getTime();
 
-  firebase_db.ref("/post/" + currentuid + "/" + newPostKey).set({
+  firebase_db.ref("/post/" + auth.currentUser.uid + "/" + newPostKey).set({
         postId: newPostKey,
         text: post_text,
         uid: auth.currentUser.uid,
@@ -60,9 +59,9 @@ export let createPost = (req: Request, res: Response) => {
 
 export let delPost = (req: Request, res: Response) => {
   const postId = req.body.postId;
-  firebase_db.ref("/post/" + currentuid + "/" + postId).once("value").then(function (data) {
+  firebase_db.ref("/post/" + auth.currentUser.uid + "/" + postId).once("value").then(function (data) {
         if (data != undefined) {
-            firebase_db.ref("post/" + currentuid + "/" + postId).remove();
+          firebase_db.ref("post/" + auth.currentUser.uid + "/" + postId).remove();
             // Delete Complete alert
         } else {
             console.log("Data is undefined");
@@ -82,8 +81,9 @@ export let comment = (req: Request, res: Response) => {
     const postId = req.body.postid;
     const comments_text = req.body.text;
     const newCommentsKey = new Date().getTime();
+    const currentuid = auth.currentUser.uid;
 
-    firebase_db.ref("/post/" + currentuid + "/" + postId).child( "/comments/" + newCommentsKey ).set({
+  firebase_db.ref("/post/" + currentuid + "/" + postId).child( "/comments/" + newCommentsKey ).set({
         comments: comments_text,
         uid: currentuid,
     }).catch(function(error) {
@@ -95,6 +95,7 @@ export let comment = (req: Request, res: Response) => {
 
 export let delComments = (req: Request, res: Response) => {
     const postId = req.body.postId;
+    const currentuid = auth.currentUser.uid;
     const commentsId = req.body.commentsId;
     firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + commentsId).once("value").then(function(data) {
         if (data != undefined) {
@@ -118,9 +119,10 @@ export let delComments = (req: Request, res: Response) => {
 export let like = (req: Request, res: Response) => {
     const postId = req.body.post_id;
     const uid = req.body.uid;
+    const currentuid = auth.currentUser.uid;
     let tmp_likes = "";
 
-    firebase_db.ref("/post/" + currentuid + "/" + postId).child("likes")
+    firebase_db.ref("/post/" + uid + "/" + postId).child("likes")
         .once("value").then(function (data) {
         const JsonData = data.val();
         if (JsonData.likes_list.length > 0) {
