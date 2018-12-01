@@ -115,9 +115,29 @@ export let delComments = (req: Request, res: Response) => {
      const uid = req.body.uid;
    };
 
-   export let like = (req: Request, res: Response) => {
-     const postid = req.body.postid;
-   };
+export let like = (req: Request, res: Response) => {
+    const postId = req.body.post_id;
+    const uid = req.body.uid;
+    let tmp_likes = "";
+
+    firebase_db.ref("/posts/" + postId).child("likes")
+        .once("value").then(function (data) {
+        const JsonData = data.val();
+        if (JsonData.likes_list.length > 0) {
+            tmp_likes =  JsonData.likes_list + "," + uid;
+        }
+    }).catch(function(error) {
+        console.log(error.code + " , " + error.message);
+    });
+
+    firebase_db.ref("/post/" + postId).set({
+        postId: postId,
+        likes_list: tmp_likes
+    }).catch(function (error) {
+        console.log(error.code + " , " + error.message);
+    });
+    res.send(505);
+};
 
    export let goprofile = (req: Request, res: Response) => {
        const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid sample

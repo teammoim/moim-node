@@ -49,8 +49,9 @@ app.post("/delPost", timelineController.delPost);
 app.post("/submitComments", timelineController.comment);
 app.post("/delComments", timelineController.delComments);
 
+app.post("/submitLike", timelineController.like);
+
 app.post("/tryfollow", timelineController.follow);
-app.post("/trylike", timelineController.like);
 app.post("/goprofile", timelineController.goprofile);
 
 app.post("/changesetting", settingController.changesetting);
