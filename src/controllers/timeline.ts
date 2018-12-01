@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import * as firebase from "firebase";
-const dbconfig = require("../../fbconfig.js");
-export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
+const firebase_config = require("../../fbconfig.js");
+export default !firebase.apps.length ? firebase.initializeApp(firebase_config) : firebase.app();
 const auth = firebase.auth();
-const timelines = firebase.database();
+const firebase_db = firebase.database();
 
 export let index = (req: Request, res: Response) => {
     if (auth.currentUser) {
         // contents have json object of timline
         const contents: object[] = [];
-        timelines.ref("/posts/").once("value", (snapshot) => {
+        firebase_db.ref("/posts/").once("value", (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const child = childSnapshot.val();
                 contents.push(child);
