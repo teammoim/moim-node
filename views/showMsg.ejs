@@ -1,0 +1,15 @@
+
+<head>
+  <script>
+    var msg = "<%= msg %>";
+    if (msg == "loginErr") {
+      alert("Invalid Login");
+      location.href = "/login";
+    }
+    if (msg == "emailUsed") {
+      alert("Email is already used!");
+      location.href = "/signup"; 
+    }
+
+  </script>
+</head>

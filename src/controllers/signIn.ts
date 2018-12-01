@@ -31,8 +31,8 @@ export let submitLogin = (req: Request, res: Response) => {
     }).catch(function (error) {
         if (DEBUG_FLAG) {
             console.log(error.code + " " + error.message);
-        }
-        res.send(2);
+      }
+      res.render( "showMsg" , { msg : "loginErr" });
     });
 };
 

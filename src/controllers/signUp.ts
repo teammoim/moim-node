@@ -54,10 +54,9 @@ export let signUp = (req: Request, res: Response) => {
                 phone: "",
                 follow: {}
             }).catch(function (error) {
-                if (error.code == "auth/email-already-in-use") {
-                    res.send(3);
+              if (error.code == "auth/email-already-in-use") {
+                res.render("/showMsg", { msg: "emailUsed" });
                 }
-                res.send(-99);
             });
 
             auth.signInWithEmailAndPassword(signUp_Info[0], signUp_Info[1]).then((user) => {
