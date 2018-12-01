@@ -28,7 +28,12 @@
     <div class="profile-right">
       <div class="profile-name"><%= name %></div> <br />
       <div class="profile-info">
-        게시물 <span id="posts-length" style="margin:0em 1em 0em 1em">1</span>
+          <% postcheck = youpost[0]; %>
+          <% postcounter = 0%>
+          <% if(postcheck !== null) { %>
+              <% postcounter = Object.keys(youpost[0]).length; %>
+          <% } %>
+        게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
         친구 <span id="followers-length" style="margin:0em 1em 0em 1em"><%= subscribes.length %></span>
         <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
             <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->

@@ -17,7 +17,7 @@ function dataChecker(target: string) {
 }
 
 function detectCallback(target: object[], comparison: string[]) {
-    return target.length == comparison.length;
+    return target.length >= comparison.length;
 }
 
 export let index = (req: Request, res: Response) => {
@@ -40,27 +40,31 @@ export let index = (req: Request, res: Response) => {
           const name = userData.name;
           const subs = userData.subscribe;
           const subsinfo: object[] = [];
+          const postinfo: object[] = [];
+
+          timelines.ref("/post/" + curruser.uid).once("value").then((postshot) => {
+              postinfo.push(postshot.val());
+          });
 
           Object.keys(subs).forEach((k) => {
               timelines.ref("/users/" + k).once("value", (snapinfo) => {
                   // console.log(snapinfo.val());
                   subsinfo.push(snapinfo.val());
                   console.log(subsinfo);
-                  if (detectCallback(subsinfo, Object.keys(subs))) {
-                      console.log("CALL BACK!");
+                  if (detectCallback(subsinfo, Object.keys(subs)) && detectCallback(postinfo, [])) {
+                      console.log(postinfo);
                       res.render("user/profile", {
                         title: "Home",
                         name: name,
                         isfollow: "me", // "true","false","me"
                         uid : "", // not need uid
                         subscribes: subsinfo,
-                        you: userData
+                        you: userData,
+                        youpost: postinfo
                       });
               }
               });
           });
-
-
         }
     }).catch((error) => {
     console.log(error);
