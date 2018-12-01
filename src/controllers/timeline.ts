@@ -74,10 +74,24 @@ export let delPost = (req: Request, res: Response) => {
     });
 };
 
-   export let comment = (req: Request, res: Response) => {
-     const text = req.body.text;
-     const postid = req.body.postid;
-   };
+export let comment = (req: Request, res: Response) => {
+    const postId = req.body.postid;
+    const writerUid = req.body.writerUid;
+    const comments_text = req.body.text;
+
+    const newCommentsKey = firebase_db.ref("/posts/" + postId).child("comments").push().key;
+
+    firebase_db.ref("/posts/" + postId).child("/comments/" + newCommentsKey).set({
+        commentsId: newCommentsKey,
+        comments: comments_text,
+        timestamp: serverDate.getTime(),
+        writerUid: writerUid,
+    }).catch(function(error) {
+        if (DEBUG_FLAG) {
+            console.log(error.code + " , " + error.message);
+        }
+    });
+};
 
    export let follow = (req: Request, res: Response) => {
      const uid = req.body.uid;
