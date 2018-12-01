@@ -45,7 +45,7 @@ export let changesetting = (req: Request, res: Response) => {
     }
     const phone = req.body.phonenumber;
     if (notNull(phone) && (10 < phone.length)) {
-        dbaccess.update({phonenumber: phone});
+        dbaccess.update({phone: phone});
     }
     const realname = req.body.name;
     if (notNull(realname)) {

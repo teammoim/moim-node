@@ -4,6 +4,7 @@ import * as firebase from "firebase";
 const dbconfig = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
 const timelines = firebase.database();
+const auth = firebase.auth();
 
 function dataChecker(target: string) {
     const check = JSON.parse(target);
@@ -16,7 +17,7 @@ function dataChecker(target: string) {
 }
 
 export let index = (req: Request, res: Response) => {
-    const curruser = firebase.auth().currentUser;
+    const curruser = auth.currentUser;
     if (!curruser) {
         console.log("you have not logged");
         res.redirect("/login");
@@ -40,17 +41,6 @@ export let index = (req: Request, res: Response) => {
               uid : "" // not need uid
             });
         }
-        // if (!snapshot.val()) {
-        //     timelines.ref("/users/" + curruser.uid).set({
-        //         birthday: "Undetected",
-        //         email: curruser.email,
-        //         name: "Unvaliduser" ,
-        //         nickname: (curruser.displayName) ? curruser.displayName : "Unvaliduser",
-        //         gender: "Notdefiend",
-        //         phonenumber: "Notvalid",
-        //         uid: curruser.uid
-        //     });
-        // }
     }).catch((error) => {
     console.log(error);
 });
