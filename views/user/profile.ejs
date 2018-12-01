@@ -55,8 +55,11 @@
     <div class="timeline-posts"></div>
     <div class="timeline-friends"></div>
   </div>
-  <form id="form_uid" method="post">
+  <form id="form-uid" method="post">
     <input type="hidden" name="uid" value="<%= uid %>" />
+  </form>
+  <form id="form-img" method="post" action="/changeProfileImg">
+    <input id="imgfile" type="hidden" name="imgfile" />
   </form>
   <script src="/js/lib/timeline.js"></script>
   <script>
@@ -107,7 +110,7 @@
       buttonBox.appendChild(followButton);
       followButton.className = "button";
       followButton.onclick = function () {
-        var form = document.getElementById("form_uid");
+        var form = document.getElementById("form-uid");
         form.action = "/tryfollow";
         form.submit();
         if (isfollow == "true")
@@ -122,6 +125,26 @@
         followButton.innerText = "Follow";
       }
     }
+    var imgUpload = document.getElementById("change-image");
+    imgUpload.onchange = function () {
+      if (imgUpload.files[0].type.match(/image.*/)) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var r = confirm("Are you sure to change your profile image?");
+          if (r == true) {
+            image.src = e.target.result;
+            var imagefile = document.getElementById("imgfile");
+            imagefile.value = image.src;
+            var imageform = document.getElementById("form-img");
+            imageform.submit();
+          }
+        }
+        reader.readAsDataURL(imgUpload.files[0]);
+      }
+      else {
+        alert("Wrong file selected\n Please upload image file");
+      }
+    }
 
     
 
@@ -134,6 +157,7 @@
       border-radius: 50%;
       margin-left: 50%;
       width: 170px;
+      height: 180px;
       padding-top: 10px;
     }
     .profile-body-container {
