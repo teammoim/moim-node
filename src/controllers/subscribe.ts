@@ -41,11 +41,11 @@ export let subscribe = (req: Request, res: Response) => {
 
     timelines.ref("/users/" + auth.currentUser.uid).once("value", (snapshot) => {
         if (snapshot.val().follow == "" || snapshot.val().follow == undefined || snapshot.val().follow == {}) {
-            timelines.ref("/users/" + auth.currentUser.uid + "/follow").set({
+            timelines.ref("/users/" + auth.currentUser.uid + "/subscribe").set({
                 [addTarget]: true
             });
         } else {
-            const dbaccess = timelines.ref("/users/" + auth.currentUser.uid + "/follow");
+            const dbaccess = timelines.ref("/users/" + auth.currentUser.uid + "/subscribe");
             dbaccess.update({[addTarget]: true});
         }
 

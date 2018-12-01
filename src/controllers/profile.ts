@@ -41,6 +41,9 @@ export let index = (req: Request, res: Response) => {
               uid : "" // not need uid
             });
         }
+
+        // rendering here
+
     }).catch((error) => {
     console.log(error);
 });
