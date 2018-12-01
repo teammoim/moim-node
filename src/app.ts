@@ -5,18 +5,16 @@ import path from "path";
 
 
 import * as indexController from "./controllers/index";
-import * as loginController from "./controllers/login";
-import * as logoutController from "./controllers/logout";
 import * as mapController from "./controllers/map";
 import * as tdmapController from "./controllers/2dmap";
 import * as mobileController from "./controllers/mobile";
 import * as profileController from "./controllers/profile";
 import * as settingController from "./controllers/setting";
+import * as signInController from "./controllers/signIn";
 import * as signupController from "./controllers/signup";
 import * as timelineController from "./controllers/timeline";
 import * as subscribeController from "./controllers/subscribe";
 import * as opensourcesController from "./controllers/opensources";
-import timeline from "./controllers/timeline";
 
 const app = express();
 
@@ -28,8 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", indexController.index);
-app.get("/login", loginController.index);
-app.get("/logout", logoutController.logout);
+app.get("/login", signInController.index);
 app.get("/map", mapController.index);
 app.get("/2dmap", tdmapController.index);
 app.get("/mobile", mobileController.index);
@@ -41,7 +38,9 @@ app.get("/subscribe", subscribeController.index);
 app.get("/opensources", opensourcesController.index);
 
 app.post("/trysignup", signupController.signUp);
-app.post("/trylogin", loginController.login);
+
+app.post("/submitLogin", signInController.submitLogin);
+app.post("/submitLogout", signInController.submitLogout);
 
 app.post("/createPost", timelineController.createPost);
 app.post("/delPost", timelineController.delPost);
