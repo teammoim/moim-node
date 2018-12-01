@@ -16,6 +16,7 @@ import * as signupController from "./controllers/signup";
 import * as timelineController from "./controllers/timeline";
 import * as subscribeController from "./controllers/subscribe";
 import * as opensourcesController from "./controllers/opensources";
+import timeline from "./controllers/timeline";
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.post("/createPost", timelineController.createPost);
 app.post("/delPost", timelineController.delPost);
 
 app.post("/submitComments", timelineController.comment);
+app.post("/delComments", timelineController.delComments);
 
 app.post("/tryfollow", timelineController.follow);
 app.post("/trylike", timelineController.like);

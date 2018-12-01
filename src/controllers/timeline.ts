@@ -93,6 +93,24 @@ export let comment = (req: Request, res: Response) => {
     });
 };
 
+export let delComments = (req: Request, res: Response) => {
+    const postId = req.body.postId;
+    const commentsId = req.body.commentsId;
+    firebase_db.ref("/posts/" + postId).child("/comments/" + commentsId).once("value").then(function(data) {
+        if (data != undefined) {
+            firebase_db.ref("/posts/" + postId).child("/comments/" + commentsId).remove();
+        } else {
+            console.log("Data is undefined");
+        }
+    }).catch(function (error) {
+        if (!error) {
+            // Delete Successfully !
+        } else {
+            console.log(error.code + " , " + error.message);
+        }
+    });
+};
+
    export let follow = (req: Request, res: Response) => {
      const uid = req.body.uid;
    };
