@@ -17,9 +17,9 @@
         //지도 영역 'map' DOM Element를 mymap 변수로 정의
         var mymap = L.map('map').setView([37.610, 126.997], 19);
 
-        json =  <%= Object.keys(marks) %>;
+        json =  <%= marks %>;
         console.log(json);
-    
+
 
         //Open Steet Map 서버 주소 입력
         L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mymap);
