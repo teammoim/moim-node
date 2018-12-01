@@ -40,14 +40,12 @@ export let subscribe = (req: Request, res: Response) => {
     const addTarget = req.body.uid;
 
     timelines.ref("/users/" + auth.currentUser.uid).once("value", (snapshot) => {
-        console.log("It's snapshot: ", snapshot.val());
         if (snapshot.val().subscribe == "" || snapshot.val().subscribe === undefined || snapshot.val().subscribe === {}) {
             timelines.ref("/users/" + auth.currentUser.uid + "/subscribe").set({
                 [addTarget]: true
             });
         } else {
             const dbaccess = timelines.ref("/users/" + auth.currentUser.uid + "/subscribe");
-            console.log("Do update");
             dbaccess.update({[addTarget]: true});
         }
 
