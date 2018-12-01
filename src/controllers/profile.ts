@@ -16,6 +16,10 @@ function dataChecker(target: string) {
     return true;
 }
 
+function detectCallback(target: object[], comparison: string[]) {
+    return target.length == comparison.length;
+}
+
 export let index = (req: Request, res: Response) => {
     const curruser = auth.currentUser;
     if (!curruser) {
@@ -34,16 +38,31 @@ export let index = (req: Request, res: Response) => {
         } else {
             // All data saved to DB correctly
           const name = userData.name;
-            res.render("user/profile", {
-              title: "Home",
-              name: name,
-              isfollow: "me", // "true","false","me"
-              uid : "" // not need uid
-            });
+          const subs = userData.subscribe;
+          const subsinfo: object[] = [];
+
+          Object.keys(subs).forEach((k) => {
+              timelines.ref("/users/" + k).once("value", (snapinfo) => {
+                  // console.log(typeof(snapinfo.val()));
+                  // console.log(snapinfo.val());
+                  subsinfo.push(snapinfo.val());
+                  console.log(subsinfo);
+                  if (detectCallback(subsinfo, Object.keys(subs))) {
+                      console.log("CALL BACK!");
+                      res.render("user/profile", {
+                        title: "Home",
+                        name: name,
+                        isfollow: "me", // "true","false","me"
+                        uid : "", // not need uid
+                        subscribes: subsinfo,
+                        you: auth.currentUser
+                      });
+              }
+              });
+          });
+
+
         }
-
-        // rendering here
-
     }).catch((error) => {
     console.log(error);
 });
