@@ -2,14 +2,17 @@
 <head>
   <script>
     var msg = "<%= msg %>";
-    if (msg == "loginErr") {
+    if (msg === "loginErr") {
       alert("Invalid Login");
       location.href = "/login";
     }
-    if (msg == "emailUsed") {
+    else if (msg === "emailUsed") {
       alert("Email is already used!");
-      location.href = "/signup"; 
+      location.href = "/signUp"; 
     }
-
+    else if (msg === "signUpErr") {
+      alert("invalid SignUp");
+      location.href = "/signUp";
+    }
   </script>
 </head>
