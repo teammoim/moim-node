@@ -134,7 +134,7 @@ function deletePost(postidvalue) {
 function deleteComment(postidvalue, commentidvalue) {
   var r = confirm("Are you sure you want to delete");
   if (r === true) {
-    sendform.action = "/delComment";
+    sendform.action = "/delComments";
 
     sendElement.name = "postid";
     sendElement.value = postidvalue;
@@ -292,7 +292,7 @@ function implementPost(Post) {
       likeButton.style.color = "red";
       presslike = false;
     }
-    form.action = "/trylike";
+    form.action = "/submitLike";
     form.submit();
   }
 
@@ -514,7 +514,7 @@ function implementWritePost() {
   box.appendChild(box_right);
 
   var form = document.createElement("form");
-  form.action = "/trypost";
+  form.action = "/createPost";
   form.method = "post";
   box_right.appendChild(form);
 
@@ -531,6 +531,11 @@ function implementWritePost() {
   };
   var preview = document.createElement("div");
   post.appendChild(preview);
+
+  var imgInput = document.createElement("input");
+  imgInput.type = "hidden";
+  imgInput.name = "imgfiles";
+  form.appendChild(imgInput);
   
   var box_under = document.createElement("div");
   box_under.style.width = "100%";
@@ -554,7 +559,6 @@ function implementWritePost() {
   writeButtonBox.appendChild(buttonsform);
   buttonsform.method = "post";
 
-
   var imagePostbutton = document.createElement("div");
   imagePostbutton.className = "img-button";
   buttonsform.appendChild(imagePostbutton);
@@ -566,6 +570,9 @@ function implementWritePost() {
   label.name = "images";
   label.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
   imagePostbutton.appendChild(label);
+
+  var xhr = new XMLHttpRequest();
+  
   var imgUpload = document.createElement("input");
   imgUpload.type = "file";
   imgUpload.id = "img_file";
@@ -580,9 +587,9 @@ function implementWritePost() {
       preview.className = "post-preview";
       reader.onload = function (e) {
         img.src = e.target.result;
+
       }
       reader.readAsDataURL(imgUpload.files[0]);
-      alert(imgUpload.files);
     }
     else {
       alert("Wrong file selected\n Please upload image file");
@@ -592,7 +599,7 @@ function implementWritePost() {
 }
 function implementWriteComment(comments_box) {
   var form = document.createElement("form");
-  form.action = "/trycomment";
+  form.action = "/submitComments";
   form.method = "post";
   comments_box.appendChild(form);
 
