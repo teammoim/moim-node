@@ -547,6 +547,7 @@ function implementWritePost() {
   postButton.className = "button is-info write-post-button";
   postButton.innerText = "Post";
   postButton.onclick = function () {
+    imgInput.value = imgfiles;
     form.submit();
   };
   box_under.appendChild(postButton);
@@ -571,7 +572,7 @@ function implementWritePost() {
   label.innerHTML = "<i class='material-icons' style='font-size:30px'>add_a_photo</i>";
   imagePostbutton.appendChild(label);
 
-  var xhr = new XMLHttpRequest();
+  var imgfiles = [];
   
   var imgUpload = document.createElement("input");
   imgUpload.type = "file";
@@ -587,7 +588,7 @@ function implementWritePost() {
       preview.className = "post-preview";
       reader.onload = function (e) {
         img.src = e.target.result;
-
+        imgfiles.push(img.src);
       }
       reader.readAsDataURL(imgUpload.files[0]);
     }
