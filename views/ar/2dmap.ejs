@@ -1,6 +1,6 @@
 <% include ../core %>
 
-<button class="button is-medium is-dark" style="position:fixed;left:15px;bottom:150px;z-index:999;">new!</button>
+<button class="button is-medium is-dark" onclick="popUpEvent()" style="position:fixed;left:15px;bottom:150px;z-index:999;">new!</button>
 <div class="field has-addons" style="position:fixed;right:0px;bottom:130px;z-index:999">
     <button onclick="window.location.href='../map'" class="button is-medium is-dark is-outlined">3D</button>
     <button class="button is-medium is-dark">2D</button>
@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/js/lib/leaflet.js"></script>
     <% include ../navigation %>
     <div id="map" style="width: 100%; height: 80%; z-index: 1;"></div>
+
     <script>
         var json = [{ "text": "blabla", "title": "event1", "uid": "", "latitude": "37.609640", "longitude": "126.99769", "url": "" },
         { "text": "강남화이팅", "title": "event2", "uid": "", "latitude": "37.609640", "longitude": "126.99369", "url": "" }];
@@ -70,7 +71,55 @@
             //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
             var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).addTo(mymap);
 
+      }
+
+      function CreateEvent(name , content) {
+        alert(name + "과" + content);
+      }
+
+      var ispopup = false;
+      function popUpEvent() {
+        if (ispopup == true) {
+          document.body.removeChild(document.getElementById("popup"));
+          ispopup = false;
+          return;
         }
+
+        ispopup = true;
+        var popup = document.createElement("div");
+        popup.id = "popup"
+        popup.className = "container"
+        popup.style = "position:fixed;left:40%;right:40%;top:15%;z-index:10; width:300px";
+        popup.innerHTML = '\
+        <div style="width:100%;height:70%;text-align:center;padding:30px;background-color:white;border-radius:0.4em;border:1px black solid">\
+          <div style="width:100%;height:20px;padding-top:5px;padding-bottom:20px">\
+            Event name\
+          </div>\
+          <input type="text" style="width:100%;" id="ename" class="input" >\
+            <div style="width:100%;height:20px;padding-top:10px;padding-bottom:20px">\
+              Event contents\
+            </div>\
+            <textarea style="width:100%;margin-bottom:20px" id="esub" class="textarea"></textarea>\
+            <button id="createButton" class="button" >Create</button>\
+             <button id="cancelButton" class ="button">Cancel</button> \
+             </div>'
+        document.body.appendChild(popup);
+        var createBtn = document.getElementById("createButton");
+        createBtn.onclick = function () {
+          var Ename = document.getElementById("ename").value;
+          var Esub = document.getElementById("esub").value;
+          CreateEvent(Ename, Esub);
+          ispopup = false;
+          document.body.removeChild(popup);
+        }
+        var cancelBtn = document.getElementById("cancelButton");
+        cancelBtn.onclick = function () {
+          ispopup = false;
+          document.body.removeChild(document.getElementById("popup"));
+        }
+
+
+      }
 
     </script>
     <% include ../footer %>
