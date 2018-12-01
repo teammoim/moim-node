@@ -54,6 +54,26 @@ export let createPost = (req: Request, res: Response) => {
     });
 };
 
+export let delPost = (req: Request, res: Response) => {
+    const postId = req.body.postId;
+    firebase_db.ref("/posts/" + postId).once("value").then(function(data) {
+        if (data != undefined) {
+            firebase_db.ref("posts/" + postId).remove();
+            // Delete Complete alert
+        } else {
+            console.log("Data is undefined");
+        }
+    }).catch(function (error) {
+        if (!error) {
+            // Delete Successfully !
+        } else {
+            if (DEBUG_FLAG) {
+                console.log(error.code + " , " + error.message);
+            }
+        }
+    });
+};
+
    export let comment = (req: Request, res: Response) => {
      const text = req.body.text;
      const postid = req.body.postid;

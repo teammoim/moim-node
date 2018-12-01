@@ -42,7 +42,9 @@ app.get("/opensources", opensourcesController.index);
 app.post("/trysignup", signupController.signUp);
 app.post("/trylogin", loginController.login);
 
-app.post("/trypost", timelineController.post);
+app.post("/createPost", timelineController.createPost);
+app.post("/delPost", timelineController.delPost);
+
 app.post("/trycomment", timelineController.comment);
 app.post("/tryfollow", timelineController.follow);
 app.post("/trylike", timelineController.like);
@@ -51,10 +53,6 @@ app.post("/goprofile", timelineController.goprofile);
 app.post("/changesetting", settingController.changesetting);
 app.post("/requestfind", subscribeController.finduser);
 app.post("/requestadd", subscribeController.subscribe);
-
-app.post("/editpost", timelineController.editpost);
-app.post("/deletepost", timelineController.deletepost);
-
 
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
