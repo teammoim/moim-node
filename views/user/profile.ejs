@@ -28,9 +28,8 @@
     <div class="profile-right">
       <div class="profile-name"><%= name %></div> <br />
       <div class="profile-info">
-          <% postcheck = youpost[0]; %>
-          <% postcounter = 0%>
-          <% if(postcheck !== null) { %>
+          <% var postcounter = 0 %>
+          <% if (youpost[0] !== undefined) { %>
               <% postcounter = Object.keys(youpost[0]).length; %>
           <% } %>
         게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
