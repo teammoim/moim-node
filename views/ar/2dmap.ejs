@@ -10,8 +10,8 @@
     <script type="text/javascript" src="/js/lib/leaflet.js"></script>
     <% include ../navigation %>
     <div id="map" style="width: 100%; height: 80%; z-index: 1;"></div>
-
     <script>
+<<<<<<< HEAD
         var json = [{ "text": "blabla", "title": "event1", "uid": "", "latitude": "37.609640", "longitude": "126.99769", "url": "" },
         { "text": "강남화이팅", "title": "event2", "uid": "", "latitude": "37.609640", "longitude": "126.99369", "url": "" }];
         // //지도 영역 'map' DOM Element를 mymap 변수로 정의
@@ -20,6 +20,16 @@
         //var json =  <%= marks %>;
         console.log(json);
 
+=======
+        //지도 영역 'map' DOM Element를 mymap 변수로 정의
+        var mymap = L.map('map').setView([37.610, 126.997], 19);
+        var json = <%- JSON.stringify(marks); %>
+        // console.log(json);
+        Object.keys(json).forEach((k) => {
+            console.log("TEST K");
+            console.log(json[k]);
+        });
+>>>>>>> 26f210ecfc80ed33b8b54ca639b16ace9d953e74
 
         //Open Steet Map 서버 주소 입력
         L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mymap);
