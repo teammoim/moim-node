@@ -56,7 +56,7 @@ export let index = (req: Request, res: Response) => {
    export let goprofile = (req: Request, res: Response) => {
      const uid = "0TOUAVT4zXb4AFC98A3PkqZFCxi1"; // req.body.uid sample
      const isfollow = "true";
-     timelines.ref("/users/" + uid).once("value").then(function (snapshot) {
+     firebase_db.ref("/users/" + uid).once("value").then(function (snapshot) {
        const userData = snapshot.val();
        const tmp_name = userData.name;
 
