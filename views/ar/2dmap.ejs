@@ -14,10 +14,10 @@
     <script>
         var json = [{ "text": "blabla", "title": "event1", "uid": "", "latitude": "37.609640", "longitude": "126.99769", "url": "" },
         { "text": "강남화이팅", "title": "event2", "uid": "", "latitude": "37.609640", "longitude": "126.99369", "url": "" }];
-        //지도 영역 'map' DOM Element를 mymap 변수로 정의
+        // //지도 영역 'map' DOM Element를 mymap 변수로 정의
         var mymap = L.map('map').setView([37.610, 126.997], 19);
 
-        json =  <%= marks %>;
+        //var json =  <%= marks %>;
         console.log(json);
 
 
@@ -40,11 +40,13 @@
             // 생성된 마커를 배열에 추가합니다
             markers.push(marker);
         }
+        function showtext(text) {
+                alert(text);
+        }
         for (var i = 0; i < json.length; i++) {
             // Current object
             var obj = json[i];
-            var list = "이름 : " + obj.title + "\n내용 : " + obj.text;
-            var marker = L.marker([obj.latitude, obj.longitude], { icon: myIcon }).bindPopup("이름 : " + obj.title + '<br></br>' +'<a onclick=showtext()>더보기</a>').addTo(mymap);
+            var marker = L.marker([obj.latitude, obj.longitude], { icon: myIcon }).bindPopup("이름 : " + obj.title + '<br></br>' + '<a onclick=showtext(obj.text)>더보기</a>').addTo(mymap);
             //var layer = L.Polygon(latlngs).bindPopup('Hi There!').addTo(map);
             // function onMapClick(e) {
             //     popup
@@ -52,12 +54,7 @@
             //         .setContent(e.latlng.toString() + '<a href="http://www.google.com">Visit Google</a>"')
             //         .openOn(map);
             // }
-            function showtext(){
-                alert(obj.text);
-            }
             marker.on('mousein', function (e) { //마커 마우스 이벤트
-                //마커에 팝업 연결하기
-                marker._popup.setContent('something else');
                 marker.openPopup();
             });
             marker.on('mouseleave', function (e) {
@@ -67,30 +64,57 @@
         mymap.on('click', onMapClick);
 
         //지도를 클릭하면 해당 지점의 좌표값 메시지 표시
+
+        var iscreatable = false;
+        var newname;
+        var newcontent;
+        function CreateEvent(name, content) {
+            alert(name + "과" + content);
+            newname = name;
+            newcontent = content;
+            iscreatable = true;
+        }
         function onMapClick(e) {
             //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
-            var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).addTo(mymap);
-
-      }
-
-      function CreateEvent(name , content) {
-        alert(name + "과" + content);
-      }
-
-      var ispopup = false;
-      function popUpEvent() {
-        if (ispopup == true) {
-          document.body.removeChild(document.getElementById("popup"));
-          ispopup = false;
-          return;
+            if (iscreatable) {
+                var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).bindPopup("이름 : " + newname + '<br></br>' + '<a onclick=showtext()>더보기</a>').addTo(mymap);
+                function showtext() {
+                    alert(newcontent);
+                }
+                marker.on('mousein', function (e) { //마커 마우스 이벤트
+                    newmarker.openPopup();
+                });
+                marker.on('mouseleave', function (e) {
+                    newmarker.closePopup();
+                })
+                iscreatable = false;
+            }
         }
+        // function onMapClick(e) {
+        //     //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
+        //     if (iscreatable){
+        //         var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).bindPopup("이름 : " + name + '<br></br>' + '<a onclick=showtext()>더보기</a>').addTo(mymap);
 
-        ispopup = true;
-        var popup = document.createElement("div");
-        popup.id = "popup"
-        popup.className = "container"
-        popup.style = "position:fixed;left:40%;right:40%;top:15%;z-index:10; width:300px";
-        popup.innerHTML = '\
+        //         iscreatable = false;
+        //     }
+        // }
+
+
+
+        var ispopup = false;
+        function popUpEvent() {
+            if (ispopup == true) {
+                document.body.removeChild(document.getElementById("popup"));
+                ispopup = false;
+                return;
+            }
+
+            ispopup = true;
+            var popup = document.createElement("div");
+            popup.id = "popup"
+            popup.className = "container"
+            popup.style = "position:fixed;left:40%;right:40%;top:15%;z-index:10; width:300px";
+            popup.innerHTML = '\
         <div style="width:100%;height:70%;text-align:center;padding:30px;background-color:white;border-radius:0.4em;border:1px black solid">\
           <div style="width:100%;height:20px;padding-top:5px;padding-bottom:20px">\
             Event name\
@@ -103,23 +127,23 @@
             <button id="createButton" class="button" >Create</button>\
              <button id="cancelButton" class ="button">Cancel</button> \
              </div>'
-        document.body.appendChild(popup);
-        var createBtn = document.getElementById("createButton");
-        createBtn.onclick = function () {
-          var Ename = document.getElementById("ename").value;
-          var Esub = document.getElementById("esub").value;
-          CreateEvent(Ename, Esub);
-          ispopup = false;
-          document.body.removeChild(popup);
-        }
-        var cancelBtn = document.getElementById("cancelButton");
-        cancelBtn.onclick = function () {
-          ispopup = false;
-          document.body.removeChild(document.getElementById("popup"));
-        }
+            document.body.appendChild(popup);
+            var createBtn = document.getElementById("createButton");
+            createBtn.onclick = function () {
+                var Ename = document.getElementById("ename").value;
+                var Esub = document.getElementById("esub").value;
+                CreateEvent(Ename, Esub);
+                ispopup = false;
+                document.body.removeChild(popup);
+            }
+            var cancelBtn = document.getElementById("cancelButton");
+            cancelBtn.onclick = function () {
+                ispopup = false;
+                document.body.removeChild(document.getElementById("popup"));
+            }
 
 
-      }
+        }
 
     </script>
     <% include ../footer %>
