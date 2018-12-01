@@ -1,4 +1,6 @@
 <% include ../core %>
+
+<button class="button is-medium is-dark" style="position:fixed;left:15px;bottom:150px;z-index:999;">new!</button>
 <div class="field has-addons" style="position:fixed;right:0px;bottom:130px;z-index:999">
     <button onclick="window.location.href='../map'" class="button is-medium is-dark is-outlined">3D</button>
     <button class="button is-medium is-dark">2D</button>
@@ -20,10 +22,23 @@
         var myIcon = L.icon({
             iconUrl: "/images/red_marker.png"
         });
+        function addMarker(position) {
+
+            // 마커를 생성합니다
+            var marker = new L.marker({
+                position: position
+            });
+
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+
+            // 생성된 마커를 배열에 추가합니다
+            markers.push(marker);
+        }
         for (var i = 0; i < json.length; i++) {
             // Current object
             var obj = json[i];
-            var marker = L.marker([obj.latitude, obj.longitude], {icon: myIcon}).bindPopup(obj.title).addTo(mymap);
+            var marker = L.marker([obj.latitude, obj.longitude], { icon: myIcon }).bindPopup(obj.title).addTo(mymap);
             //var layer = L.Polygon(latlngs).bindPopup('Hi There!').addTo(map);
             marker.on('mousein', function (e) { //마커 마우스 이벤트
                 //마커에 팝업 연결하기
@@ -37,8 +52,11 @@
 
         //지도를 클릭하면 해당 지점의 좌표값 메시지 표시
         function onMapClick(e) {
-            alert("클릭한 좌표값: " + e.latlng);
+            //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
+            var newmarker = L.marker([e.latlng.lat, e.latlng.lng], {icon: myIcon}).addTo(mymap);
+
         }
+
     </script>
     <% include ../footer %>
 </body>
