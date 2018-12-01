@@ -15,6 +15,7 @@ import * as signUpController from "./controllers/signUp";
 import * as timelineController from "./controllers/timeline";
 import * as subscribeController from "./controllers/subscribe";
 import * as opensourcesController from "./controllers/opensources";
+import { isRegExp } from "util";
 
 const app = express();
 
@@ -23,7 +24,7 @@ app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 app.get("/", indexController.index);
 app.get("/login", signInController.index);
