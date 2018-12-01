@@ -41,7 +41,7 @@ export let subscribe = (req: Request, res: Response) => {
 
     timelines.ref("/users/" + auth.currentUser.uid).once("value", (snapshot) => {
         console.log("It's snapshot: ", snapshot.val());
-        if (snapshot.val().subscribe == "" || snapshot.val().follow == undefined || snapshot.val().follow == {}) {
+        if (snapshot.val().subscribe == "" || snapshot.val().subscribe === undefined || snapshot.val().subscribe === {}) {
             timelines.ref("/users/" + auth.currentUser.uid + "/subscribe").set({
                 [addTarget]: true
             });
