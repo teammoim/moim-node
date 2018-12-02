@@ -1,5 +1,45 @@
 <% include ../core %>
-<body>        
+
+<body>
+    <style>
+        .osbox-container {
+            display: flex;
+            height: 220px;
+            margin-left: 10%;
+            margin-right: 10%;
+            padding-top: 20px;
+        }
+
+        .osbox {
+            position: relative;
+            padding: 5px;
+            display: inline-block;
+            width: 25% ;
+            height: 100%;
+            margin: 10px;
+            font-size: 15px;
+        }
+        .linkbar-left{
+            position: absolute; 
+            bottom: 5px; 
+            width: 50%;
+            height: 10%;
+            left: 30px; 
+            margin-right: 50%; 
+            text-align: left;
+            font-size: 20px;
+        }
+        .linkbar-right{
+            position: absolute; 
+            bottom: 5px; 
+            width: 50%;
+            height: 10%;
+            right: 30px; 
+            margin-left: 50%; 
+            text-align: right;
+            font-size: 18px;
+        }
+    </style>
     <% include ../navigation %>
     <section class="hero is-dark">
         <div class="hero-body">
@@ -8,6 +48,43 @@
             </p>
         </div>
     </section>
+    <div class="osbox-container">
+        <div class="osbox">
+            <p style="text-align: center">async</p>
+            <p style="margin: 5px;text-align: center">
+                Async is a utility module which provides straight-forward, 
+            powerful functions for working with asynchronous JavaScript. 
+            </p>
+            <div class="linkbar-left">
+                <a href=http://caolan.github.io/async>site</a>
+            </div>
+            <div class="linkbar-right">
+                <a href=https://github.com/caolan/async>github</a>
+            </div>
+        </div>
+        <div class="osbox">hello world!</div>
+        <div class="osbox">hello world!</div>
+        <div class="osbox">hello world!</div>
+    </div>
+    <div class="osbox-container">
+            <div class="osbox">hello world!</div>
+            <div class="osbox">hello world!</div>
+            <div class="osbox">hello world!</div>
+            <div class="osbox">hello world!</div>
+        </div>
+        <div class="osbox-container">
+                <div class="osbox">hello world!</div>
+                <div class="osbox">hello world!</div>
+                <div class="osbox">hello world!</div>
+                <div class="osbox">hello world!</div>
+            </div>
+            <div class="osbox-container">
+                    <div class="osbox">hello world!</div>
+                    <div class="osbox">hello world!</div>
+                    <div class="osbox">hello world!</div>
+                    <div class="osbox">hello world!</div>
+                </div>
     <% include ../footer %>
 </body>
+
 </html>
