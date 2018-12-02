@@ -39,7 +39,7 @@ export let createPost = (req: Request, res: Response) => {
 
     const newPostKey = serverDate.getTime();
 
-    firebase_db.ref("/posts/" + auth.currentUser.uid + "/" + newPostKey).set({
+    firebase_db.ref("/post/" + auth.currentUser.uid + "/" + newPostKey).set({
         postId: newPostKey,
         text: post_text,
         uid: auth.currentUser.uid,
@@ -58,9 +58,9 @@ export let createPost = (req: Request, res: Response) => {
 
 export let delPost = (req: Request, res: Response) => {
     const postId = req.body.postId;
-    firebase_db.ref("/posts/" + auth.currentUser.uid + "/" + postId).once("value").then(function (data) {
+    firebase_db.ref("/post/" + auth.currentUser.uid + "/" + postId).once("value").then(function (data) {
         if (data != undefined) {
-            firebase_db.ref("posts/" + auth.currentUser.uid + "/" + postId).remove();
+            firebase_db.ref("post/" + auth.currentUser.uid + "/" + postId).remove();
             // Delete Complete alert
         } else {
             console.log("Data is undefined");
@@ -82,7 +82,7 @@ export let comment = (req: Request, res: Response) => {
     const newCommentsKey = new Date().getTime();
     const currentuid = auth.currentUser.uid;
 
-    firebase_db.ref("/posts/" + currentuid + "/" + postId).child("/comments/" + newCommentsKey).set({
+    firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + newCommentsKey).set({
         comments: comments_text,
         uid: currentuid,
     }).catch(function (error) {
@@ -96,7 +96,7 @@ export let delComments = (req: Request, res: Response) => {
     const postId = req.body.postId;
     const currentuid = auth.currentUser.uid;
     const commentsId = req.body.commentsId;
-    firebase_db.ref("/posts/" + currentuid + "/" + postId).child("/comments/" + commentsId).once("value").then(function (data) {
+    firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + commentsId).once("value").then(function (data) {
         if (data != undefined) {
             firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + commentsId).remove();
         } else {
