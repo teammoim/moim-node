@@ -40,7 +40,7 @@ export let createPost = (req: Request, res: Response) => {
     const newPostKey = serverDate.getTime();
 
     firebase_db.ref("/post/" + auth.currentUser.uid + "/" + newPostKey).set({
-        postId: newPostKey,
+        postId: newPostKey.toString(),
         text: post_text,
         uid: auth.currentUser.uid,
         url: img_url // img_url_Array
