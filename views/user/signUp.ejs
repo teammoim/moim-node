@@ -1,8 +1,8 @@
 <% include ../core %>
-
+<html lang="">
 <body>
-    <% include ../navigation %>
-    <script>
+<% include ../navigation %>
+<script>
     var isEmail = (target) => {
         const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         return pattern.test(target);
@@ -13,61 +13,57 @@
     }
 
     var validateform = () => {
-        if(!isEmail($("input[name=email]").val())) {
+        if (!isEmail($("input[name=email]").val())) {
             alert("이메일 형식이 올바르지 않습니다!");
             return;
-        }
-        else if($("input[name=password]").val().length < 8) {
+        } else if ($("input[name=password]").val().length < 8) {
             alert("비밀번호는 8자 이상이어야 합니다!");
             return;
-        }
-        else if($("input[name=realname]").val() == "") {
+        } else if ($("input[name=realname]").val() == "") {
             alert("성함을 입력해주세요!");
             return;
-        }
-        else {
+        } else {
             document.getElementById("signupform").submit();
         }
     }
-    </script>
+</script>
 
-    <section class="section">
-        <div class="container">
-            <h1 class="title">회원가입</h1>
-            <form id="signupform" action="/submitSignup" method="post">
-                <div class="field">
-                    <p class="control has-icons-left has-icons-right">
-                        <input class="input" name="email" type="email" placeholder="Email">
-                        <span class="icon is-small is-left">
+<section class="section">
+    <div class="container">
+        <h1 class="title">회원가입</h1>
+        <form id="signupform" action="/submitSignup" method="post">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" name="email" type="email" placeholder="Email">
+                    <span class="icon is-small is-left">
                             <i class="fas fa-envelope"></i>
                         </span>
-                        <span class="icon is-small is-right">
+                    <span class="icon is-small is-right">
                             <i class="fas fa-check"></i>
                         </span>
-                    </p>
-                </div>
+                </p>
+            </div>
 
-                <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" name="password" type="password" placeholder="Password">
-                        <span class="icon is-small is-left">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="password" type="password" placeholder="Password">
+                    <span class="icon is-small is-left">
                             <i class="fas fa-lock"></i>
                         </span>
-                    </p>
-                </div>
+                </p>
+            </div>
 
-                <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" name="realname" type="text" placeholder="Name">
-                        <span class="icon is-small is-left">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="realname" type="text" placeholder="Name">
+                    <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
-                    </p>
-                </div>
-                <input class="button" type="button" value="회원가입 하기" onclick="validateform();">
-            </form>
-        </div>
-    </section>
+                </p>
+            </div>
+            <input class="button" type="button" value="회원가입 하기" onclick="validateform();">
+        </form>
+    </div>
+</section>
 </body>
-
 </html>

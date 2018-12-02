@@ -1,143 +1,144 @@
 <% include ../core %>
-
+<html lang="">
 <body>
-  <% include ../navigation %>
-  <!--
-    <div class="tabs is-centered is-boxed is-medium">
-        <ul>
-            <li>
-                <a href="/profile">
-                    <span class="icon is-small"><i class="fas fa-user-circle " aria-hidden="true"></i></span>
-                    <span>개요</span>
-                </a>
-            </li>
-            <li class="is-active">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-sliders-h " aria-hidden="true"></i></span>
-                    <span>설정</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-  -->
-  <section class="section">
+<% include ../navigation %>
+<!--
+  <div class="tabs is-centered is-boxed is-medium">
+      <ul>
+          <li>
+              <a href="/profile">
+                  <span class="icon is-small"><i class="fas fa-user-circle " aria-hidden="true"></i></span>
+                  <span>개요</span>
+              </a>
+          </li>
+          <li class="is-active">
+              <a>
+                  <span class="icon is-small"><i class="fas fa-sliders-h " aria-hidden="true"></i></span>
+                  <span>설정</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+-->
+<section class="section">
     <div class="container">
-      <h1 class="title">설정</h1>
-      <form action="/changesetting" method="post">
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input" name="email" type="email" placeholder="Email">
-            <span class="icon is-small is-left">
+        <h1 class="title">설정</h1>
+        <form action="/changesetting" method="post">
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" name="email" type="email" placeholder="Email">
+                    <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
-            <span class="icon is-small is-right">
+                    <span class="icon is-small is-right">
               <i class="fas fa-check"></i>
             </span>
-          </p>
-        </div>
+                </p>
+            </div>
 
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" name="password" type="button" value="Password"  id="password">
-            <span class="icon is-small is-left">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="password" type="button" value="Password" id="password">
+                    <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
-          </p>
-        </div>
+                </p>
+            </div>
 
-        <!-- If password button clicked, more password setting is created at password-setting 
-             that will be last password, new password and new password confirm-->
+            <!-- If password button clicked, more password setting is created at password-setting
+                 that will be last password, new password and new password confirm-->
 
-        <div id="password-setting"></div> 
+            <div id="password-setting"></div>
 
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" name="realname" type="text" placeholder="Name">
-            <span class="icon is-small is-left">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="realname" type="text" placeholder="Name">
+                    <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
-          </p>
-        </div>
+                </p>
+            </div>
 
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" name="nickname" type="text" placeholder="Nick Name">
-            <span class="icon is-small is-left">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="nickname" type="text" placeholder="Nick Name">
+                    <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" name="phonenumber" type="text" placeholder="Phone number">
-            <span class="icon is-small is-left">
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="phonenumber" type="text" placeholder="Phone number">
+                    <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
-          </p>
-        </div>
-        <div class="field">
-          <div class="setting-title">소개문구</div>
-          <div class="control">
-            <textarea class="textarea" rows="10" cols="6" name="intro"></textarea>
-          </div>
-        </div>
-        
-
-        <div class="field">
-          <p>생년월일을 입력하세요.</p>
-          <p class="control has-icons-left">
-            <input class="datepicker" name="birthdate" type="date">
-          </p>
-        </div>
-
-        <div class="field">
-          <p>성별을 골라주세요.</p>
-          <p class="control">
-            <label class="radio">
-              <input type="radio" name="chk_info" value="M">남성
-            </label>
-            <label class="radio">
-              <input type="radio" name="chk_info" value="F">여성
-            </label>
-            <label class="radio">
-              <input type="radio" name="chk_info" value="Z">기타
-            </label>
-          </p>
-        </div>
+                </p>
+            </div>
+            <div class="field">
+                <div class="setting-title">소개문구</div>
+                <div class="control">
+                    <textarea class="textarea" rows="10" cols="6" name="intro"></textarea>
+                </div>
+            </div>
 
 
-        <input class="button" type="submit" value="사용자 정보 업데이트" id="submitButton">
-      </form>
+            <div class="field">
+                <p>생년월일을 입력하세요.</p>
+                <p class="control has-icons-left">
+                    <input class="datepicker" name="birthdate" type="date">
+                </p>
+            </div>
+
+            <div class="field">
+                <p>성별을 골라주세요.</p>
+                <p class="control">
+                    <label class="radio">
+                        <input type="radio" name="chk_info" value="M">남성
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="chk_info" value="F">여성
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="chk_info" value="Z">기타
+                    </label>
+                </p>
+            </div>
+
+
+            <input class="button" type="submit" value="사용자 정보 업데이트" id="submitButton">
+        </form>
     </div>
-  </section>
+</section>
 
 
-  <style>
+<style>
     .setting-title {
-      margin-bottom: 10px;
+        margin-bottom: 10px;
     }
-    #password{
-      color:gainsboro;
-      cursor:pointer;
+
+    #password {
+        color: gainsboro;
+        cursor: pointer;
     }
+
     #password:focus {
-      border-color: #b5b5b5;
-      box-shadow: unset;
+        border-color: #b5b5b5;
+        box-shadow: unset;
     }
-  </style>
-  <script>
+</style>
+<script>
     var psword = document.getElementById("password");
     var isclicked = false
     psword.onclick = function () {
-      var pswordSetting = document.getElementById("password-setting");
-      if (isclicked) {
-        pswordSetting.removeChild(pswordSetting.firstChild);
-        isclicked = false;
-      }
-      else {
-        var moreps = document.createElement("div");
-        moreps.style = 'margin-left:30px'
-        moreps.innerHTML = '<div class="field">\
+        var pswordSetting = document.getElementById("password-setting");
+        if (isclicked) {
+            pswordSetting.removeChild(pswordSetting.firstChild);
+            isclicked = false;
+        } else {
+            var moreps = document.createElement("div");
+            moreps.style = 'margin-left:30px'
+            moreps.innerHTML = '<div class="field">\
           <p class="control has-icons-left" >\
             <input class="input" name="old_password" type="password" placeholder="Current password" >\
               <span class="icon is-small is-left">\
@@ -164,34 +165,33 @@
           <p id="password-confirm-msg" style="margin-left:10px;margin-top:10px;font-size:0.8em;color:rgb(135,135,135);margin-bottom:10px;"></p>\
           </div>\
         </div> '
-        pswordSetting.appendChild(moreps);
-        var newps = document.getElementById("newps");
-        var newps_confirm = document.getElementById("newps-confirm");
-        var msg = document.getElementById("password-confirm-msg");
-        newps.onkeydown = function () {
-          if (newps_confirm.value.length != 0) {
-            showMessege();
-          }
-        }
-        newps_confirm.onkeydown = function () {
-          showMessege();
-        }
-        isclicked = true;
-        function showMessege() {
-          setTimeout(function () { // wait until input set
-            if (newps.value !== newps_confirm.value) {
-              msg.innerText = "비밀번호가 맞지 않습니다!"
-              document.getElementById("submitButton").disabled = true;
+            pswordSetting.appendChild(moreps);
+            var newps = document.getElementById("newps");
+            var newps_confirm = document.getElementById("newps-confirm");
+            var msg = document.getElementById("password-confirm-msg");
+            newps.onkeydown = function () {
+                if (newps_confirm.value.length != 0) {
+                    showMessege();
+                }
             }
-            else {
-              msg.innerText = ""
-              document.getElementById("submitButton").disabled = false;
+            newps_confirm.onkeydown = function () {
+                showMessege();
             }
-          }, 100);
-        }
-      }
-    }
-  </script>
-</body>
+            isclicked = true;
 
+            function showMessege() {
+                setTimeout(function () { // wait until input set
+                    if (newps.value !== newps_confirm.value) {
+                        msg.innerText = "비밀번호가 맞지 않습니다!"
+                        document.getElementById("submitButton").disabled = true;
+                    } else {
+                        msg.innerText = ""
+                        document.getElementById("submitButton").disabled = false;
+                    }
+                }, 100);
+            }
+        }
+    }
+</script>
+</body>
 </html>

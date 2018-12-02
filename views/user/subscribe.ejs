@@ -1,55 +1,56 @@
 <% include ../core %>
-
+<html lang="">
 <body>
-    <% include ../navigation %>
-    <script>
-    var subscribe = (targetid) =>
-    {
+<% include ../navigation %>
+<script>
+    var subscribe = (targetid) => {
         $.ajax({
             type: "POST",
             url: "/requestadd",
             data: {uid: targetid},
-            success: () => {alert("친구를 성공적으로 구독했어요!")},
-            error: () => {alert("알 수 없는 오류가 발생했습니다.")}
+            success: () => {
+                alert("친구를 성공적으로 구독했어요!")
+            },
+            error: () => {
+                alert("알 수 없는 오류가 발생했습니다.")
+            }
         });
     }
-    </script>
-    <section class="section">
-        <div class="container">
-            <h1 class="title">친구 구독하기</h1>
-            <form id="find" action="/requestfind" method="post">
-                <div class="field">
-                    <p class="control has-icons-left">
-                        <input class="input" name="nickname" type="text" placeholder="찾으려는 친구의 별명을 입력하세요!">
-                        <span class="icon is-small is-left">
+</script>
+<section class="section">
+    <div class="container">
+        <h1 class="title">친구 구독하기</h1>
+        <form id="find" action="/requestfind" method="post">
+            <div class="field">
+                <p class="control has-icons-left">
+                    <input class="input" name="nickname" type="text" placeholder="찾으려는 친구의 별명을 입력하세요!">
+                    <span class="icon is-small is-left">
                             <i class="fas fa-user"></i>
                         </span>
-                    </p>
-                </div>
-                <input class="button" type="submit" value="검색하기">
-            </form>
-        </div>
-        <% if(added != undefined) { %>
+                </p>
+            </div>
+            <input class="button" type="submit" value="검색하기">
+        </form>
+    </div>
+    <% if(added != undefined) { %>
         <div class="container">
-        <p>친구 구독 성공!</p>
+            <p>친구 구독 성공!</p>
         </div>
-        <% } %>
-        <div class ="container">
-            <% if(users != undefined) { %>
+    <% } %>
+    <div class="container">
+        <% if(users != undefined) { %>
             <% for(var i = 0; i < users.length; i++) { %>
                 <form id="add" action="/requestadd" method="post">
-                <div class="field">
-                    <p><%= users[i].nickname %></p>
-                    <p><%= users[i].name %></p>
-                    <input type="hidden" name="uid" value=<%= users[i].uid %>>
-                    <input class="button" type="submit" value="구독하기" onclick="subscribe(<%= users[i].uid %>);">
-                </div>
-            </form>
-            <% } } %>
+                    <div class="field">
+                        <p><%= users[i].nickname %></p>
+                        <p><%= users[i].name %></p>
+                        <input type="hidden" name="uid" value=<%= users[i].uid %>>
+                        <input class="button" type="submit" value="구독하기" onclick="subscribe(<%= users[i].uid %>);">
+                    </div>
+                </form>
+        <% } } %>
     </div>
-
-    </section>
-    <% include ../footer %>
+</section>
+<% include ../footer %>
 </body>
-
 </html>

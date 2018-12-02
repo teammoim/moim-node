@@ -1,65 +1,68 @@
 <% include ../core %>
-
+<html lang="">
 <body>
-  <% include ../navigation %>
-  <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
-  <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
-  <!--<div class="tabs is-centered is-boxed is-medium">
-    <ul>
-      <li class="is-active">
-        <a>
-          <span class="icon is-small"><i class="fas fa-user-circle " aria-hidden="true"></i></span>
-          <span>개요</span>
-        </a>
-      </li>
-      <li>
-        <a href="/setting">
-          <span class="icon is-small"><i class="fas fa-sliders-h " aria-hidden="true"></i></span>
-          <span>설정</span>
-        </a>
-      </li>
-    </ul>
-  </div>-->
-  <div class="profile container">
+<% include ../navigation %>
+<link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css"/>
+<link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css"/>
+<!--<div class="tabs is-centered is-boxed is-medium">
+  <ul>
+    <li class="is-active">
+      <a>
+        <span class="icon is-small"><i class="fas fa-user-circle " aria-hidden="true"></i></span>
+        <span>개요</span>
+      </a>
+    </li>
+    <li>
+      <a href="/setting">
+        <span class="icon is-small"><i class="fas fa-sliders-h " aria-hidden="true"></i></span>
+        <span>설정</span>
+      </a>
+    </li>
+  </ul>
+</div>-->
+<div class="profile container">
     <div class="profile-left">
-      <div class="profile-image-container"></div>
-      <input type="file" id="change-image" style="display:none"/>
+        <div class="profile-image-container"></div>
+        <input type="file" id="change-image" style="display:none"/>
     </div>
     <div class="profile-right">
-      <div class="profile-name"><%= name %></div> <br />
-      <div class="profile-info">
-          <% var postcounter = 0; %>
-          <% try { %>
-          <% postcounter = Object.keys(youpost[0]).length; %>
-          <% }  catch(error){%>
-          <% postcounter = 0; %>
-           <% } %>
-        게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
-        친구 <span id="followers-length" style="margin:0em 1em 0em 1em"><%= subscribes.length %></span>
-        <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
-            <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
-      </div> <br />
-      <div class="profile-intro"></div>
+        <div class="profile-name"><%= name %></div>
+        <br/>
+        <div class="profile-info">
+            <% var postcounter = 0; %>
+            <% try { %>
+                <% postcounter = Object.keys(youpost[0]).length; %>
+            <% }  catch(error){ %>
+                <% postcounter = 0; %>
+            <% } %>
+            게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
+            친구 <span id="followers-length" style="margin:0em 1em 0em 1em"><%= subscribes.length %></span>
+            <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
+                <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
+        </div>
+        <br/>
+        <div class="profile-intro"></div>
     </div>
-  </div>
-  <hr />
-  <div class="profile-body-container">
+</div>
+<hr/>
+<div class="profile-body-container">
     <div class="more-profile">
-      <p class="row">
-        Nickname : <%= you.nickname %>
-      </p>
-      <p class="row">
-        Email : <%= you.email %>
-      </p>
-      <p class="row">
-        Gender : <%= you.gender %>
-      </p>
-      <p class="row">
-        Birthday : <%= you.birthday %>
-      </p>
+        <p class="row">
+            Nickname : <%= you.nickname %>
+        </p>
+        <p class="row">
+            Email : <%= you.email %>
+        </p>
+        <p class="row">
+            Gender : <%= you.gender %>
+        </p>
+        <p class="row">
+            Birthday : <%= you.birthday %>
+        </p>
     </div>
     <div class="timeline-posts"></div>
     <div class="timeline-friends"></div>
+<<<<<<< Updated upstream
   </div>
   <form id="form-uid" method="post">
     <input type="hidden" name="uid" value="<%= uid %>" />
@@ -71,162 +74,171 @@
   <input type="hidden" id="jsonsubs" value="<%= subscribes %>" />
   <script src="/js/lib/timeline.js"></script>
   <script>
+=======
+</div>
+<form id="form-uid" method="post">
+    <input type="hidden" name="uid" value="<%= uid %>"/>
+</form>
+<form id="form-img" method="post" action="/changeProfileImg">
+    <input id="imgfile" type="hidden" name="imgfile"/>
+</form>
+<script src="/js/lib/timeline.js"></script>
+<script>
+>>>>>>> Stashed changes
     var isfollow = "<%= isfollow %>"
     var profileImg = document.getElementsByClassName("profile-image-container")[0];
     var image = new Image();
     image.src = "images/default-writerImage.png";
     image.className = "profile-image";
     if (isfollow != "me") {
-      image.style.cursor = "default";
-    }
-    else {
-      image.style.cursor = "pointer";
+        image.style.cursor = "default";
+    } else {
+        image.style.cursor = "pointer";
     }
 
     image.onclick = function () {
-      if (isfollow == "me") {
-        document.getElementById("change-image").click();
-      }
+        if (isfollow == "me") {
+            document.getElementById("change-image").click();
+        }
     }
     profileImg.appendChild(image);
 
 
     if (isfollow == "me") { //create setting and subscribe button
-      var buttonBox = document.getElementsByClassName("profile-info")[0];
-      var settingButton = document.createElement("button");
-      settingButton.className = "button";
-      settingButton.style.backgroundColor = "ghostwhite";
-      settingButton.style.marginRight = "5px"
-      settingButton.innerText = "Setting"
-      settingButton.onclick = function () {
-        location.href = "/setting"
-      }
-      buttonBox.appendChild(settingButton);
-      var subscribeButton = document.createElement("button");
-      subscribeButton.className = "button";
-      subscribeButton.style.backgroundColor = "ghostwhite";
-      subscribeButton.innerText = "Search friend"
-      subscribeButton.onclick = function () {
-        location.href = "/subscribe"
-      }
-      buttonBox.appendChild(subscribeButton);
+        var buttonBox = document.getElementsByClassName("profile-info")[0];
+        var settingButton = document.createElement("button");
+        settingButton.className = "button";
+        settingButton.style.backgroundColor = "ghostwhite";
+        settingButton.style.marginRight = "5px"
+        settingButton.innerText = "Setting"
+        settingButton.onclick = function () {
+            location.href = "/setting"
+        }
+        buttonBox.appendChild(settingButton);
+        var subscribeButton = document.createElement("button");
+        subscribeButton.className = "button";
+        subscribeButton.style.backgroundColor = "ghostwhite";
+        subscribeButton.innerText = "Search friend"
+        subscribeButton.onclick = function () {
+            location.href = "/subscribe"
+        }
+        buttonBox.appendChild(subscribeButton);
 
-    }
-    else { // create follow button
-      var buttonBox = document.getElementsByClassName("profile-info")[0];
-      var followButton = document.createElement("button");
-      buttonBox.appendChild(followButton);
-      followButton.className = "button";
-      followButton.onclick = function () {
-        var form = document.getElementById("form-uid");
-        form.action = "/tryfollow";
-        form.submit();
-        if (isfollow == "true")
-          isfollow = "false";
-        else
-          isfollow = "true";
-      }
-      if (isfollow == "true") {
-        followButton.innerText = "Followed";
-      }
-      else {
-        followButton.innerText = "Follow";
-      }
+    } else { // create follow button
+        var buttonBox = document.getElementsByClassName("profile-info")[0];
+        var followButton = document.createElement("button");
+        buttonBox.appendChild(followButton);
+        followButton.className = "button";
+        followButton.onclick = function () {
+            var form = document.getElementById("form-uid");
+            form.action = "/tryfollow";
+            form.submit();
+            if (isfollow == "true")
+                isfollow = "false";
+            else
+                isfollow = "true";
+        }
+        if (isfollow == "true") {
+            followButton.innerText = "Followed";
+        } else {
+            followButton.innerText = "Follow";
+        }
     }
     var imgUpload = document.getElementById("change-image");
     imgUpload.onchange = function () {
-      if (imgUpload.files[0].type.match(/image.*/)) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          var r = confirm("Are you sure to change your profile image?");
-          if (r == true) {
-            image.src = e.target.result;
-            var imagefile = document.getElementById("imgfile");
-            imagefile.value = image.src;
-            var imageform = document.getElementById("form-img");
-            imageform.submit();
-          }
+        if (imgUpload.files[0].type.match(/image.*/)) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var r = confirm("Are you sure to change your profile image?");
+                if (r == true) {
+                    image.src = e.target.result;
+                    var imagefile = document.getElementById("imgfile");
+                    imagefile.value = image.src;
+                    var imageform = document.getElementById("form-img");
+                    imageform.submit();
+                }
+            }
+            reader.readAsDataURL(imgUpload.files[0]);
+        } else {
+            alert("Wrong file selected\n Please upload image file");
         }
-        reader.readAsDataURL(imgUpload.files[0]);
-      }
-      else {
-        alert("Wrong file selected\n Please upload image file");
-      }
     }
 
 
-
-
-
-
-  </script>
-  <style>
+</script>
+<style>
     .profile-image {
-      border-radius: 50%;
-      margin-left: 50%;
-      width: 170px;
-      height: 180px;
-      padding-top: 10px;
+        border-radius: 50%;
+        margin-left: 50%;
+        width: 170px;
+        height: 180px;
+        padding-top: 10px;
     }
+
     .profile-body-container {
-      margin-left: auto;
-      margin-right: auto;
-      width: max-content;
-      margin-top: 10px;
-      height: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        width: max-content;
+        margin-top: 10px;
+        height: 80%;
     }
-    .more-profile{
-      width:300px;
-      float:left;
-      background-color:white;
-      border:0.3px solid black;
-      font-size:0.8em;
-      margin-bottom:20px;
+
+    .more-profile {
+        width: 300px;
+        float: left;
+        background-color: white;
+        border: 0.3px solid black;
+        font-size: 0.8em;
+        margin-bottom: 20px;
     }
+
     .underline {
-      border-bottom:0.5px solid gainsboro
+        border-bottom: 0.5px solid gainsboro
     }
-    .row{
-      min-height:50px;
-      padding:10px 10px 10px 10px;
+
+    .row {
+        min-height: 50px;
+        padding: 10px 10px 10px 10px;
     }
-    .timeline-posts{
-      margin-bottom:20px;
+
+    .timeline-posts {
+        margin-bottom: 20px;
     }
-    @media (max-width:580px){
-      .more-profile{
-        width:100%;
-      }
-      .friends{
-        width:100%;
-        margin-left:unset;
-      }
+
+    @media (max-width: 580px) {
+        .more-profile {
+            width: 100%;
+        }
+
+        .friends {
+            width: 100%;
+            margin-left: unset;
+        }
 
     }
 
-    @media (max-width:800px) {
-      .profile-image {
-        margin-left: unset;
-      }
-      .friends {
-        width: 555px;
-      }
-      .more-profile{
-        width: 555px;
-        margin-left:10px;
-      }
-    }
-    @media (max-width:1100px){
-      .profile-body-container {
-        margin-left: unset;
-        margin-right: unset;
-        width: inherit;
-      }
+    @media (max-width: 800px) {
+        .profile-image {
+            margin-left: unset;
+        }
+
+        .friends {
+            width: 555px;
+        }
+
+        .more-profile {
+            width: 555px;
+            margin-left: 10px;
+        }
     }
 
-
-
-  </style>
+    @media (max-width: 1100px) {
+        .profile-body-container {
+            margin-left: unset;
+            margin-right: unset;
+            width: inherit;
+        }
+    }
+</style>
 </body>
-
 </html>
