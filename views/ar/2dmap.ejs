@@ -13,7 +13,8 @@
     <script>
         //지도 영역 'map' DOM Element를 mymap 변수로 정의
         var mymap = L.map('map').setView([37.610, 126.997], 19);
-        var json = <%- JSON.stringify(marks); %>
+        var json = <%- JSON.stringify(marks); %>;
+
         // console.log(json);
         Object.keys(json).forEach((k) => {
             console.log("TEST K");
@@ -38,64 +39,42 @@
             // 생성된 마커를 배열에 추가합니다
             markers.push(marker);
         }
-        function showtext(text) {
-                alert(text);
-        }
-        for (var i = 0; i < json.length; i++) {
+        Object.keys(json).forEach((k) => {
             // Current object
-            var obj = json[i];
-            var marker = L.marker([obj.latitude, obj.longitude], { icon: myIcon }).bindPopup("이름 : " + obj.title + '<br></br>' + '<a onclick=showtext(obj.text)>더보기</a>').addTo(mymap);
-            //var layer = L.Polygon(latlngs).bindPopup('Hi There!').addTo(map);
-            // function onMapClick(e) {
-            //     popup
-            //         .setLatLng(e.latlng)
-            //         .setContent(e.latlng.toString() + '<a href="http://www.google.com">Visit Google</a>"')
-            //         .openOn(map);
-            // }
+            var obj = json[k];
+            var marker = L.marker([obj.latitude, obj.longitude], { icon: myIcon }).bindPopup("이름 : " + obj.title + '<br></br>' + obj.text).addTo(mymap);
             marker.on('mousein', function (e) { //마커 마우스 이벤트
                 marker.openPopup();
             });
             marker.on('mouseleave', function (e) {
                 marker.closePopup();
             })
-        }
+        });
         mymap.on('click', onMapClick);
 
-        //지도를 클릭하면 해당 지점의 좌표값 메시지 표시
 
         var iscreatable = false;
         var newname;
         var newcontent;
         function CreateEvent(name, content) {
-            alert(name + "과" + content);
             newname = name;
             newcontent = content;
             iscreatable = true;
         }
+
         function onMapClick(e) {
-            //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
             if (iscreatable) {
-                var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).bindPopup("이름 : " + newname + '<br></br>' + '<a onclick=showtext()>더보기</a>').addTo(mymap);
-                function showtext() {
-                    alert(newcontent);
-                }
+                iscreatable = false;
+                var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).bindPopup("이름 : " + newname + '<br></br>' + '<a >더보기</a>').addTo(mymap);
+                
                 marker.on('mousein', function (e) { //마커 마우스 이벤트
                     newmarker.openPopup();
                 });
                 marker.on('mouseleave', function (e) {
                     newmarker.closePopup();
                 })
-                iscreatable = false;
             }
         }
-        // function onMapClick(e) {
-        //     //alert("클릭한 좌표값: " + e.latlng.lat + e.latlng.lng);
-        //     if (iscreatable){
-        //         var newmarker = L.marker([e.latlng.lat, e.latlng.lng], { icon: myIcon }).bindPopup("이름 : " + name + '<br></br>' + '<a onclick=showtext()>더보기</a>').addTo(mymap);
-
-        //         iscreatable = false;
-        //     }
-        // }
 
 
 
