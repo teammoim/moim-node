@@ -67,6 +67,8 @@
   <form id="form-img" method="post" action="/changeProfileImg">
     <input id="imgfile" type="hidden" name="imgfile" />
   </form>
+  <input type="hidden" id="jsonpost" value="<%= JSON.stringify(youpost) %>"/>
+  <input type="hidden" id="jsonsubs" value="<%= subscribes %>" />
   <script src="/js/lib/timeline.js"></script>
   <script>
     var isfollow = "<%= isfollow %>"

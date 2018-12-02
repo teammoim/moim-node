@@ -42,6 +42,10 @@ Post.prototype.addImage = function (Image) {
 Post.prototype.addComment = function (Comment) {
   this.comments.push(Comment);
 }
+var Friend = function (name = "", image = "/images/default-writerImage.png") {
+  this.name = name;
+  this.image = image;
+}
 
 function Comment() {
   this.writer = "";
@@ -146,6 +150,8 @@ function deleteComment(postidvalue, commentidvalue) {
 }
 
 var posts = [];
+var friend_list = []; // argument : friend
+
 
 function createPost(Post) {
   posts.push(Post);
@@ -667,73 +673,40 @@ function implementWriteComment(comments_box) {
 }
 function JSONtoPost(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
-  for (var i = 0; i < JSONobj.length; i++) {
-    var post = JSONobj[i];
-    var pid = post.postid;
-    var uid = post.uid;
-    var text = post.text;
-    var image = post.url;
-    var name = uid.name;
-    var userimage = uid.image;
+  Object.keys(JSONobj).forEach(function (k) {
+    var post = JSONobj[k];
+    var pid = post['postId'];
+    var uid = post['uid'];
+    var text = post['text'];
+    var image = post['url'];
+    var name = post['name'];
+    var userimage = post['photourl'];
     var mpost = new Post(name, text);
     mpost.postid = pid;
     mpost.userid = uid;
-    if (image) {
+    /*if (image) {
       mpost.images = image.split(",");
     }
     if (userimage) {
       mpost.writerImage = userimage;
-    }
+    }*/
     createPost(mpost);
-  }
+  });
 }
 function JSONtoUser(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
-  JSON
+  
 }
-//testcase
-var james = new Post("james", "My name is james");
-james.setTime(2018, 9, 3, 4, 32, 0);
+function JSONtoSub(JSONstring) {
 
-
-var an = new Post();
-an.writer = "An";
-an.text = "this is post";
-an.setTime(2018, 9, 3, 1, 12, 10);
-
-var jang_comment = new Comment();
-an.addComment(jang_comment);
-james.addComment(jang_comment);
-jang_comment.writer = "Jang";
-jang_comment.text = "this is comment";
-
-var jang_comment2 = new Comment();
-an.addComment(jang_comment2);
-jang_comment2.writer = "Jang";
-jang_comment2.text = "And this is comment2";
-
-
-var jin = new Post("jin", "my name is jin", ["images/logo.png", "images/logo.png"]);
-jin.setTime(2018, 9, 2, 23, 46, 0);
-createPost(james);
-createPost(jin);
-createPost(an);
-
-var friend_list = [] // argument : friend
-var Friend = function (name = "", image = "/images/default-writerImage.png") {
-  this.name = name;
-  this.image = image;
 }
-var An = new Friend("AnHeeun");
-var Ang = new Friend("AngHeeun");
-friend_list.push(An);
-friend_list.push(Ang);
-var Ahn = new Friend("AhnHeeun");
-friend_list.push(Ahn);
+
 
 //
 
 window.onload = function () {
+  var youpost = document.getElementById("jsonpost").value;
+  JSONtoPost(youpost);
   implementWritePost();
   if (window.innerWidth > 950) {
     implementProfile();

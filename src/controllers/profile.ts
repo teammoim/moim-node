@@ -81,7 +81,7 @@ export let index = (req: Request, res: Response) => {
                 uid: "", // not need uid
                 subscribes: subsinfo,
                 you: userData,
-                youpost: JSON.stringify(postinfo),
+                youpost: postinfo,
               });
             });
           });
