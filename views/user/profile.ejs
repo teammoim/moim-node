@@ -62,19 +62,6 @@
     </div>
     <div class="timeline-posts"></div>
     <div class="timeline-friends"></div>
-<<<<<<< Updated upstream
-  </div>
-  <form id="form-uid" method="post">
-    <input type="hidden" name="uid" value="<%= uid %>" />
-  </form>
-  <form id="form-img" method="post" action="/changeProfileImg">
-    <input id="imgfile" type="hidden" name="imgfile" />
-  </form>
-  <input type="hidden" id="jsonpost" value="<%= JSON.stringify(youpost) %>"/>
-  <input type="hidden" id="jsonsubs" value="<%= subscribes %>" />
-  <script src="/js/lib/timeline.js"></script>
-  <script>
-=======
 </div>
 <form id="form-uid" method="post">
     <input type="hidden" name="uid" value="<%= uid %>"/>
@@ -84,7 +71,6 @@
 </form>
 <script src="/js/lib/timeline.js"></script>
 <script>
->>>>>>> Stashed changes
     var isfollow = "<%= isfollow %>"
     var profileImg = document.getElementsByClassName("profile-image-container")[0];
     var image = new Image();

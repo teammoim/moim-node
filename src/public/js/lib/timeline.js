@@ -41,14 +41,10 @@ Post.prototype.addImage = function (Image) {
 Post.prototype.addComment = function (Comment) {
     this.comments.push(Comment);
 }
-var Friend = function (name = "", image = "/images/default-writerImage.png") {
-  this.name = name;
-  this.image = image;
-}
 
 function Comment() {
     this.writer = "";
-    this.writerImage;
+    this.writerImage = "";
     this.time = new Date();
     this.text = "";
     this.likes = 0;
@@ -132,17 +128,10 @@ function editPost(postidvalue, textareavalue) {
     sendform.submit();
 }
 
-<<<<<<< Updated upstream
-var posts = [];
-var friend_list = []; // argument : friend
-
-=======
 function deletePost(postidvalue) {
     let r = confirm("Are you sure you want to delete");
     if (r === true) {
         sendform.action = "/delPost";
->>>>>>> Stashed changes
-
         sendElement.name = "postid";
         sendElement.value = postidvalue;
         sendform.submit();
@@ -164,6 +153,7 @@ function deleteComment(postidvalue, commentidvalue) {
 }
 
 let posts = [];
+
 function createPost(Post) {
     posts.push(Post);
 }
@@ -671,53 +661,42 @@ function implementWriteComment(comments_box) {
 }
 
 function JSONtoPost(JSONstring) {
-<<<<<<< Updated upstream
-  var JSONobj = JSON.parse(JSONstring);
-  Object.keys(JSONobj).forEach(function (k) {
-    var post = JSONobj[k];
-    var pid = post['postId'];
-    var uid = post['uid'];
-    var text = post['text'];
-    var image = post['url'];
-    var name = post['name'];
-    var userimage = post['photourl'];
-    var mpost = new Post(name, text);
-    mpost.postid = pid;
-    mpost.userid = uid;
-    /*if (image) {
-      mpost.images = image.split(",");
-    }
-    if (userimage) {
-      mpost.writerImage = userimage;
-    }*/
-    createPost(mpost);
-  });
-}
-function JSONtoUser(JSONstring) {
-  var JSONobj = JSON.parse(JSONstring);
-  
-}
-function JSONtoSub(JSONstring) {
-
-}
-
-
-//
+    let JSONobj = JSON.parse(JSONstring);
+    Object.keys(JSONobj).forEach(function (k) {
+        let post = JSONobj[k];
+        let pid = post['postId'];
+        let uid = post['uid'];
+        let text = post['text'];
+        let image = post['url'];
+        let name = post['name'];
+        let userimage = post['photourl'];
+        let mpost = new Post(name, text);
+        mpost.postid = pid;
+        mpost.userid = uid;
+        /*if (image) {
+          mpost.images = image.split(",");
+        }
+        if (userimage) {
+          mpost.writerImage = userimage;
+        }*/
+        createPost(mpost);
+    });
+};
 
 window.onload = function () {
-  var youpost = document.getElementById("jsonpost").value;
-  JSONtoPost(youpost);
-  implementWritePost();
-  if (window.innerWidth > 950) {
-    implementProfile();
-  }
-  if (window.innerWidth > 1250 || document.getElementsByClassName("timeline-profile").length === 0) {
-    implementFriends();
-  }
-  for (var i = 0; i < posts.length; i++) {
-    implementPost(posts[i]);
-  }
-=======
+    let youpost = document.getElementById("jsonpost").value;
+    JSONtoPost(youpost);
+    implementWritePost();
+    if (window.innerWidth > 950) {
+        implementProfile();
+    }
+    if (window.innerWidth > 1250 || document.getElementsByClassName("timeline-profile").length === 0) {
+        implementFriends();
+    }
+    for (let i = 0; i < posts.length; i++) {
+        implementPost(posts[i]);
+    }
+
     let JSONobj = JSON.parse(JSONstring);
     for (let i = 0; i < JSONobj.length; i++) {
         let post = JSONobj[i];
@@ -738,7 +717,7 @@ window.onload = function () {
         }
         createPost(mpost);
     }
-}
+};
 
 window.onload = function () {
     implementWritePost();
@@ -748,15 +727,14 @@ window.onload = function () {
     if (window.innerWidth > 1250 || document.getElementsByClassName("timeline-profile").length === 0) {
         implementFriends();
     }
-    for (var i = 0; i < posts.length; i++) {
+    for (let i = 0; i < posts.length; i++) {
         implementPost(posts[i]);
     }
->>>>>>> Stashed changes
 };
 
 
 $(window).resize(function () {
-    var profileBox = document.getElementsByClassName("timeline-profile")[0];
+    let profileBox = document.getElementsByClassName("timeline-profile")[0];
     if (window.innerWidth > 950) {
         if (profileBox.childElementCount === 0) {
             implementProfile();
