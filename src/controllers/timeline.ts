@@ -83,7 +83,7 @@ export let comment = (req: Request, res: Response) => {
     const currentuid = auth.currentUser.uid;
 
     firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + newCommentsKey).set({
-        comments: comments_text,
+        text: comments_text,
         uid: currentuid,
     }).catch(function (error) {
         if (DEBUG_FLAG) {
