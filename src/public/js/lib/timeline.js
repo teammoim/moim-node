@@ -834,9 +834,10 @@ function implementFriends() {
     friend.className = "friend";
     friends.appendChild(friend);
 
-    var uid = document.createElement("input");
+    let uid = document.createElement("input");
     uid.type = "hidden";
-    uid.value = friend_list[i].uid; // need uid from server
+    uid.value = friend_list[i].uid;
+    uid.name = "uid";
     friend.appendChild(uid);
 
     friend.onclick = function () {
