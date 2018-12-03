@@ -421,13 +421,13 @@ function implementComment(Comments, where , postidvalue) {
     var commentid = document.createElement("input");
     commentid.type = "hidden";
     commentid.name = "commentid";
-    commentid.value = Comments.commentid;
+    commentid.value = Comments[i].commentid;
     comment.appendChild(commentid);
 
     var uid = document.createElement("input");
     uid.type = "hidden";
     uid.name = "uid";
-    uid.value = Comment.uid; // need uid from server
+    uid.value = Comments[i].uid; // need uid from server
     comment.appendChild(uid);
 
     var postid = document.createElement("input");
@@ -463,10 +463,11 @@ function implementComment(Comments, where , postidvalue) {
     }
     comment_writer_right.appendChild(commentWriter);
 
-    if (uid.value === "give me timeline json") {
+    var currid = document.getElementById("uid").value;
+    if (uid.value === currid) {
       var commentdel = document.createElement("a");
       commentdel.style = "float:right;margin-right:5px";
-      commentdel.innerHTML = '<i class="material - icons">highlight_off</i>';
+      commentdel.innerHTML = '<i class="material-icons">highlight_off</i>';
       commentdel.onclick = function () {
         deleteComment(postid.value, commentid.value);
       }
