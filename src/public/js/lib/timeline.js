@@ -54,6 +54,7 @@ function Comment() {
   this.text = "";
   this.likes = 0; 
   this.postid = "";
+  this.uid = "";
   this.commentid = "";
 };
 Comment.prototype.setText = function (text) {
@@ -160,14 +161,13 @@ function createPost(Post) {
 
 
 
-function commentClick(Comments_array, where) {
+function commentClick(Comments_array, where , postidvalue) {
   var comment_box = where.getElementsByClassName("comments-box");
   if (comment_box.length !== 0) {
-
     where.removeChild(comment_box[0]);
   }
   else {
-    implementComment(Comments_array, where);
+    implementComment(Comments_array, where , postidvalue);
   }
 }
 
@@ -186,14 +186,14 @@ function implementPost(Post) {
     var uid = document.createElement("input");
     uid.type = "hidden";
     uid.name = "uid";
-  uid.value = "uid sample"; // need uid from server
-  form.appendChild(uid);
+    uid.value = Post.userid; // need uid from server
+    form.appendChild(uid);
 
     var postid = document.createElement("input");
     form.appendChild(postid);
     postid.type = "hidden";
     postid.name = "postid";
-  postid.value = "postid sample"; // need postid from server
+    postid.value = Post.postid; // need postid from server
 
   var islike = document.createElement("input");
   form.appendChild(islike);
@@ -303,7 +303,7 @@ function implementPost(Post) {
   }
 
   commentButton.onclick = function () {
-    commentClick(Post.comments, post);
+    commentClick(Post.comments, post, postid.value);
   };
   /* if(uid.value == useruid){ */
   if (Post.writer === "james") { // james is first object of sample timeline
@@ -400,7 +400,7 @@ function implementPost(Post) {
   }
   
 }
-function implementComment(Comments, where) {
+function implementComment(Comments, where , postidvalue) {
 
   var comments_box = document.createElement("div");
   comments_box.className = "comments-box";
@@ -410,8 +410,7 @@ function implementComment(Comments, where) {
   hr_comment.style.marginBottom = "10px";
   comments_box.appendChild(hr_comment);
   //at first add posting comment
-
-  implementWriteComment(comments_box);
+  implementWriteComment(comments_box, postidvalue);
 
   for (i = 0; i < Comments.length; i++) {
 
@@ -422,19 +421,19 @@ function implementComment(Comments, where) {
     var commentid = document.createElement("input");
     commentid.type = "hidden";
     commentid.name = "commentid";
-    commentid.value = "comment id sample";
+    commentid.value = Comments.commentid;
     comment.appendChild(commentid);
 
     var uid = document.createElement("input");
     uid.type = "hidden";
     uid.name = "uid";
-    uid.value = "uid sample"; // need uid from server
+    uid.value = Comment.uid; // need uid from server
     comment.appendChild(uid);
 
     var postid = document.createElement("input");
     postid.type = "hidden";
     postid.name = "postid";
-    postid.value = "postid sample";
+    postid.value = postidvalue; 
     comment.appendChild(postid);
 
     var comment_writer = document.createElement("div");
@@ -611,7 +610,7 @@ function implementWritePost() {
   };
   
 }
-function implementWriteComment(comments_box) {
+function implementWriteComment(comments_box , postidvalue) {
   var form = document.createElement("form");
   form.action = "/submitComments";
   form.method = "post";
@@ -651,7 +650,7 @@ function implementWriteComment(comments_box) {
   var postid = document.createElement("input");
   postid.type = "hidden";
   postid.name = "postid";
-  postid.value = "post id sample"; // need postid from server
+  postid.value = postidvalue;
   form.appendChild(postid);
 
   var box_under = document.createElement("div");
@@ -668,8 +667,6 @@ function implementWriteComment(comments_box) {
     form.submit();
   }
   box_under.appendChild(write_comment_button);
-
-
 }
 function JSONtoPost(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
@@ -690,6 +687,22 @@ function JSONtoPost(JSONstring) {
     if (userimage) {
       mpost.writerImage = userimage;
     }*/
+    var comments = post['comments'];
+    if (comments !== undefined) {
+      Object.keys(comments).forEach(function (ckey) {
+        var mcomment = new Comment();
+        var comment = comments[ckey];
+        mcomment.text = comment['text'];
+        mcomment.writer = comment['name'];
+        if (comment['photourl'] !== null) {
+          mcomment.writerImage = comment['photourl'];
+        }
+        mcomment.uid = comment['uid'];
+        mcomment.postid = pid;
+        mcomment.commentid = ckey;
+        mpost.addComment(mcomment);
+      })
+    }
     createPost(mpost);
   });
 }
@@ -758,7 +771,7 @@ function implementProfile() {
 
   var uid = document.createElement("input");
   uid.type = "hidden";
-  uid.value = "uid sample";
+  uid.value = //current uid;
   profile.appendChild(uid);
   
 
@@ -806,7 +819,7 @@ function implementFriends() {
 
     var uid = document.createElement("input");
     uid.type = "hidden";
-    uid.value = "uid sample"; // need uid from server
+    uid.value = friend_list[i].userid; // need uid from server
     friend.appendChild(uid);
 
     friend.onclick = function () {
