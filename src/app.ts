@@ -44,6 +44,7 @@ app.post("/submitLogin", signInController.submitLogin);
 app.post("/submitLogout", signInController.submitLogout);
 
 app.post("/createPost", timelineController.createPost);
+app.post("/editpost", timelineController.editPost);
 app.post("/delPost", timelineController.delPost);
 
 app.post("/submitComments", timelineController.comment);

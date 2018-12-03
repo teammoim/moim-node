@@ -123,7 +123,7 @@ function goProfile(uidvalue) {
 function editPost(postidvalue , textareavalue) {
   sendform.action = "/editpost";
 
-  sendElement.name = "postid";
+  sendElement.name = "postId";
   sendElement.value = postidvalue;
 
   sendElement1.name = "text";

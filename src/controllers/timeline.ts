@@ -56,6 +56,11 @@ export let createPost = (req: Request, res: Response) => {
     res.redirect("back");
 };
 
+export let editPost = (req: Request, res: Response) => {
+  const postid = req.body.postId;
+  const text = req.body.text; //textarea value
+}
+
 export let delPost = (req: Request, res: Response) => {
     const postId = req.body.postId;
     firebase_db.ref("/post/" + auth.currentUser.uid + "/" + postId).once("value").then(function (data) {
