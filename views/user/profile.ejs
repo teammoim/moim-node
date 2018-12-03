@@ -29,16 +29,16 @@
         <div class="profile-name"><%= name %></div>
         <br/>
         <div class="profile-info">
-            <% var postcounter = 0; %>
-            <% try { %>
-                <% postcounter = Object.keys(youpost[0]).length; %>
-            <% }  catch(error){ %>
-                <% postcounter = 0; %>
-            <% } %>
-            게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
-            친구 <span id="followers-length" style="margin:0em 1em 0em 1em"><%= subscribes.length %></span>
-            <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
-                <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
+          <% var postcounter = 0; %>
+          <% try { %>
+          <% postcounter =  Object.keys(youpost).length; %>
+          <% }  catch(error){ %>
+          <% postcounter = 0; %>
+          <% } %>
+          게시물 <span id="posts-length" style="margin:0em 1em 0em 1em"><%= postcounter %></span>
+          친구 <span id="followers-length" style="margin:0em 1em 0em 1em"><%= subscribes.length %></span>
+          <!-- created by js <button onclick="location.href='/setting'" class="button" style="background-color:ghostwhite">프로필 설정</button>
+      <button onclick="location.href='/subscribe'" class="button" style="background-color:ghostwhite">친구 찾기</button>-->
         </div>
         <br/>
         <div class="profile-intro"></div>
