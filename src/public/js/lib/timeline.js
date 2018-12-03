@@ -192,7 +192,7 @@ function implementPost(Post) {
     var postid = document.createElement("input");
     form.appendChild(postid);
     postid.type = "hidden";
-    postid.name = "postid";
+    postid.name = "postId";
     postid.value = Post.postid; // need postid from server
 
   var islike = document.createElement("input");
@@ -432,7 +432,7 @@ function implementComment(Comments, where , postidvalue) {
 
     var postid = document.createElement("input");
     postid.type = "hidden";
-    postid.name = "postid";
+    postid.name = "postId";
     postid.value = postidvalue; 
     comment.appendChild(postid);
 
@@ -650,7 +650,7 @@ function implementWriteComment(comments_box , postidvalue) {
 
   var postid = document.createElement("input");
   postid.type = "hidden";
-  postid.name = "postid";
+  postid.name = "postId";
   postid.value = postidvalue;
   form.appendChild(postid);
 

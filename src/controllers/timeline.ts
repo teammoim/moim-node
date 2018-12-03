@@ -9,7 +9,7 @@ const auth = firebase.auth();
 const firebase_db = firebase.database();
 
 /* Userspace variable Initialize */
-const serverDate = new Date();
+// const serverDate = new Date(); 서버키는 동안 항상 같은 serverdate로 표시 그래서 이런 전역변수 쓰면 안됨
 const DEBUG_FLAG = true;
 
 
@@ -37,7 +37,7 @@ export let createPost = (req: Request, res: Response) => {
     const post_text = req.body.text;
     const img_url = req.body.img_url;
 
-    const newPostKey = serverDate.getTime();
+    const newPostKey = new Date().getTime();
 
     firebase_db.ref("/post/" + auth.currentUser.uid + "/" + newPostKey).set({
         postId: newPostKey.toString(),
@@ -53,7 +53,7 @@ export let createPost = (req: Request, res: Response) => {
             }
         }
     });
-    res.redirect("/profile");
+    res.redirect("back");
 };
 
 export let delPost = (req: Request, res: Response) => {
@@ -74,10 +74,11 @@ export let delPost = (req: Request, res: Response) => {
             }
         }
     });
+  res.redirect("back");
 };
 
 export let comment = (req: Request, res: Response) => {
-    const postId = req.body.postid;
+    const postId = req.body.postId;
     const comments_text = req.body.text;
     const newCommentsKey = new Date().getTime();
     const currentuid = auth.currentUser.uid;
@@ -90,6 +91,7 @@ export let comment = (req: Request, res: Response) => {
             console.log(error.code + " , " + error.message);
         }
     });
+    res.redirect("back");
 };
 
 export let delComments = (req: Request, res: Response) => {
@@ -116,7 +118,7 @@ export let follow = (req: Request, res: Response) => {
 };
 
 export let like = (req: Request, res: Response) => {
-    const postId = req.body.post_id;
+    const postId = req.body.postId;
     const uid = req.body.uid;
     const currentuid = auth.currentUser.uid;
     let tmp_likes = "";
