@@ -131,7 +131,7 @@ function deletePost(postidvalue) {
   if (r === true) {
     sendform.action = "/delPost";
 
-    sendElement.name = "postid";
+    sendElement.name = "postId";
     sendElement.value = postidvalue;
     sendform.submit();
   }
@@ -141,10 +141,10 @@ function deleteComment(postidvalue, commentidvalue) {
   if (r === true) {
     sendform.action = "/delComments";
 
-    sendElement.name = "postid";
+    sendElement.name = "postId";
     sendElement.value = postidvalue;
 
-    sendElement1.name = "commentid";
+    sendElement1.name = "commentsId";
     sendElement1.value = commentidvalue;
     sendform.submit();
   }
