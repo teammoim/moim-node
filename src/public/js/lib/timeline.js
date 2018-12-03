@@ -305,8 +305,8 @@ function implementPost(Post) {
   commentButton.onclick = function () {
     commentClick(Post.comments, post, postid.value);
   };
-  /* if(uid.value == useruid){ */
-  if (Post.writer === "james") { // james is first object of sample timeline
+  var currid = document.getElementById("uid");
+  if (Post.userid === currid.value) { 
     var edit_button = document.createElement("a");
     edit_button.className = "icon-button";
     edit_button.innerHTML = '<i class="material-icons">mode_edit</i> ';
