@@ -26,6 +26,9 @@ Post.prototype.setTime = function () {
 Post.prototype.setTime = function (y, m, d, hour, min, sec) {
   this.time = new Date(y, m, d, hour, min, sec);
 };
+Post.prototype.setTime = function (milliseconds) {
+  this.time = new Date(milliseconds);
+}
 Post.prototype.setText = function (text) {
   this.text = text;
 };
@@ -413,7 +416,7 @@ function implementComment(Comments, where , postidvalue) {
   //at first add posting comment
   implementWriteComment(comments_box, postidvalue);
 
-  for (i = 0; i < Comments.length; i++) {
+  for (i = Comments.length-1; i >= 0; i--) {
 
     var comment = document.createElement("article");
     comment.className = "media comment";
@@ -683,6 +686,7 @@ function JSONtoPost(JSONstring) {
     var mpost = new Post(name, text);
     mpost.postid = pid;
     mpost.userid = uid;
+    mpost.setTime(parseInt(pid)); 
     /*if (image) {
       mpost.images = image.split(",");
     }
@@ -740,7 +744,7 @@ window.onload = function () {
   if (window.innerWidth > 1250 || document.getElementsByClassName("timeline-profile").length === 0) {
     implementFriends();
   }
-  for (var i = 0; i < posts.length; i++) {
+  for (var i = posts.length-1; i >= 0; i--) {
     implementPost(posts[i]);
   }
 };
