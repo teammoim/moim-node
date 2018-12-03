@@ -35,17 +35,20 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
       const name = userData.name;
       const subs = userData.subscribe;
       const currentuid = auth.currentUser.uid;
-      let subsinfo =  subs;
+      let subsinfo: any = {};
       let postinfo: any;
       // Get subscribes data
       const subPromises: any[] = [];
-      if (subsinfo !== undefined) {
-        Object.keys(subsinfo).forEach((subid) => {
+      if (subs !== undefined) {
+        Object.keys(subs).forEach((subid) => {
           subPromises.push(new Promise((resolve) => {
             timelines.ref("/users/" + subid).once("value").then((subshot) => {
               const subuser = subshot.val();
-              subsinfo[subid].name = subuser["name"];
-              subsinfo[subid].photourl = subuser["url"];
+              subsinfo[subid] = {
+                uid: subid,
+                name: subuser["name"],
+                photourl: subuser["url"]
+              };
               resolve(subsinfo[subid]);
             }).catch((error) => {
               console.log(error);
@@ -114,6 +117,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
           });
           Promise.all(promises).then(() => {
             console.log(postinfo);
+            console.log(subsinfo);
             for (const key in postinfo) {
               console.log(postinfo[key].comments);
             }

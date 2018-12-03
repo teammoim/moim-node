@@ -45,6 +45,7 @@ Post.prototype.addComment = function (Comment) {
 var Friend = function (name = "", image = "/images/default-writerImage.png") {
   this.name = name;
   this.image = image;
+  this.uid = uid;
 }
 
 function Comment() {
@@ -707,12 +708,21 @@ function JSONtoPost(JSONstring) {
     createPost(mpost);
   });
 }
-function JSONtoUser(JSONstring) {
+function JSONtoProfile(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
   
 }
 function JSONtoSub(JSONstring) {
-
+  var JSONobj = JSON.parse(JSONstring);
+  Object.keys(JSONobj).forEach(function (k) {
+    var friend = JSONobj[k];
+    var name = friend['name'];
+    var uid = friend['uid'];
+    var url = friend['photourl'];
+    var mfriend = new Friend(name, url);
+    mfriend.uid = uid;
+    friend_list.push(mfriend);
+  });
 }
 
 
@@ -721,6 +731,8 @@ function JSONtoSub(JSONstring) {
 window.onload = function () {
   var youpost = document.getElementById("jsonpost").value;
   JSONtoPost(youpost);
+  var subscribes = document.getElementById("jsonsubs").value;
+  JSONtoSub(subscribes);
   implementWritePost();
   if (window.innerWidth > 950) {
     implementProfile();
@@ -820,7 +832,7 @@ function implementFriends() {
 
     var uid = document.createElement("input");
     uid.type = "hidden";
-    uid.value = friend_list[i].userid; // need uid from server
+    uid.value = friend_list[i].uid; // need uid from server
     friend.appendChild(uid);
 
     friend.onclick = function () {
