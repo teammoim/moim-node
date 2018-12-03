@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as firebase from "firebase";
 import { Promise } from "bluebird";
-import { comment } from "./timeline";
+import timeline, { comment } from "./timeline";
 
 const dbconfig = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : firebase.app();
@@ -35,76 +35,97 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
       const name = userData.name;
       const subs = userData.subscribe;
       const currentuid = auth.currentUser.uid;
-      const subsinfo: object[] = [];
+      let subsinfo =  subs;
       let postinfo: any;
-
-      timelines.ref("/post/" + uid).once("value").then((postshot) => {
-        postinfo = postshot.val();
-        if (postinfo === null) {
-          throw ("there is no post on there");
-        }
-      }).catch((error) => {
-        console.log(error);
-        res.render("user/profile", {
-          title: "Home",
-          name: name,
-          isfollow: "me", // "true","false","me"
-          uid: "", // not need uid
-          subscribes: subsinfo,
-          you: userData,
-          youpost: "",
-        });
-      }).then(() => {
-        const promises: any[] = [];
-        Object.keys(postinfo).forEach((k) => {
-          const targetuid = postinfo[k].uid;
-          promises.push(new Promise((resolve) => {
-            timelines.ref("/users/" + targetuid).once("value").then((usershot) => {
-              const userinfo = usershot.val();
-              postinfo[k].name = userinfo["name"];
-              postinfo[k].photourl = userinfo["url"];
-
-            }).catch((err) => {
-              console.log(err);
-            }).then(() => {
-              const commentsinfo = postinfo[k].comments;
-              if (commentsinfo !== undefined) {
-                const subPromises: any[] = [];
-                Object.keys(commentsinfo).forEach((ckey) => {
-                  const commentsuid = commentsinfo[ckey].uid;
-                  subPromises.push(new Promise((resolve) => {
-                    timelines.ref("/users/" + commentsuid).once("value").then((commentshot) => {
-                      const comuserinfo = commentshot.val();
-                      commentsinfo[ckey].name = comuserinfo["name"];
-                      commentsinfo[ckey].photourl = comuserinfo["url"];
-                      resolve(commentsinfo[ckey]);
-                    }).catch((error) => {
-                      console.log(error);
-                    });
-                  }));
-                });
-                Promise.all(subPromises).then(() => {
-                  resolve(postinfo[k]);
-                });
-              } else {
-                resolve(postinfo[k]);
-              }
+      // Get subscribes data
+      const subPromises: any[] = [];
+      if (subsinfo !== undefined) {
+        Object.keys(subsinfo).forEach((subid) => {
+          subPromises.push(new Promise((resolve) => {
+            timelines.ref("/users/" + subid).once("value").then((subshot) => {
+              const subuser = subshot.val();
+              subsinfo[subid].name = subuser["name"];
+              subsinfo[subid].photourl = subuser["url"];
+              resolve(subsinfo[subid]);
+            }).catch((error) => {
+              console.log(error);
             });
           }));
         });
-        Promise.all(promises).then(() => {
-          console.log(postinfo);
-          for (const key in postinfo) {
-            console.log(postinfo[key].comments);
+      }
+      else {
+        subsinfo = "";
+      }
+      Promise.all(subPromises).then(() => {
+      // Get post data
+        timelines.ref("/post/" + uid).once("value").then((postshot) => {
+          postinfo = postshot.val();
+          if (postinfo === null) {
+            throw ("there is no post on there");
           }
+        }).catch((error) => {
+          console.log(error);
           res.render("user/profile", {
             title: "Home",
             name: name,
             isfollow: "me", // "true","false","me"
-            uid: currentuid, // not need uid
+            uid: "", // not need uid
             subscribes: subsinfo,
             you: userData,
-            youpost: postinfo,
+            youpost: "",
+          });
+        }).then(() => {
+          const promises: any[] = [];
+          Object.keys(postinfo).forEach((k) => {
+            const targetuid = postinfo[k].uid;
+            promises.push(new Promise((resolve) => {
+              timelines.ref("/users/" + targetuid).once("value").then((usershot) => {
+                const userinfo = usershot.val();
+                postinfo[k].name = userinfo["name"];
+                postinfo[k].photourl = userinfo["url"];
+
+              }).catch((err) => {
+                console.log(err);
+              }).then(() => {
+                const commentsinfo = postinfo[k].comments;
+                if (commentsinfo !== undefined) {
+                  const comPromises: any[] = [];
+                  Object.keys(commentsinfo).forEach((ckey) => {
+                    const commentsuid = commentsinfo[ckey].uid;
+                    comPromises.push(new Promise((resolve) => {
+                      timelines.ref("/users/" + commentsuid).once("value").then((commentshot) => {
+                        const comuserinfo = commentshot.val();
+                        commentsinfo[ckey].name = comuserinfo["name"];
+                        commentsinfo[ckey].photourl = comuserinfo["url"];
+                        resolve(commentsinfo[ckey]);
+                      }).catch((error) => {
+                        console.log(error);
+                      });
+                    }));
+                  });
+                  Promise.all(comPromises).then(() => {
+                    resolve(postinfo[k]);
+                  });
+                } else {
+                  resolve(postinfo[k]);
+                }
+              });
+            }));
+          });
+          Promise.all(promises).then(() => {
+            console.log(postinfo);
+            for (const key in postinfo) {
+              console.log(postinfo[key].comments);
+            }
+            res.render("user/profile", {
+              title: "Home",
+              name: name,
+              isfollow: "me", // "true","false","me"
+              uid: currentuid, // not need uid
+              subscribes: subsinfo,
+              you: userData,
+              youpost: postinfo,
+            });
           });
         });
       });
@@ -143,6 +164,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
           }
       }*/
     }
+
   }).catch((error) => {
     console.log(error);
   });
