@@ -52,7 +52,7 @@ app.post("/delComments", timelineController.delComments);
 app.post("/submitLike", timelineController.like);
 
 app.post("/tryfollow", timelineController.follow);
-app.post("/goprofile", timelineController.goProfile);
+app.post("/goprofile", profileController.goProfile);
 
 app.post("/changesetting", settingController.changesetting);
 app.post("/requestfind", subscribeController.finduser);

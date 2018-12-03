@@ -44,6 +44,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
           subPromises.push(new Promise((resolve) => {
             timelines.ref("/users/" + subid).once("value").then((subshot) => {
               const subuser = subshot.val();
+              console.log(subuser);
               subsinfo[subid] = {
                 uid: subid,
                 name: subuser["name"],
@@ -52,6 +53,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
               resolve(subsinfo[subid]);
             }).catch((error) => {
               console.log(error);
+              resolve();
             });
           }));
         });
@@ -182,4 +184,9 @@ export let index = (req: Request, res: Response) => {
     } else {
       sendDataFromUid(req , res , curruser.uid);
     }
+};
+
+export let goProfile = (req: Request, res: Response) => {
+  const uid = req.body.uid;
+  sendDataFromUid(req, res, uid);
 };

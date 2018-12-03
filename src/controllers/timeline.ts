@@ -141,14 +141,4 @@ export let like = (req: Request, res: Response) => {
     res.send(505);
 };
 
-export let goProfile = (req: Request, res: Response) => {
-    const uid = req.body.uid;
-    firebase_db.ref("/users/" + uid).once("value").then(function (snapshot) {
-        const userData = snapshot.val();
-        res.render("user/profile", {
-            title: "Home",
-            name: userData.name,
-            uid: uid
-        });
-    });
-};
+
