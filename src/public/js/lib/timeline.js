@@ -112,7 +112,6 @@ sendform.appendChild(sendElement1);
 
 
 
-
 function goProfile(uidvalue) {
   sendform.action = "/goprofile";
 
@@ -729,9 +728,6 @@ function JSONtoSub(JSONstring) {
   });
 }
 
-
-//
-
 window.onload = function () {
   var youpost = document.getElementById("jsonpost").value;
   JSONtoPost(youpost);
@@ -785,12 +781,6 @@ function implementProfile() {
   var profile = document.createElement("div");
   profile.className = "profile-box";
   profileBox.appendChild(profile);
-
-  var uid = document.createElement("input");
-  uid.type = "hidden";
-  uid.value = //current uid;
-  profile.appendChild(uid);
-  
 
   var profile_first = document.createElement("div");
   profile_first.className = "profile-first";

@@ -1,17 +1,22 @@
 <% include ../core %>
 
 <body style="padding:0px">
-    <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
-    <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
-    <script src="/js/lib/timeline.js"></script>
-    <% include ../navigation %>
-    <div class="timeline">
-        <div class="timeline-profile">
-        </div>
-        <div class="timeline-posts">
-        </div>
-        <div class="timeline-friends">
-        </div>
+  <link rel='stylesheet' media="(min-width:581px)" href="/css/timeline-large.css" />
+  <link rel='stylesheet' media="(max-width:580px)" href="/css/timeline-small.css" />
+  <script src="/js/lib/timeline.js"></script>
+  <% include ../navigation %>
+  <div class="timeline">
+    <div class="timeline-profile">
     </div>
+    <div class="timeline-posts">
+    </div>
+    <div class="timeline-friends">
+    </div>
+  </div>
+  <form id="form-uid" method="post">
+    <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
+  </form>
+  <input type="hidden" id="jsonpost" value="<%= JSON.stringify(youpost) %>" />
+  <input type="hidden" id="jsonsubs" value="<%= JSON.stringify(subscribes) %>" />
 </body>
 </html>

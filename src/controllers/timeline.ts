@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 
 /* Firebase Initialized */
 import * as firebase from "firebase";
+import { Promise } from "bluebird";
+import { resolve } from "path";
 
 const firebase_config = require("../../fbconfig.js");
 export default !firebase.apps.length ? firebase.initializeApp(firebase_config) : firebase.app();
@@ -14,23 +16,97 @@ const DEBUG_FLAG = true;
 
 
 export let index = (req: Request, res: Response) => {
-    if (auth.currentUser) {
-        const contents: object[] = [];
-        firebase_db.ref("/post/").once("value", (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const child = childSnapshot.val();
-                contents.push(child);
+  if (!auth.currentUser) {
+    console.log("You have not logged");
+    res.redirect("/login");
+  } else {
+    let subsinfo: any = {}; // JSON
+    const postinfo: any = {};
+    let name: any; // String
+    const currentuid = auth.currentUser.uid;
+    firebase_db.ref("/users/" + currentuid).once("value", (snapshot) => {
+      const userData = snapshot.val();
+      console.log(userData);
+      const subPromises: any[] = [];
+      const subs = userData.subscribe;
+      name = userData.name;
+      if (subs !== undefined) {
+        Object.keys(subs).forEach((subid) => {
+          subPromises.push(new Promise((resolve) => {
+            firebase_db.ref("/users/" + subid).once("value").then((subshot) => {
+              const subuser = subshot.val();
+              console.log(subuser);
+              subsinfo[subid] = {
+                uid: subid,
+                name: subuser["name"],
+                photourl: subuser["url"]
+              };
+              resolve(subsinfo[subid]);
+            }).catch((error) => {
+              console.log(error);
+              resolve();
             });
+          }));
         });
-    } else {
-        console.log("You have not logged");
-        res.redirect("/login");
-    }
-
-    res.render("timeline/timeline", {
-        title: "Home",
-        contents: "{'number':123,'name':good}"
+      }
+      else {
+        subsinfo = "";
+      }
+      Promise.all(subPromises).thenReturn();
+    }).catch((error) => {
+      console.log(error);
+    }).then(() => {
+      firebase_db.ref("/post/").once("value").then((uidshot) => {
+        const posts = uidshot.val();
+        Object.keys(subsinfo).forEach((skey) => {
+          Object.keys(uidshot.val()).forEach((ukey) => {
+            if (skey == ukey) {
+              const post = posts[ukey];
+              const sub = subsinfo[skey];
+              Object.keys(post).forEach((pkey) => {
+                postinfo[pkey] = post[pkey];
+                postinfo[pkey].name = sub.name;
+                postinfo[pkey].photourl = sub.photourl;
+              });
+            }
+          });
+        });
+      }).catch((error) => {
+        console.log(error);
+      }).then(() => {
+        Object.keys(postinfo).forEach((pkey) => {
+          const commentsinfo = postinfo[pkey].comments;
+          if (commentsinfo !== undefined) {
+            const comPromises: any[] = [];
+            Object.keys(commentsinfo).forEach((ckey) => {
+              const commentsuid = commentsinfo[ckey].uid;
+              comPromises.push(new Promise((resolve) => {
+                firebase_db.ref("/users/" + commentsuid).once("value").then((commentshot) => {
+                  const comuserinfo = commentshot.val();
+                  commentsinfo[ckey].name = comuserinfo["name"];
+                  commentsinfo[ckey].photourl = comuserinfo["url"];
+                  resolve(commentsinfo[ckey]);
+                }).catch((error) => {
+                  console.log(error);
+                });
+              }));
+            });
+            Promise.all(comPromises).thenReturn();
+          }
+        });
+      }).then(() => {
+        res.render("timeline/timeline", {
+          title: "Home",
+          name: name,
+          isfollow: "me", // "true","false","me"
+          uid: currentuid, // need uid
+          subscribes: subsinfo,
+          you: "", // not need uid
+          youpost: postinfo,
+        });
+      });
     });
+  }
 };
 
 export let createPost = (req: Request, res: Response) => {
@@ -58,8 +134,8 @@ export let createPost = (req: Request, res: Response) => {
 
 export let editPost = (req: Request, res: Response) => {
   const postid = req.body.postId;
-  const text = req.body.text; //textarea value
-}
+  const text = req.body.text; // textarea value
+};
 
 export let delPost = (req: Request, res: Response) => {
     const postId = req.body.postId;
