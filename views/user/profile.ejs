@@ -147,7 +147,9 @@
                 if (r == true) {
                     image.src = e.target.result;
                     var imagefile = document.getElementById("imgfile");
+                    // alert(image.src);
                     imagefile.value = image.src.split(",")[1];
+                    // imagefile.value = image.src;
                     var imageform = document.getElementById("form-img");
                     imageform.submit();
                 }

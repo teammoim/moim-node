@@ -8,6 +8,11 @@ export default !firebase.apps.length ? firebase.initializeApp(dbconfig) : fireba
 const timelines = firebase.database();
 const auth = firebase.auth();
 
+import "firebase/storage";
+const storageRef = firebase.storage().ref();
+
+const isBase64 = require("is-base64");
+
 function dataChecker(target: string) {
     const check = JSON.parse(target);
 
@@ -189,4 +194,20 @@ export let index = (req: Request, res: Response) => {
 export let goProfile = (req: Request, res: Response) => {
   const uid = req.body.uid;
   sendDataFromUid(req, res, uid);
+};
+
+export let changeProfileImg = (req: Request, res: Response) => {
+    // console.log(req.body);
+    // console.log();
+    // console.log(req.body.imgfile);
+    const profimg = req.body.imgfile;
+    // console.log(isBase64(profimg));
+    console.log(profimg);
+    storageRef.child("userProfile/" + auth.currentUser.uid + "/prof.png").putString(profimg, "base64").then((snapshot) => {
+        console.log("Complete");
+    })
+    .catch((err) => {
+        console.log(err);
+        res.redirect("/profile");
+    });
 };
