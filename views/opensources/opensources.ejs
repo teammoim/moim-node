@@ -18,6 +18,7 @@
             height: 100%;
             margin: 10px;
             font-size: 15px;
+            overflow: scroll;
         }
         .linkbar-left{
             position: absolute; 
@@ -48,42 +49,159 @@
             </p>
         </div>
     </section>
-    <div class="osbox-container">
-        <div class="osbox">
-            <p style="text-align: center">async</p>
-            <p style="margin: 5px;text-align: center">
-                Async is a utility module which provides straight-forward, 
-            powerful functions for working with asynchronous JavaScript. 
-            </p>
+    <div class="tile is-ancestor" style="margin:20px">
+        <div class="tile is-parent">
+            <article style="background-color:#ebeef4" class="tile is-child box"> 
+                <p class="title" style="text-align: center" >async</p>
+                <p class="content" style="margin: 5px;text-align: center">
+                        Async is a utility module which provides straight-forward, 
+                    powerful functions for working with asynchronous JavaScript. 
+                </p>
+                <a style="display: inline-block;width: 48%;" href=http://caolan.github.io/async>site</a>
+                <a style="display: inline-block;width: 48%;text-align: right;" href=https://github.com/caolan/async>github</a>
+            </article>
             <div class="linkbar-left">
                 <a href=http://caolan.github.io/async>site</a>
             </div>
             <div class="linkbar-right">
                 <a href=https://github.com/caolan/async>github</a>
             </div>
+
         </div>
-        <div class="osbox">hello world!</div>
-        <div class="osbox">hello world!</div>
-        <div class="osbox">hello world!</div>
+        
+        <div class="tile is-parent">
+            <p style="text-align: center">aws-sdk</p>
+            <p style="margin: 5px;text-align: center">
+                    The official AWS SDK for JavaScript, 
+                    available for browsers and mobile devices, 
+                    or Node.js backends 
+            </p>
+            <div class="linkbar-left">
+                <a href=http://aws.amazon.com/javascript>site</a>
+            </div>
+            <div class="linkbar-right">
+            <a href=https://github.com/aws/aws-sdk-js>github</a>
+            </div>
+        </div>
+        <div class="tile is-parent">
+            <p style="text-align: center">bluebird</p>
+                <p style="margin: 5px;text-align: center">
+                        Bluebird is a fully featured promise library 
+                        with focus on innovative features and performance 
+            </p>
+            <div class="linkbar-left">
+                <a href=http://bluebirdjs.com>site</a>
+            </div>
+            <div class="linkbar-right">
+                <a href=https://github.com/petkaantonov/bluebird>github</a>
+            </div>
+        </div>       
+        <div class="tile is-parent">
+            <p style="text-align: center">body-parser</p>
+            <p style="margin: 5px;text-align: center">
+                body-parser is Node.js body parsing middleware.
+            </p>
+            <div class="linkbar-right">
+                <a href=https://github.com/expressjs/body-parser>github</a>
+            </div>
+        </div>        
     </div>
     <div class="osbox-container">
+        <div class="osbox">
+            <p style="text-align: center">compression</p>
+            <p style="margin: 5px;text-align: center">
+                compression is Node.js compression middleware.
+            </p>
+            <div class="linkbar-right">
+                <a href=https://github.com/expressjs/compression>github</a>
+            </div>
+        </div>
+        
+        <div class="osbox">
+            <p style="text-align: center">cookie-parser</p>
+            <p style="margin: 5px;text-align: center">
+                    cookie-parser can Parse Cookie header and populate 
+                    req.cookies with an object keyed by the cookie names.
+            </p>
+            <div class="linkbar-right">
+            <a href=https://github.com/expressjs/cookie-parser>github</a>
+            </div>
+        </div>
+        <div class="osbox">
+            <p style="text-align: center">EJS</p>
+                <p style="margin: 5px;text-align: center">
+                    EJS is Embedded JavaScript templating.
+                </p>
+            <div class="linkbar-left">
+                <a href=https://ejs.co/>site</a>
+            </div>
+            <div class="linkbar-right">
+                <a href=https://github.com/mde/ejs>github</a>
+            </div>
+        </div>       
+        <div class="osbox">
+            <p style="text-align: center">errorhandler</p>
+            <p style="margin: 5px;text-align: center">
+                    errorhandler is Development-only error handler middleware.
+            </p>
+            <div class="linkbar-right">
+                <a href=https://github.com/expressjs/errorhandler>github</a>
+            </div>
+        </div>
+        </div>
+        <div class="osbox-container">
+            <div class="osbox">
+                <p style="text-align: center">Expressjs</p>
+                <p style="margin: 5px;text-align: center">
+                    Fast, unopinionated, minimalist web framework for Node.js 
+                </p>
+                <div class="linkbar-left">
+                    <a href= https://expressjs.com>site</a>
+                </div>
+                <div class="linkbar-right">
+                    <a href=https://github.com/expressjs/express>github</a>
+                </div>
+            </div>
+            
+            <div class="osbox">
+                <p style="text-align: center">Firebase</p>
+                <p style="margin: 5px;text-align: center">
+                    Firebase is a mobile app development platform 
+                    that provides data analysis and database web services for developers. 
+                </p>
+                <div class="linkbar-left">
+                    <a href=https://firebase.google.com>site</a>
+                </div>
+                <div class="linkbar-right">
+                <a href=https://github.com/firebase/>github</a>
+                </div>
+            </div>
+            <div class="osbox">
+                <p style="text-align: center">request</p>
+                    <p style="margin: 5px;text-align: center">
+                        request is Simplified HTTP request client.     
+                    </p>
+                <div class="linkbar-right">
+                    <a href=https://github.com/request/request>github</a>
+                </div>
+            </div>       
+            <div class="osbox">
+                <p style="text-align: center">request-promise</p>
+                <p style="margin: 5px;text-align: center">
+                    The simplified HTTP request client 
+                    'request' with Promise support. Powered by Bluebird. 
+                </p>
+                <div class="linkbar-right">
+                    <a href=https://github.com/request/request-promise>github</a>
+                </div>
+            </div>
+        </div>
+        <div class="osbox-container">
             <div class="osbox">hello world!</div>
             <div class="osbox">hello world!</div>
             <div class="osbox">hello world!</div>
             <div class="osbox">hello world!</div>
         </div>
-        <div class="osbox-container">
-                <div class="osbox">hello world!</div>
-                <div class="osbox">hello world!</div>
-                <div class="osbox">hello world!</div>
-                <div class="osbox">hello world!</div>
-            </div>
-            <div class="osbox-container">
-                    <div class="osbox">hello world!</div>
-                    <div class="osbox">hello world!</div>
-                    <div class="osbox">hello world!</div>
-                    <div class="osbox">hello world!</div>
-                </div>
     <% include ../footer %>
 </body>
 
