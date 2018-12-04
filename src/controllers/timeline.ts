@@ -74,35 +74,43 @@ export let index = (req: Request, res: Response) => {
       }).catch((error) => {
         console.log(error);
       }).then(() => {
+        const postPromises: any[] = [];
         Object.keys(postinfo).forEach((pkey) => {
-          const commentsinfo = postinfo[pkey].comments;
-          if (commentsinfo !== undefined) {
+          postPromises.push(new Promise((resolvePost) => {
             const comPromises: any[] = [];
-            Object.keys(commentsinfo).forEach((ckey) => {
-              const commentsuid = commentsinfo[ckey].uid;
-              comPromises.push(new Promise((resolve) => {
-                firebase_db.ref("/users/" + commentsuid).once("value").then((commentshot) => {
-                  const comuserinfo = commentshot.val();
-                  commentsinfo[ckey].name = comuserinfo["name"];
-                  commentsinfo[ckey].photourl = comuserinfo["url"];
-                  resolve(commentsinfo[ckey]);
-                }).catch((error) => {
-                  console.log(error);
-                });
-              }));
+            const commentsinfo = postinfo[pkey].comments;
+            if (commentsinfo !== undefined) {
+              Object.keys(commentsinfo).forEach((ckey) => {
+                const commentsuid = commentsinfo[ckey].uid;
+                comPromises.push(new Promise((resolve) => {
+                  firebase_db.ref("/users/" + commentsuid).once("value").then((commentshot) => {
+                    const comuserinfo = commentshot.val();
+                    commentsinfo[ckey].name = comuserinfo["name"];
+                    commentsinfo[ckey].photourl = comuserinfo["url"];
+                    resolve(commentsinfo[ckey]);
+                  }).catch((error) => {
+                    console.log(error);
+                    resolve();
+                  });
+                }));
+
+              });
+            }
+            Promise.all(comPromises).then(() => {
+              resolvePost(postinfo[pkey]);
             });
-            Promise.all(comPromises).thenReturn();
-          }
+          }));
         });
-      }).then(() => {
-        res.render("timeline/timeline", {
-          title: "Home",
-          name: name,
-          isfollow: "me", // "true","false","me"
-          uid: currentuid, // need uid
-          subscribes: subsinfo,
-          you: "", // not need uid
-          youpost: postinfo,
+        Promise.all(postPromises).then(() => {
+          res.render("timeline/timeline", {
+            title: "Home",
+            name: name,
+            isfollow: "me", // "true","false","me"
+            uid: currentuid, // need uid
+            subscribes: subsinfo,
+            you: "", // not need uid
+            youpost: postinfo,
+          });
         });
       });
     });
