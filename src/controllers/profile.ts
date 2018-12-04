@@ -11,7 +11,7 @@ const auth = firebase.auth();
 import "firebase/storage";
 const storageRef = firebase.storage().ref();
 
-const isBase64 = require("is-base64");
+// const isBase64 = require("is-base64");
 
 function dataChecker(target: string) {
     const check = JSON.parse(target);
