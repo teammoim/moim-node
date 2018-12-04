@@ -368,17 +368,17 @@ function implementPost(Post) {
     var follow_button = document.createElement("button");
     writer_follow.appendChild(follow_button);
     //if(is followed) button.innerText = "followed"
-    follow_button.innerText = "Follow";
+    follow_button.innerText = "Followed";
     follow_button.className = "button is-rounded is-info";
     follow_button.parentElement = post_writer;
     var isfollowed = true;
     follow_button.onclick = function () {
       if (isfollowed) {
-        this.innerText = "Follow";
+        this.innerText = "Followed";
         isfollowed = false;
       }
       else {
-        this.innerText = "Followed";
+        this.innerText = "Follow";
         isfollowed = true;
       }
       form.action = "/tryfollow";
