@@ -711,10 +711,7 @@ function JSONtoPost(JSONstring) {
     createPost(mpost);
   });
 }
-function JSONtoProfile(JSONstring) {
-  var JSONobj = JSON.parse(JSONstring);
-  
-}
+
 function JSONtoSub(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
   Object.keys(JSONobj).forEach(function (k) {
@@ -788,7 +785,10 @@ function implementProfile() {
 
   var profile_image = new Image();
   profile_image.className = "profile-image";
-  profile_image.src = "/images/default-writerImage.png";
+  if (!(document.getElementById("photourl").value))
+    profile_image.src = "/images/default-writerImage.png";
+  else
+    profile_image.src = document.getElementById("photourl").value;
   profile_image.onclick = function () {
     location.href = '/profile';
   };
@@ -797,13 +797,13 @@ function implementProfile() {
   //contains profile name
   var profile_second = document.createElement("div");
   profile_second.className = "profile-second";
-  profile_second.innerText = "name";
+  profile_second.innerText = document.getElementById("name").value;
   profile.appendChild(profile_second);
 
   //contains followers and friends number
   var profile_third = document.createElement("div");
   profile_third.className = "profile-third";
-  profile_third.innerText = " friends : ";
+  profile_third.innerText = " friends : " + friend_list.length;
   profile.appendChild(profile_third); 
 }
 

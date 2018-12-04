@@ -20,12 +20,13 @@ export let index = (req: Request, res: Response) => {
     console.log("You have not logged");
     res.redirect("/login");
   } else {
+    let userData: any;
     let subsinfo: any = {}; // JSON
     const postinfo: any = {};
     let name: any; // String
     const currentuid = auth.currentUser.uid;
     firebase_db.ref("/users/" + currentuid).once("value", (snapshot) => {
-      const userData = snapshot.val();
+      userData = snapshot.val();
       console.log(userData);
       const subPromises: any[] = [];
       const subs = userData.subscribe;
@@ -108,7 +109,7 @@ export let index = (req: Request, res: Response) => {
             isfollow: "me", // "true","false","me"
             uid: currentuid, // need uid
             subscribes: subsinfo,
-            you: "", // not need uid
+            you: userData, // not need uid
             youpost: postinfo,
           });
         });

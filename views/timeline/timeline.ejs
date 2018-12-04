@@ -15,8 +15,13 @@
   </div>
   <form id="form-uid" method="post">
     <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
+    <input type="hidden" id="photourl" value="<%= you.url %>" />
+    <input type="hidden" id="name" value="<%= you.name %>" />
   </form>
-  <input type="hidden" id="jsonpost" value="<%= JSON.stringify(youpost) %>" />
-  <input type="hidden" id="jsonsubs" value="<%= JSON.stringify(subscribes) %>" />
+  <form>
+    <input type="hidden" id="jsonpost" value="<%= JSON.stringify(youpost) %>" />
+    <input type="hidden" id="jsonsubs" value="<%= JSON.stringify(subscribes) %>" />
+
+  </form>
 </body>
 </html>
