@@ -41,7 +41,7 @@ app.get("/opensources", opensourcesController.index);
 app.post("/submitSignUp", signUpController.signUp);
 
 app.post("/submitLogin", signInController.submitLogin);
-app.post("/submitLogout", signInController.submitLogout);
+app.get("/submitLogout", signInController.submitLogout);
 
 app.post("/createPost", timelineController.createPost);
 app.post("/editpost", timelineController.editPost);
