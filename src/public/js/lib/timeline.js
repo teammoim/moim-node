@@ -130,7 +130,7 @@ function editPost(postidvalue , textareavalue) {
   sendform.submit();
 }
 function deletePost(postidvalue) {
-  var r = confirm("Are you sure you want to delete");
+  var r = confirm("Are you sure you want to delete?");
   if (r === true) {
     sendform.action = "/delPost";
 
@@ -140,7 +140,7 @@ function deletePost(postidvalue) {
   }
 }
 function deleteComment(postidvalue, commentidvalue) {
-  var r = confirm("Are you sure you want to delete");
+  var r = confirm("Are you sure you want to delete?");
   if (r === true) {
     sendform.action = "/delComments";
 
@@ -421,7 +421,7 @@ function implementComment(Comments, where , Post) {
     comment.className = "media comment";
     comments_box.appendChild(comment);
 
-    var commentid = document.createElement("input");
+    let commentid = document.createElement("input");
     commentid.type = "hidden";
     commentid.name = "commentid";
     commentid.value = Comments[i].commentid;
@@ -433,10 +433,10 @@ function implementComment(Comments, where , Post) {
     uid.value = Comments[i].uid; // need uid from server
     comment.appendChild(uid);
 
-    var postid = document.createElement("input");
+    let postid = document.createElement("input");
     postid.type = "hidden";
     postid.name = "postId";
-    postid.value = Post.userid; 
+    postid.value = Post.postid; 
     comment.appendChild(postid);
 
     var comment_writer = document.createElement("div");

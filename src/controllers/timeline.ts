@@ -142,8 +142,11 @@ export let createPost = (req: Request, res: Response) => {
 };
 
 export let editPost = (req: Request, res: Response) => {
-  const postid = req.body.postId;
+  const postId = req.body.postId;
   const text = req.body.text; // textarea value
+  const dbaccess = firebase_db.ref("post/" + auth.currentUser.uid + "/" + postId);
+  dbaccess.update({ text: text });
+  res.redirect("back");
 };
 
 export let delPost = (req: Request, res: Response) => {
@@ -182,7 +185,12 @@ export let comment = (req: Request, res: Response) => {
             console.log(error.code + " , " + error.message);
         }
     });
+  if (currentuid != uid) {
+    res.redirect(req.get("referer"));
+  }
+  else {
     res.redirect("back");
+  }
 };
 
 export let delComments = (req: Request, res: Response) => {
@@ -202,6 +210,7 @@ export let delComments = (req: Request, res: Response) => {
             console.log(error.code + " , " + error.message);
         }
     });
+  res.redirect("back");
 };
 
 export let follow = (req: Request, res: Response) => {
