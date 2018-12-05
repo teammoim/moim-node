@@ -35,7 +35,7 @@ export let finduser = (req: Request, res: Response) => {
             }
         });
         console.log(found);
-        res.render("user/subscribe", {added: undefined, users: found});
+        res.render("user/subscribe", {added: undefined, users: found, islogin: true});
     });
     // example rendering code <%= name %>, inner code <% %>
 
