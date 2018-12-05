@@ -177,6 +177,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
     }
 
   }).catch((error) => {
+    console.log("geterorr");
     console.log(error);
   });
 }
@@ -192,7 +193,8 @@ export let index = (req: Request, res: Response) => {
 };
 
 export let goProfile = (req: Request, res: Response) => {
-  const uid = req.body.uid;
+  const uid = req.url.split("=")[1];
+  console.log(uid);
   sendDataFromUid(req, res, uid);
 };
 

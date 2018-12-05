@@ -113,7 +113,8 @@ sendform.appendChild(sendElement1);
 
 
 function goProfile(uidvalue) {
-  sendform.action = "/goprofile";
+  sendform.action = "/profile/" + "view";
+  sendform.method = "get";
 
   sendElement.name = "uid";
   sendElement.value = uidvalue;
@@ -392,7 +393,7 @@ function implementPost(Post) {
     timestamp_time.innerText = Post.Calc_timestamp();
     //if writer image is not ready, set writer image default
     if (typeof Post.writerImage !== 'object') {
-      writerImage.src = "images/default-writerImage.png";
+      writerImage.src = "/images/default-writerImage.png";
     }
   else writerImage = Post.writerImage;
   if (Post.images.length !== 0) {
@@ -493,7 +494,7 @@ function implementComment(Comments, where , Post) {
     commentText.innerText = currentComment.text;
     commentWriter.innerText = currentComment.writer;
     if (typeof currentComment.writerImage !== 'object') {
-      commentWriterImage.src = "images/default-writerImage.png";
+      commentWriterImage.src = "/images/default-writerImage.png";
     }
     else commentWriterImage.src = currentComment.writerImage.src;
   }
@@ -514,7 +515,7 @@ function implementWritePost() {
 
   var writerImage = document.createElement("img");
   writerImage.className = "write-writer-image";
-  writerImage.src = "images/default-writerImage.png";
+  writerImage.src = "/images/default-writerImage.png";
   writerImage.style.cursor = "defalut";
   box_left.appendChild(writerImage);
 
@@ -633,7 +634,7 @@ function implementWriteComment(comments_box , Post) {
   write_comment.appendChild(write_comment_left);
 
   var write_comment_image = new Image();
-  write_comment_image.src = "images/default-writerImage.png";
+  write_comment_image.src = "/images/default-writerImage.png";
   write_comment_image.className = "comment-write-writer-image";
   write_comment_left.appendChild(write_comment_image);
 
