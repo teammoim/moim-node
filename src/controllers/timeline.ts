@@ -171,9 +171,10 @@ export let comment = (req: Request, res: Response) => {
     const postId = req.body.postId;
     const comments_text = req.body.text;
     const newCommentsKey = new Date().getTime();
+    const uid = req.body.uid;
     const currentuid = auth.currentUser.uid;
 
-    firebase_db.ref("/post/" + currentuid + "/" + postId).child("/comments/" + newCommentsKey).set({
+    firebase_db.ref("/post/" + uid + "/" + postId).child("/comments/" + newCommentsKey).set({
         text: comments_text,
         uid: currentuid,
     }).catch(function (error) {

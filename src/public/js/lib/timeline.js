@@ -164,13 +164,13 @@ function createPost(Post) {
 
 
 
-function commentClick(Comments_array, where , postidvalue) {
+function commentClick(Comments_array, where , Post) {
   var comment_box = where.getElementsByClassName("comments-box");
   if (comment_box.length !== 0) {
     where.removeChild(comment_box[0]);
   }
   else {
-    implementComment(Comments_array, where , postidvalue);
+    implementComment(Comments_array, where , Post);
   }
 }
 
@@ -306,7 +306,7 @@ function implementPost(Post) {
   }
 
   commentButton.onclick = function () {
-    commentClick(Post.comments, post, postid.value);
+    commentClick(Post.comments, post, Post);
   };
   var currid = document.getElementById("uid");
   if (Post.userid === currid.value) { 
@@ -403,7 +403,7 @@ function implementPost(Post) {
   }
   
 }
-function implementComment(Comments, where , postidvalue) {
+function implementComment(Comments, where , Post) {
 
   var comments_box = document.createElement("div");
   comments_box.className = "comments-box";
@@ -413,7 +413,7 @@ function implementComment(Comments, where , postidvalue) {
   hr_comment.style.marginBottom = "10px";
   comments_box.appendChild(hr_comment);
   //at first add posting comment
-  implementWriteComment(comments_box, postidvalue);
+  implementWriteComment(comments_box, Post);
 
   for (i = Comments.length-1; i >= 0; i--) {
 
@@ -436,7 +436,7 @@ function implementComment(Comments, where , postidvalue) {
     var postid = document.createElement("input");
     postid.type = "hidden";
     postid.name = "postId";
-    postid.value = postidvalue; 
+    postid.value = Post.userid; 
     comment.appendChild(postid);
 
     var comment_writer = document.createElement("div");
@@ -614,7 +614,7 @@ function implementWritePost() {
   };
   
 }
-function implementWriteComment(comments_box , postidvalue) {
+function implementWriteComment(comments_box , Post) {
   var form = document.createElement("form");
   form.action = "/submitComments";
   form.method = "post";
@@ -654,8 +654,14 @@ function implementWriteComment(comments_box , postidvalue) {
   var postid = document.createElement("input");
   postid.type = "hidden";
   postid.name = "postId";
-  postid.value = postidvalue;
+  postid.value = Post.postid;
   form.appendChild(postid);
+
+  var uid = document.createElement("input");
+  uid.type = "hidden";
+  uid.name = "uid";
+  uid.value = Post.userid;
+  form.appendChild(uid);
 
   var box_under = document.createElement("div");
   box_under.style.width = "100%";
