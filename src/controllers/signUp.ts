@@ -42,6 +42,10 @@ export let signUp = (req: Request, res: Response) => {
       if (!userData) {
         return;
       }
+      const dbaccess = firebase_db.ref("post/");
+      const initPost: any = {};
+      initPost[userData.user.uid] = "";
+      dbaccess.update(initPost);
 
       firebase_db.ref("/users/" + userData.user.uid).set({
         email: userData.user.email,
@@ -59,7 +63,7 @@ export let signUp = (req: Request, res: Response) => {
         }
         // 인증은 했고 그게 DB에 안올라가는 상황 -> 좆된 상황
         res.redirect("/");
-      });
+        });
 
       auth.signInWithEmailAndPassword(signUp_Info[0], signUp_Info[1]).then((user) => {
         res.redirect("/profile");
