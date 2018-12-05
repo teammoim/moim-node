@@ -215,7 +215,27 @@ export let delComments = (req: Request, res: Response) => {
 };
 
 export let follow = (req: Request, res: Response) => {
-    const uid = req.body.uid;
+  const addTarget = req.body.targetuid;
+  console.log(addTarget);
+  firebase_db.ref("/users/" + auth.currentUser.uid + "/subscribe/" + addTarget).once("value").then((snapshot) => {
+    if (!snapshot.val()) {
+      const newsub: any = {};
+      newsub[addTarget] = true;
+      firebase_db.ref("/users/" + auth.currentUser.uid + "/subscribe").set(newsub).then(() => {
+        res.redirect("back");
+      });
+    }
+    else {
+      console.log("DA");
+      const newsub: any = {};
+      newsub[addTarget] = undefined;
+      firebase_db.ref("/users/" + auth.currentUser.uid + "/subscribe/" + addTarget).remove();
+      res.redirect("back");
+    }
+  }).catch((error) => {
+    console.log(error);
+    res.redirect("back");
+  });
 };
 
 export let like = (req: Request, res: Response) => {

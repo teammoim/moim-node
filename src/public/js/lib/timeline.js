@@ -191,7 +191,13 @@ function implementPost(Post) {
     uid.type = "hidden";
     uid.name = "uid";
     uid.value = Post.userid; // need uid from server
-    form.appendChild(uid);
+  form.appendChild(uid);
+
+  var targetuid = document.createElement("input");
+  targetuid.type = "hidden";
+  targetuid.name = "targetuid";
+  targetuid.value = Post.userid;
+  form.appendChild(targetuid);
 
     var postid = document.createElement("input");
     form.appendChild(postid);
@@ -280,19 +286,15 @@ function implementPost(Post) {
     var level = document.createElement("nav");
   level.className = "level is-mobile";
   level.innerHTML = '' +
-    '<a class="level-item" style="margin-bottom:5px;" >' +
-    '  <span class="icon is-small"><i class="level material-icons">favorite</i></span>' +
-    '   Like' +
-    '          </a >' +
     '<a class="level-item" style="margin-bottom:5px;">' +
     '  <span class="icon is-small"><i class="level material-icons">mode_comment</i></span>' +
     '    Comment' +
     '          </a>';
-    var likeButton = level.getElementsByClassName("level-item")[0];
-    var commentButton = level.getElementsByClassName("level-item")[1];
+    //var likeButton = level.getElementsByClassName("level-item")[0];
+    var commentButton = level.getElementsByClassName("level-item")[0];
     media_content.appendChild(level);
   /* add event listeners to button */
-  presslike = false;
+  /* presslike = false;
   likeButton.onclick = function () {
     if (presslike) {
       likeButton.style.color = "grey";
@@ -304,7 +306,7 @@ function implementPost(Post) {
     }
     form.action = "/submitLike";
     form.submit();
-  }
+  }*/
 
   commentButton.onclick = function () {
     commentClick(Post.comments, post, Post);
@@ -382,7 +384,9 @@ function implementPost(Post) {
         this.innerText = "Follow";
         isfollowed = true;
       }
+      var r = confirm("Are you sure?");
       form.action = "/tryfollow";
+      if (r === true)
       form.submit();
     }
   }

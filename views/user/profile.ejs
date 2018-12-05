@@ -75,6 +75,7 @@
 </div>
 <form id="form-uid" method="post">
     <input type="hidden" name="uid" id="uid" value="<%= uid %>"/>
+  <input type="hidden" name="targetuid" id="targetuid" value="<%= targetuid %>" />
 </form>
 <form id="form-img" method="post" action="/changeProfileImg">
     <input id="imgfile" type="hidden" name="imgfile"/>
@@ -126,9 +127,9 @@
         var buttonBox = document.getElementsByClassName("profile-info")[0];
         var followButton = document.createElement("button");
         buttonBox.appendChild(followButton);
-        followButton.className = "button";
-        followButton.onclick = function () {
-            var form = document.getElementById("form-uid");
+      followButton.className = "button";
+      var form = document.getElementById("form-uid");
+      followButton.onclick = function () {
             form.action = "/tryfollow";
             form.submit();
             if (isfollow == "true")

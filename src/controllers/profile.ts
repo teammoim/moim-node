@@ -44,6 +44,20 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
       let postinfo: any;
       // Get subscribes data
       const subPromises: any[] = [];
+
+      let isfollow: String = "false";
+      if (auth.currentUser.uid === uid) {
+        isfollow = "me";
+      }
+      timelines.ref("/users/" + currentuid + "/subscribe/" + uid).once("value").then((datashot) => {
+        if (datashot.val()) {
+          console.log(datashot.val());
+          isfollow = "true";
+        }
+      }).catch((error) => {
+        console.log(error);
+      });
+
       if (subs !== undefined) {
         Object.keys(subs).forEach((subid) => {
           subPromises.push(new Promise((resolve) => {
@@ -78,8 +92,9 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
           res.render("user/profile", {
             title: "Home",
             name: name,
-            isfollow: "me", // "true","false","me"
-            uid: "", // not need uid
+            isfollow: isfollow,
+            uid: currentuid, // not need uid
+            targetuid: uid,
             subscribes: subsinfo,
             you: userData,
             youpost: "",
@@ -132,8 +147,9 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
             res.render("user/profile", {
               title: "Home",
               name: name,
-              isfollow: "me", // "true","false","me"
+              isfollow: isfollow,
               uid: currentuid, // not need uid
+              targetuid : uid,
               subscribes: subsinfo,
               you: userData,
               youpost: postinfo,
