@@ -685,7 +685,7 @@ function implementWriteComment(comments_box , Post) {
 }
 function JSONtoPost(JSONstring) {
   var JSONobj = JSON.parse(JSONstring);
-  Object.keys(JSONobj).forEach(function (k) {
+  Object.keys(JSONobj).sort().forEach(function (k) {
     var post = JSONobj[k];
     var pid = post['postId'];
     var uid = post['uid'];
