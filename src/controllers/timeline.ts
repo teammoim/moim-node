@@ -111,6 +111,7 @@ export let index = (req: Request, res: Response) => {
             subscribes: subsinfo,
             you: userData, // not need uid
             youpost: postinfo,
+            islogin: true
           });
         });
       });

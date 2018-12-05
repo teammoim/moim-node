@@ -6,7 +6,12 @@ const timelines = firebase.database();
 const auth = firebase.auth();
 
 export let index = (req: Request, res: Response) => {
-    res.render("user/subscribe", {added: undefined, users: undefined});
+  const curruser = auth.currentUser;
+  let islogin: boolean = false;
+  if (curruser) islogin = true;
+  res.render("user/subscribe", {
+    added: undefined, users: undefined, islogin: islogin
+  });
 };
 
 export let finduser = (req: Request, res: Response) => {
@@ -49,6 +54,6 @@ export let subscribe = (req: Request, res: Response) => {
             dbaccess.update({[addTarget]: true});
         }
 
-        res.render("user/subscribe", {added: true, users: undefined});
+        res.render("user/subscribe", {added: true, users: undefined, islogin: true});
     });
 };

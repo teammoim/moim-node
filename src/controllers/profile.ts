@@ -83,6 +83,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
             subscribes: subsinfo,
             you: userData,
             youpost: "",
+            islogin: true
           });
         }).then(() => {
           const promises: any[] = [];
@@ -136,6 +137,7 @@ function sendDataFromUid(req: Request, res: Response, uid: String) {
               subscribes: subsinfo,
               you: userData,
               youpost: postinfo,
+              islogin: true
             });
           });
         });

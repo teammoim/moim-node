@@ -6,7 +6,11 @@ const timelines = firebase.database();
 const auth = firebase.auth();
 
 export let index = (req: Request, res: Response) => {
+  const curruser = auth.currentUser;
+  let islogin: boolean = false;
+  if (curruser) islogin = true;
   res.render("index/index", {
-    title: (auth.currentUser != undefined) ? auth.currentUser.displayName : "회원님!"
+    title: (auth.currentUser != undefined) ? auth.currentUser.displayName : "회원님!",
+    islogin: islogin
   });
 };

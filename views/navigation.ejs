@@ -11,7 +11,7 @@
                 });
             });
         }
-    });
+  }); 
 </script>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -35,23 +35,9 @@
                 <a class="navbar-link">
                     사용자 관리
                 </a>
-                <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="/signup">
-                        회원가입
-                    </a>
-                    <a class="navbar-item" href="/login">
-                        로그인
-                    </a>
-                    <a class="navbar-item" href="/submitLogout" style="visibility:hidden">
-                        로그아웃
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item" href="/profile">
-                        내 프로필 보기
-                    </a>
-                    <a class="navbar-item" href="/setting">
-                        내 정보 업데이트
-                    </a>
+                <div class="navbar-dropdown is-boxed" id="dropdown">
+                    
+                    
                 </div>
             </div>
             <a class="navbar-item" href="/timeline">
@@ -83,3 +69,29 @@
         </div>
     </div>
 </nav>
+<script>
+  var islogin = <%= islogin %>;
+  var dropdown = document.getElementById("dropdown");
+  if (!islogin) {
+    dropdown.innerHTML =
+      '<a class="navbar-item" href="/signup">\
+            회원가입\
+        </a >\
+        <a class="navbar-item" href="/login">\
+            로그인\
+        </a>';
+  }
+  else {
+    dropdown.innerHTML =
+      '<a class="navbar-item" href="/submitLogout">\
+       로그아웃\
+       </a >\
+      <hr class="navbar-divider">\
+        <a class="navbar-item" href="/profile">\
+          내 프로필 보기\
+                    </a>\
+        <a class="navbar-item" href="/setting">\
+          내 정보 업데이트\
+                    </a>';
+  }
+</script>

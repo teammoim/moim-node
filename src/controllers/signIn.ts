@@ -10,7 +10,13 @@ const auth = firebase.auth();
 const DEBUG_FLAG = true;
 
 export let index = (req: Request, res: Response) => {
-    res.render("user/login", {title: "Home"});
+  const curruser = auth.currentUser;
+  let islogin: boolean = false;
+  if (curruser) islogin = true;
+  res.render("user/login", {
+    title: "Home",
+    islogin: islogin
+  });
 };
 
 /**
